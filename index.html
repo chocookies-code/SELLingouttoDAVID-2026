@@ -1,824 +1,765 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>The Wedding of David & Selly</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>The Wedding of David & Selly</title>
+  
+  <!-- Google Fonts & FontAwesome -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;700&family=Great+Vibes&family=Montserrat:wght@300;400;500;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  
+  <!-- Supabase JS Client -->
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 
-    <!-- Google Fonts & FontAwesome -->
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;700&family=Great+Vibes&family=Montserrat:wght@300;400;500;600&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <!-- AOS Animation Library -->
-    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+  <style>
+    :root {
+      --primary-red: #8B0000;
+      --dark-red: #5C0000;
+      --gold: #D4AF37;
+      --light-gold: #F3E5AB;
+      --bg-cream: #FFFDF9;
+      --text-dark: #2B2B2B;
+    }
 
-    <!-- Supabase JS Client -->
-    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
 
-    <style>
-        :root {
-            --bg-red: #8B0000;
-            --dark-red: #580000;
-            --gold-primary: #D4AF37;
-            --gold-light: #F3E5AB;
-            --text-gold: #E5C158;
-            --text-light: #FAF7F2;
-            --white: #FFFFFF;
-            --shadow: 0 10px 30px rgba(0, 0, 0, 0.4);
-        }
+    body {
+      font-family: 'Montserrat', sans-serif;
+      background-color: var(--bg-cream);
+      color: var(--text-dark);
+      overflow-x: hidden;
+    }
 
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-            scroll-behavior: smooth;
-        }
+    /* Lock scroll before cover opened */
+    body.no-scroll {
+      overflow: hidden;
+      height: 100vh;
+    }
 
-        body {
-            font-family: 'Montserrat', sans-serif;
-            background-color: #0d0d0d;
-            color: var(--text-light);
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            min-height: 100vh;
-            overflow-x: hidden;
-        }
+    /* Falling Flowers Container */
+    #petals-container {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100vw;
+      height: 100vh;
+      pointer-events: none;
+      z-index: 9999;
+      overflow: hidden;
+    }
 
-        /* Mobile Layout Simulator */
-        .mobile-container {
-            width: 100%;
-            max-width: 480px;
-            background: linear-gradient(180deg, var(--bg-red) 0%, var(--dark-red) 100%);
-            min-height: 100vh;
-            position: relative;
-            box-shadow: 0 0 50px rgba(0,0,0,0.8);
-            overflow-x: hidden;
-            perspective: 1500px;
-        }
+    .petal {
+      position: absolute;
+      background-color: #d63031;
+      border-radius: 15px 0 15px 0;
+      opacity: 0.8;
+      animation: fall linear infinite;
+    }
 
-        .font-serif { font-family: 'Cinzel', serif; }
-        .font-cursive { font-family: 'Great Vibes', cursive; }
+    @keyframes fall {
+      0% {
+        transform: translateY(-10vh) rotate(0deg);
+        opacity: 1;
+      }
+      100% {
+        transform: translateY(105vh) rotate(360deg);
+        opacity: 0.2;
+      }
+    }
 
-        /* Floating Falling Petals Canvas */
-        #petals-canvas {
-            position: fixed;
-            top: 0;
-            left: 50%;
-            transform: translateX(-50%);
-            width: 100%;
-            max-width: 480px;
-            height: 100vh;
-            pointer-events: none;
-            z-index: 99;
-        }
+    /* Cover / Hero Section */
+    #cover {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(rgba(60, 0, 0, 0.55), rgba(40, 0, 0, 0.65)), url('images/cover.html.png') center/cover no-repeat;
+      z-index: 1000;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      text-align: center;
+      color: #fff;
+      padding: 20px;
+      transition: transform 0.8s ease-in-out, opacity 0.8s ease-in-out;
+    }
 
-        /* Animated Cherry Blossoms Decor */
-        .blossom-decor {
-            position: absolute;
-            width: 90px;
-            z-index: 10;
-            pointer-events: none;
-            filter: drop-shadow(0 4px 10px rgba(0,0,0,0.4));
-        }
+    #cover.opened {
+      transform: translateY(-100%);
+      opacity: 0;
+      pointer-events: none;
+    }
 
-        .blossom-top-left {
-            top: 10px;
-            left: 10px;
-            animation: swayLeft 4s ease-in-out infinite alternate;
-        }
+    .double-happiness {
+      font-size: 3rem;
+      color: var(--gold);
+      margin-bottom: 5px;
+      text-shadow: 0 0 10px rgba(212, 175, 55, 0.5);
+    }
 
-        .blossom-top-right {
-            top: 10px;
-            right: 10px;
-            transform: scaleX(-1);
-            animation: swayRight 4.5s ease-in-out infinite alternate;
-        }
+    .cover-sub {
+      font-family: 'Cinzel', serif;
+      letter-spacing: 3px;
+      font-size: 0.85rem;
+      color: var(--light-gold);
+      margin-bottom: 25px;
+      text-transform: uppercase;
+    }
 
-        @keyframes swayLeft {
-            0% { transform: rotate(0deg) scale(1); }
-            100% { transform: rotate(8deg) scale(1.05); }
-        }
-        @keyframes swayRight {
-            0% { transform: scaleX(-1) rotate(0deg) scale(1); }
-            100% { transform: scaleX(-1) rotate(-8deg) scale(1.05); }
-        }
+    .cover-title {
+      font-family: 'Great Vibes', cursive;
+      font-size: 4rem;
+      color: var(--gold);
+      text-shadow: 2px 2px 8px rgba(0,0,0,0.7);
+      margin-bottom: 10px;
+    }
 
-        /* Music Floating Toggle */
-        .music-btn {
-            position: fixed;
-            bottom: 25px;
-            right: 25px;
-            z-index: 999;
-            width: 45px;
-            height: 45px;
-            background: rgba(212, 175, 55, 0.2);
-            border: 2px solid var(--gold-primary);
-            color: var(--gold-primary);
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            cursor: pointer;
-            backdrop-filter: blur(5px);
-            box-shadow: 0 4px 15px rgba(0,0,0,0.4);
-            transition: all 0.3s ease;
-        }
+    .cover-date {
+      font-family: 'Cinzel', serif;
+      letter-spacing: 4px;
+      font-size: 1.1rem;
+      margin-bottom: 35px;
+    }
 
-        .music-btn.playing i {
-            animation: spin 4s linear infinite;
-        }
+    .guest-box {
+      background: rgba(0, 0, 0, 0.5);
+      border: 1px solid var(--gold);
+      border-radius: 10px;
+      padding: 15px 25px;
+      margin-bottom: 25px;
+      max-width: 320px;
+      width: 100%;
+      backdrop-filter: blur(5px);
+    }
 
-        @keyframes spin { 100% { transform: rotate(360deg); } }
+    .guest-box p {
+      font-size: 0.85rem;
+      color: var(--light-gold);
+      margin-bottom: 5px;
+    }
 
-        /* 1. COVER OVERLAY WITH PAGE FLIP ANIMATION */
-        #cover-overlay {
-            position: fixed;
-            top: 0;
-            left: 50%;
-            transform: translateX(-50%);
-            width: 100%;
-            max-width: 480px;
-            height: 100vh;
-            background: linear-gradient(rgba(40, 0, 0, 0.65), rgba(40, 0, 0, 0.75)), 
-                        url('https://images.unsplash.com/photo-1519741497674-611481863552?auto=format&fit=crop&q=80&w=1000') center/cover;
-            z-index: 1000;
-            display: flex;
-            flex-direction: column;
-            justify-content: space-between;
-            align-items: center;
-            padding: 50px 20px 40px;
-            text-align: center;
-            box-shadow: inset 0 0 100px rgba(0,0,0,0.8);
-            transform-origin: left center;
-            transition: transform 1.4s cubic-bezier(0.645, 0.045, 0.355, 1), opacity 1.2s ease;
-        }
+    .guest-name {
+      font-size: 1.2rem;
+      font-weight: 600;
+      color: #fff;
+    }
 
-        /* Page Flip Animation Effect */
-        #cover-overlay.opened {
-            transform: translateX(-50%) rotateY(-110deg) scale(0.95);
-            opacity: 0;
-            pointer-events: none;
-        }
+    .btn-open {
+      background: linear-gradient(135deg, #D4AF37, #AA7C11);
+      color: #fff;
+      border: none;
+      padding: 12px 30px;
+      font-size: 0.95rem;
+      font-family: 'Cinzel', serif;
+      font-weight: 600;
+      letter-spacing: 2px;
+      border-radius: 30px;
+      cursor: pointer;
+      box-shadow: 0 4px 15px rgba(212, 175, 55, 0.4);
+      transition: all 0.3s ease;
+    }
 
-        .double-happiness {
-            width: 75px;
-            height: 75px;
-            border: 2px solid var(--gold-primary);
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            margin: 0 auto 10px;
-            color: var(--gold-primary);
-            font-size: 2.2rem;
-            box-shadow: 0 0 15px rgba(212, 175, 55, 0.4);
-        }
+    .btn-open:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 6px 20px rgba(212, 175, 55, 0.6);
+    }
 
-        .cover-subtitle {
-            font-size: 0.75rem;
-            letter-spacing: 4px;
-            color: var(--gold-light);
-            text-transform: uppercase;
-        }
+    /* Main Container */
+    .container {
+      max-width: 600px;
+      margin: 0 auto;
+      background: #fff;
+      min-height: 100vh;
+      box-shadow: 0 0 25px rgba(0,0,0,0.1);
+    }
 
-        .cover-names {
-            font-size: 3rem;
-            color: var(--gold-primary);
-            margin: 10px 0;
-            text-shadow: 0 2px 10px rgba(0,0,0,0.6);
-        }
+    section {
+      padding: 60px 25px;
+      text-align: center;
+    }
 
-        .guest-box {
-            background: rgba(0, 0, 0, 0.4);
-            border: 1px solid rgba(212, 175, 55, 0.4);
-            padding: 12px 25px;
-            border-radius: 30px;
-            backdrop-filter: blur(5px);
-            margin-bottom: 20px;
-        }
+    .section-title {
+      font-family: 'Cinzel', serif;
+      color: var(--primary-red);
+      font-size: 1.6rem;
+      margin-bottom: 10px;
+      position: relative;
+    }
 
-        .btn-open {
-            background: linear-gradient(135deg, #D4AF37 0%, #AA7C11 100%);
-            color: #2b0000;
-            border: 1px solid var(--gold-light);
-            padding: 12px 35px;
-            font-size: 0.85rem;
-            font-weight: 600;
-            border-radius: 30px;
-            cursor: pointer;
-            letter-spacing: 2px;
-            text-transform: uppercase;
-            box-shadow: 0 4px 20px rgba(212, 175, 55, 0.4);
-            transition: transform 0.3s, box-shadow 0.3s;
-        }
+    .section-subtitle {
+      font-size: 0.85rem;
+      color: #777;
+      text-transform: uppercase;
+      letter-spacing: 2px;
+      margin-bottom: 40px;
+    }
 
-        .btn-open:hover {
-            transform: scale(1.05);
-            box-shadow: 0 6px 25px rgba(212, 175, 55, 0.6);
-        }
+    /* Couple Section */
+    .couple-card {
+      margin-bottom: 35px;
+    }
 
-        /* SECTIONS COMMON */
-        section {
-            padding: 50px 25px;
-            text-align: center;
-            position: relative;
-        }
+    .couple-img {
+      width: 160px;
+      height: 160px;
+      border-radius: 50%;
+      object-fit: cover;
+      border: 3px solid var(--gold);
+      padding: 4px;
+      margin-bottom: 15px;
+    }
 
-        .gold-divider {
-            width: 60px;
-            height: 2px;
-            background: var(--gold-primary);
-            margin: 15px auto 25px;
-            position: relative;
-        }
+    .couple-name {
+      font-family: 'Great Vibes', cursive;
+      font-size: 2.8rem;
+      color: var(--primary-red);
+      margin-bottom: 5px;
+    }
 
-        .gold-divider::after {
-            content: '❖';
-            position: absolute;
-            top: -10px;
-            left: 50%;
-            transform: translateX(-50%);
-            color: var(--gold-primary);
-            background: var(--bg-red);
-            padding: 0 6px;
-            font-size: 0.7rem;
-        }
+    .parents {
+      font-size: 0.85rem;
+      color: #666;
+      line-height: 1.5;
+      margin-bottom: 10px;
+    }
 
-        /* HERO HEADER */
-        .hero {
-            height: 85vh;
-            background: linear-gradient(to bottom, rgba(139, 0, 0, 0.3), var(--dark-red)), 
-                        url('https://images.unsplash.com/photo-1583939003579-730e3918a45a?auto=format&fit=crop&q=80&w=800') center/cover;
-            display: flex;
-            flex-direction: column;
-            justify-content: flex-end;
-            align-items: center;
-            padding-bottom: 60px;
-            text-shadow: 0 2px 8px rgba(0,0,0,0.8);
-        }
+    .ig-link {
+      display: inline-block;
+      color: var(--gold);
+      font-size: 0.9rem;
+      text-decoration: none;
+      font-weight: 500;
+    }
 
-        /* GROOM & BRIDE PROFILE */
-        .couple-card {
-            margin-bottom: 35px;
-        }
+    .and-sym {
+      font-family: 'Great Vibes', cursive;
+      font-size: 3rem;
+      color: var(--gold);
+      margin: 20px 0;
+    }
 
-        .couple-img {
-            width: 160px;
-            height: 160px;
-            border-radius: 50%;
-            object-fit: cover;
-            margin: 0 auto 15px;
-            border: 3px solid var(--gold-primary);
-            box-shadow: 0 0 20px rgba(212, 175, 55, 0.3);
-        }
+    /* Event Section */
+    .event-bg {
+      background: linear-gradient(rgba(139, 0, 0, 0.03), rgba(139, 0, 0, 0.03));
+      border-top: 1px solid rgba(212, 175, 55, 0.3);
+      border-bottom: 1px solid rgba(212, 175, 55, 0.3);
+    }
 
-        .couple-name {
-            font-size: 1.8rem;
-            color: var(--gold-primary);
-            margin-bottom: 5px;
-        }
+    .event-card {
+      background: #fff;
+      border: 1px solid var(--gold);
+      border-radius: 12px;
+      padding: 30px 20px;
+      margin-bottom: 25px;
+      box-shadow: 0 5px 15px rgba(0,0,0,0.03);
+    }
 
-        .parents-info {
-            font-size: 0.8rem;
-            color: rgba(255, 255, 255, 0.8);
-            line-height: 1.5;
-        }
+    .event-type {
+      font-family: 'Cinzel', serif;
+      font-size: 1.2rem;
+      color: var(--primary-red);
+      margin-bottom: 15px;
+      letter-spacing: 1px;
+    }
 
-        .instagram-link {
-            display: inline-block;
-            margin-top: 8px;
-            color: var(--gold-primary);
-            font-size: 1.1rem;
-            text-decoration: none;
-        }
+    .event-detail {
+      font-size: 0.9rem;
+      color: #444;
+      margin-bottom: 8px;
+    }
 
-        /* COUNTDOWN */
-        .timer-container {
-            display: flex;
-            justify-content: center;
-            gap: 12px;
-            margin-top: 20px;
-        }
+    .btn-map {
+      display: inline-block;
+      margin-top: 15px;
+      padding: 10px 22px;
+      background: var(--primary-red);
+      color: #fff;
+      text-decoration: none;
+      border-radius: 25px;
+      font-size: 0.85rem;
+      font-family: 'Cinzel', serif;
+      letter-spacing: 1px;
+    }
 
-        .timer-box {
-            background: rgba(0,0,0,0.4);
-            border: 1px solid rgba(212, 175, 55, 0.3);
-            padding: 12px 8px;
-            border-radius: 10px;
-            min-width: 68px;
-        }
+    /* Gallery */
+    .gallery-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 10px;
+    }
 
-        .timer-num {
-            font-size: 1.6rem;
-            font-weight: 700;
-            color: var(--gold-primary);
-        }
+    .gallery-grid img {
+      width: 100%;
+      height: 180px;
+      object-fit: cover;
+      border-radius: 8px;
+    }
 
-        .timer-label {
-            font-size: 0.65rem;
-            text-transform: uppercase;
-            color: var(--gold-light);
-            letter-spacing: 1px;
-        }
+    /* Gift Section */
+    .gift-card {
+      background: #fafafa;
+      border: 1px dashed var(--gold);
+      border-radius: 12px;
+      padding: 25px;
+      margin-top: 20px;
+    }
 
-        /* EVENT CARD */
-        .event-card {
-            background: rgba(40, 0, 0, 0.6);
-            border: 1px solid rgba(212, 175, 55, 0.4);
-            padding: 25px 20px;
-            border-radius: 15px;
-            margin-bottom: 25px;
-            box-shadow: var(--shadow);
-            backdrop-filter: blur(5px);
-        }
+    .bank-name {
+      font-weight: bold;
+      color: var(--primary-red);
+      font-size: 1.1rem;
+    }
 
-        .btn-map {
-            display: inline-flex;
-            align-items: center;
-            gap: 8px;
-            background: transparent;
-            border: 1px solid var(--gold-primary);
-            color: var(--gold-primary);
-            padding: 10px 22px;
-            border-radius: 25px;
-            text-decoration: none;
-            font-size: 0.8rem;
-            letter-spacing: 1px;
-            margin-top: 15px;
-            transition: all 0.3s ease;
-        }
+    .account-num {
+      font-size: 1.3rem;
+      font-weight: bold;
+      letter-spacing: 2px;
+      margin: 10px 0;
+      color: #333;
+    }
 
-        .btn-map:hover {
-            background: var(--gold-primary);
-            color: #2b0000;
-        }
+    .btn-copy {
+      background: var(--gold);
+      color: #fff;
+      border: none;
+      padding: 6px 16px;
+      border-radius: 15px;
+      cursor: pointer;
+      font-size: 0.8rem;
+    }
 
-        /* GALLERY GRID */
-        .gallery-grid {
-            display: grid;
-            grid-template-columns: repeat(2, 1fr);
-            gap: 10px;
-        }
+    /* RSVP Form */
+    .rsvp-form {
+      display: flex;
+      flex-direction: column;
+      gap: 15px;
+      text-align: left;
+    }
 
-        .gallery-grid img {
-            width: 100%;
-            height: 140px;
-            object-fit: cover;
-            border-radius: 8px;
-            border: 1px solid rgba(212, 175, 55, 0.3);
-        }
+    .form-group label {
+      font-size: 0.85rem;
+      font-weight: 600;
+      color: #444;
+      display: block;
+      margin-bottom: 5px;
+    }
 
-        /* DIGITAL ENVELOPE */
-        .envelope-card {
-            background: rgba(0,0,0,0.5);
-            border: 1px dashed var(--gold-primary);
-            padding: 20px;
-            border-radius: 12px;
-            margin-bottom: 15px;
-        }
+    .form-group input, .form-group select, .form-group textarea {
+      width: 100%;
+      padding: 10px;
+      border: 1px solid #ddd;
+      border-radius: 6px;
+      font-family: inherit;
+    }
 
-        .btn-copy {
-            background: var(--gold-primary);
-            color: #2b0000;
-            border: none;
-            padding: 6px 16px;
-            border-radius: 15px;
-            font-size: 0.75rem;
-            font-weight: 600;
-            cursor: pointer;
-            margin-top: 10px;
-        }
+    .btn-submit {
+      background: var(--primary-red);
+      color: #fff;
+      border: none;
+      padding: 12px;
+      border-radius: 6px;
+      font-family: 'Cinzel', serif;
+      font-weight: 600;
+      cursor: pointer;
+    }
 
-        /* RSVP FORM */
-        .rsvp-form {
-            background: rgba(0, 0, 0, 0.5);
-            border: 1px solid rgba(212, 175, 55, 0.3);
-            padding: 25px 20px;
-            border-radius: 15px;
-            text-align: left;
-        }
+    .wishes-list {
+      margin-top: 30px;
+      text-align: left;
+      max-height: 250px;
+      overflow-y: auto;
+    }
 
-        .form-group {
-            margin-bottom: 18px;
-        }
+    .wish-item {
+      padding: 12px;
+      border-bottom: 1px solid #eee;
+    }
 
-        .form-group label {
-            display: block;
-            font-size: 0.8rem;
-            color: var(--gold-light);
-            margin-bottom: 6px;
-        }
+    .wish-name {
+      font-weight: 600;
+      font-size: 0.85rem;
+      color: var(--primary-red);
+    }
 
-        .form-control {
-            width: 100%;
-            padding: 10px 12px;
-            background: rgba(255, 255, 255, 0.08);
-            border: 1px solid rgba(212, 175, 55, 0.3);
-            border-radius: 8px;
-            color: var(--white);
-            font-family: inherit;
-            font-size: 0.85rem;
-            outline: none;
-        }
+    .wish-text {
+      font-size: 0.85rem;
+      color: #555;
+      margin-top: 4px;
+    }
 
-        .form-control:focus {
-            border-color: var(--gold-primary);
-        }
-
-        .btn-submit {
-            width: 100%;
-            background: linear-gradient(135deg, #D4AF37 0%, #AA7C11 100%);
-            color: #2b0000;
-            border: none;
-            padding: 12px;
-            border-radius: 8px;
-            font-weight: 600;
-            font-size: 0.85rem;
-            letter-spacing: 1px;
-            cursor: pointer;
-        }
-
-        footer {
-            padding: 30px;
-            text-align: center;
-            font-size: 0.75rem;
-            color: rgba(255, 255, 255, 0.6);
-            border-top: 1px solid rgba(212, 175, 55, 0.2);
-        }
-    </style>
+    /* Audio Player Floating Button */
+    #music-btn {
+      position: fixed;
+      bottom: 25px;
+      right: 25px;
+      width: 45px;
+      height: 45px;
+      background: var(--gold);
+      color: #fff;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.3);
+      z-index: 999;
+    }
+  </style>
 </head>
-<body>
+<body class="no-scroll">
 
-    <div class="mobile-container">
+  <!-- Falling Flower Petals Container -->
+  <div id="petals-container"></div>
 
-        <!-- Canvas for Falling Petals Effect -->
-        <canvas id="petals-canvas"></canvas>
+  <!-- Audio Element -->
+  <audio id="bg-music" loop preload="auto">
+    <source src="audio/song.html.mp3" type="audio/mpeg">
+    Your browser does not support the audio element.
+  </audio>
 
-        <!-- Floating Music Control -->
-        <audio id="bg-music" loop>
-            <source src="https://www.soundhelix.com/examples/mp3/SoundHelix-Song-1.mp3" type="audio/mpeg">
-        </audio>
-        <div class="music-btn" id="music-toggle" onclick="toggleMusic()">
-            <i class="fas fa-music"></i>
-        </div>
+  <!-- Audio Toggle Button -->
+  <div id="music-btn" onclick="toggleMusic()" style="display: none;">
+    <i id="music-icon" class="fas fa-music"></i>
+  </div>
 
-        <!-- 1. COVER OVERLAY (PAGE FLIP ANIMATION) -->
-        <div id="cover-overlay">
-            <!-- Animated Top Flowers -->
-            <svg class="blossom-decor blossom-top-left" viewBox="0 0 100 100">
-                <circle cx="50" cy="50" r="20" fill="#D4AF37" opacity="0.4"/>
-                <path d="M50 20 Q60 40 80 50 Q60 60 50 80 Q40 60 20 50 Q40 40 50 20 Z" fill="#E5C158"/>
-            </svg>
-            <svg class="blossom-decor blossom-top-right" viewBox="0 0 100 100">
-                <circle cx="50" cy="50" r="20" fill="#D4AF37" opacity="0.4"/>
-                <path d="M50 20 Q60 40 80 50 Q60 60 50 80 Q40 60 20 50 Q40 40 50 20 Z" fill="#E5C158"/>
-            </svg>
+  <!-- COVER / LOCK SCREEN -->
+  <div id="cover">
+    <div class="double-happiness">囍</div>
+    <div class="cover-sub">Welcome To Our Wedding</div>
+    <div class="cover-title">David & Selly</div>
+    <div class="cover-date">10 . 10 . 2026</div>
 
-            <div style="margin-top: 30px;">
-                <div class="double-happiness">囍</div>
-                <p class="cover-subtitle">Welcome To Our Wedding</p>
-            </div>
-
-            <div>
-                <p class="cover-subtitle" style="letter-spacing: 3px;">The Wedding of</p>
-                <h1 class="font-serif cover-names">David & Selly</h1>
-                <p class="font-serif" style="color: var(--gold-light); font-size: 1rem;">10 . 10 . 2026</p>
-            </div>
-
-            <div style="width: 100%;">
-                <p style="font-size: 0.75rem; color: var(--gold-light); margin-bottom: 8px;">Dear Honorable Guest:</p>
-                <div class="guest-box">
-                    <strong style="font-size: 1.1rem; color: var(--gold-primary);" id="guest-name">Guest Name</strong>
-                </div>
-                <button class="btn-open font-serif" onclick="openInvitation()">
-                    <i class="fas fa-envelope-open" style="margin-right: 6px;"></i> Open Invitation
-                </button>
-            </div>
-        </div>
-
-        <!-- 2. HERO HEADER -->
-        <div class="hero">
-            <p class="cover-subtitle">Together With Their Families</p>
-            <h1 class="font-serif" style="font-size: 2.8rem; color: var(--gold-primary); margin: 5px 0;">David & Selly</h1>
-            <p class="font-serif" style="font-size: 0.9rem; color: var(--gold-light);">October 10, 2026</p>
-        </div>
-
-        <!-- 3. GROOM & BRIDE PROFILE (NO CARICATURE) -->
-        <section>
-            <p class="cover-subtitle" data-aos="fade-up">The Happy Couple</p>
-            <h2 class="font-serif" style="color: var(--gold-primary); font-size: 1.8rem;" data-aos="fade-up">Groom & Bride</h2>
-            <div class="gold-divider" data-aos="fade-up"></div>
-
-            <!-- Groom -->
-            <div class="couple-card" data-aos="fade-up">
-                <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&q=80&w=400" alt="David Herry Sutanto" class="couple-img">
-                <h3 class="font-serif couple-name">David Herry Sutanto</h3>
-                <p class="parents-info">Son of<br>Mr. Tan Bun Liong & Mrs. Ng Siu Chen</p>
-                <a href="https://instagram.com/davidherrys" target="_blank" class="instagram-link"><i class="fab fa-instagram"></i> @davidherrys</a>
-            </div>
-
-            <div class="font-cursive" style="font-size: 3rem; color: var(--gold-primary); margin: 15px 0;" data-aos="zoom-in">&</div>
-
-            <!-- Bride -->
-            <div class="couple-card" data-aos="fade-up">
-                <img src="https://images.unsplash.com/photo-1494790108377-be9c29b29330?auto=format&fit=crop&q=80&w=400" alt="Selly Agustina" class="couple-img">
-                <h3 class="font-serif couple-name">Selly Agustina</h3>
-                <p class="parents-info">Daughter of<br>Mr. Ong Sing Guat & The Late Mrs. Theng Tin Tju</p>
-                <a href="https://instagram.com/agustinaselly" target="_blank" class="instagram-link"><i class="fab fa-instagram"></i> @agustinaselly</a>
-            </div>
-        </section>
-
-        <!-- 4. COUNTDOWN TIMER -->
-        <section style="background: rgba(0,0,0,0.2);">
-            <p class="cover-subtitle" data-aos="fade-up">Save The Date</p>
-            <h2 class="font-serif" style="color: var(--gold-primary); font-size: 1.8rem;" data-aos="fade-up">Counting Down</h2>
-            <div class="gold-divider" data-aos="fade-up"></div>
-
-            <div class="timer-container" data-aos="zoom-in">
-                <div class="timer-box">
-                    <div class="timer-num" id="days">00</div>
-                    <div class="timer-label">Days</div>
-                </div>
-                <div class="timer-box">
-                    <div class="timer-num" id="hours">00</div>
-                    <div class="timer-label">Hours</div>
-                </div>
-                <div class="timer-box">
-                    <div class="timer-num" id="minutes">00</div>
-                    <div class="timer-label">Mins</div>
-                </div>
-                <div class="timer-box">
-                    <div class="timer-num" id="seconds">00</div>
-                    <div class="timer-label">Secs</div>
-                </div>
-            </div>
-        </section>
-
-        <!-- 5. EVENT DETAILS & GOOGLE MAPS -->
-        <section>
-            <p class="cover-subtitle" data-aos="fade-up">Celebration Details</p>
-            <h2 class="font-serif" style="color: var(--gold-primary); font-size: 1.8rem;" data-aos="fade-up">Wedding Events</h2>
-            <div class="gold-divider" data-aos="fade-up"></div>
-
-            <!-- Holy Matrimony -->
-            <div class="event-card" data-aos="fade-up">
-                <i class="fas fa-ring" style="font-size: 1.8rem; color: var(--gold-primary); margin-bottom: 10px;"></i>
-                <h3 class="font-serif" style="color: var(--gold-primary); font-size: 1.4rem; margin-bottom: 8px;">Holy Matrimony</h3>
-                <p style="font-size: 0.85rem; color: var(--gold-light); font-weight: 600;">Friday, October 09, 2026</p>
-                <p style="font-size: 0.8rem; color: rgba(255,255,255,0.7); margin: 5px 0 15px;">10:00 AM WIB</p>
-                <p style="font-size: 0.8rem; line-height: 1.5; color: rgba(255,255,255,0.8);">
-                    <strong>Golden Sand 5–6 Lt. 3, Aston Palembang</strong><br>
-                    Jl. Jendral Basuki Rahmat No. 189, Palembang
-                </p>
-            </div>
-
-            <!-- Wedding Reception -->
-            <div class="event-card" data-aos="fade-up">
-                <i class="fas fa-glass-cheers" style="font-size: 1.8rem; color: var(--gold-primary); margin-bottom: 10px;"></i>
-                <h3 class="font-serif" style="color: var(--gold-primary); font-size: 1.4rem; margin-bottom: 8px;">Wedding Reception</h3>
-                <p style="font-size: 0.85rem; color: var(--gold-light); font-weight: 600;">Saturday, October 10, 2026</p>
-                <p style="font-size: 0.8rem; color: rgba(255,255,255,0.7); margin: 5px 0 15px;">06:00 PM WIB</p>
-                <p style="font-size: 0.8rem; line-height: 1.5; color: rgba(255,255,255,0.8);">
-                    <strong>Ballroom Aston Palembang</strong><br>
-                    Jl. Jendral Basuki Rahmat No. 189, Palembang
-                </p>
-            </div>
-
-            <!-- Google Maps Link Button -->
-            <div data-aos="fade-up">
-                <a href="https://maps.app.goo.gl/VwrjECcnC8ALh9Lx6" target="_blank" class="btn-map">
-                    <i class="fas fa-map-marker-alt"></i> View Venue on Google Maps
-                </a>
-            </div>
-        </section>
-
-        <!-- 6. PHOTO GALLERY -->
-        <section style="background: rgba(0,0,0,0.2);">
-            <p class="cover-subtitle" data-aos="fade-up">Our Memories</p>
-            <h2 class="font-serif" style="color: var(--gold-primary); font-size: 1.8rem;" data-aos="fade-up">Photo Gallery</h2>
-            <div class="gold-divider" data-aos="fade-up"></div>
-
-            <div class="gallery-grid">
-                <img src="https://images.unsplash.com/photo-1511285560929-80b456fea0bc?auto=format&fit=crop&q=80&w=500" alt="Gallery 1" data-aos="zoom-in">
-                <img src="https://images.unsplash.com/photo-1519225421980-715cb0215aed?auto=format&fit=crop&q=80&w=500" alt="Gallery 2" data-aos="zoom-in">
-                <img src="https://images.unsplash.com/photo-1522673607200-164d1b6ce486?auto=format&fit=crop&q=80&w=500" alt="Gallery 3" data-aos="zoom-in">
-                <img src="https://images.unsplash.com/photo-1529636798458-92182e662485?auto=format&fit=crop&q=80&w=500" alt="Gallery 4" data-aos="zoom-in">
-            </div>
-        </section>
-
-        <!-- 7. DIGITAL ENVELOPE -->
-        <section>
-            <p class="cover-subtitle" data-aos="fade-up">Wedding Gift</p>
-            <h2 class="font-serif" style="color: var(--gold-primary); font-size: 1.8rem;" data-aos="fade-up">Digital Envelope</h2>
-            <div class="gold-divider" data-aos="fade-up"></div>
-            <p style="font-size: 0.8rem; color: rgba(255,255,255,0.7); margin-bottom: 20px;" data-aos="fade-up">
-                Your blessing is the greatest gift of all. However, if you wish to honor us with a gift, digital envelopes are available below:
-            </p>
-
-            <div class="envelope-card" data-aos="fade-up">
-                <p style="font-weight: 600; color: var(--gold-primary); font-size: 0.9rem;">Bank BCA</p>
-                <p style="font-size: 1.2rem; font-weight: 700; margin: 8px 0; color: var(--white);" id="acc-bca">0214023411</p>
-                <p style="font-size: 0.8rem; color: var(--gold-light);">a.n. Selly Agustina</p>
-                <button class="btn-copy" onclick="copyText('acc-bca')"><i class="far fa-copy"></i> Copy Account Number</button>
-            </div>
-        </section>
-
-        <!-- 8. RSVP FORM WITH SUPABASE DATABASE -->
-        <section style="background: rgba(0,0,0,0.2);">
-            <p class="cover-subtitle" data-aos="fade-up">RSVP</p>
-            <h2 class="font-serif" style="color: var(--gold-primary); font-size: 1.8rem;" data-aos="fade-up">Confirm Attendance</h2>
-            <div class="gold-divider" data-aos="fade-up"></div>
-
-            <div class="rsvp-form" data-aos="fade-up">
-                <form id="rsvp-form" onsubmit="submitRSVP(event)">
-                    <div class="form-group">
-                        <label>Your Full Name</label>
-                        <input type="text" id="rsvp-name" class="form-control" placeholder="Enter your full name" required>
-                    </div>
-
-                    <div class="form-group">
-                        <label>Attendance Status</label>
-                        <select id="rsvp-status" class="form-control" required>
-                            <option value="Attending">Joyfully Accepts</option>
-                            <option value="Declined">Regretfully Declines</option>
-                        </select>
-                    </div>
-
-                    <div class="form-group">
-                        <label>Number of Guests</label>
-                        <select id="rsvp-guests" class="form-control">
-                            <option value="1 Guest">1 Guest</option>
-                            <option value="2 Guests">2 Guests</option>
-                        </select>
-                    </div>
-
-                    <div class="form-group">
-                        <label>Wishes & Messages</label>
-                        <textarea id="rsvp-wishes" class="form-control" rows="3" placeholder="Write your warm wishes..."></textarea>
-                    </div>
-
-                    <button type="submit" class="btn-submit" id="btn-rsvp-submit">
-                        Submit Confirmation
-                    </button>
-                </form>
-            </div>
-        </section>
-
-        <footer>
-            <p>Thank You For Being Part Of Our Journey</p>
-            <p class="font-serif" style="font-size: 1.1rem; color: var(--gold-primary); margin-top: 5px;">David & Selly</p>
-        </footer>
-
+    <div class="guest-box">
+      <p>Dear,</p>
+      <div class="guest-name" id="guest-name-display">Guest Name</div>
     </div>
 
-    <!-- AOS Script -->
-    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <button class="btn-open" onclick="openInvitation()">OPEN INVITATION</button>
+  </div>
+
+  <!-- MAIN CONTENT CONTAINER -->
+  <div class="container">
+    
+    <!-- HEADER QUOTE SECTION -->
+    <section>
+      <div class="double-happiness" style="font-size: 2.2rem;">囍</div>
+      <p style="font-style: italic; color: #555; font-size: 0.9rem; margin-top: 15px; line-height: 1.6;">
+        "Love is patient, love is kind. It does not envy, it does not boast, it is not proud. It always protects, always trusts, always hopes, always perseveres."
+      </p>
+    </section>
+
+    <!-- BRIDE & GROOM SECTION -->
+    <section>
+      <h2 class="section-title">The Bride & Groom</h2>
+      <div class="section-subtitle">We are getting married</div>
+
+      <!-- Groom -->
+      <div class="couple-card">
+        <img src="images/groom.html.jpeg" alt="David Herry Sutanto" class="couple-img" onerror="this.src='https://via.placeholder.com/160?text=Groom'">
+        <div class="couple-name">David Herry Sutanto</div>
+        <div class="parents">
+          Son of <br>
+          <b>Mr. Tan Bun Liong & Mrs. Ng Siu Chen</b>
+        </div>
+        <a href="https://instagram.com/davidherrys" target="_blank" class="ig-link">
+          <i class="fab fa-instagram"></i> @davidherrys
+        </a>
+      </div>
+
+      <div class="and-sym">&</div>
+
+      <!-- Bride -->
+      <div class="couple-card">
+        <img src="images/bride.html.jpeg" alt="Selly Agustina" class="couple-img" onerror="this.src='https://via.placeholder.com/160?text=Bride'">
+        <div class="couple-name">Selly Agustina</div>
+        <div class="parents">
+          Daughter of <br>
+          <b>Mr. Ong Sing Guat & Late Mrs. Theng Tin Tju</b>
+        </div>
+        <a href="https://instagram.com/agustinaselly" target="_blank" class="ig-link">
+          <i class="fab fa-instagram"></i> @agustinaselly
+        </a>
+      </div>
+    </section>
+
+    <!-- WEDDING EVENTS SECTION -->
+    <section class="event-bg">
+      <h2 class="section-title">Wedding Events</h2>
+      <div class="section-subtitle">Save The Date</div>
+
+      <!-- Holy Matrimony -->
+      <div class="event-card">
+        <div class="event-type">Holy Matrimony</div>
+        <div class="event-detail"><b>Date:</b> Friday, October 09th, 2026</div>
+        <div class="event-detail"><b>Time:</b> 10:00 AM WIB</div>
+        <div class="event-detail" style="margin-top: 10px;">
+          <b>Location:</b><br>
+          Golden Sand 5–6 Lt. 3, Aston Palembang<br>
+          <small>Jl. Jendral Basuki Rahmat No. 189, Palembang</small>
+        </div>
+      </div>
+
+      <!-- Wedding Reception -->
+      <div class="event-card">
+        <div class="event-type">Wedding Reception</div>
+        <div class="event-detail"><b>Date:</b> Saturday, October 10th, 2026</div>
+        <div class="event-detail"><b>Time:</b> 06:00 PM WIB</div>
+        <div class="event-detail" style="margin-top: 10px;">
+          <b>Location:</b><br>
+          Ballroom Aston Palembang<br>
+          <small>Jl. Jendral Basuki Rahmat No. 189, Palembang</small>
+        </div>
+      </div>
+
+      <a href="https://maps.app.goo.gl/VwrjECcnC8ALh9Lx6" target="_blank" class="btn-map">
+        <i class="fas fa-map-marker-alt"></i> VIEW LOCATION ON MAPS
+      </a>
+    </section>
+
+<!-- GALLERY SECTION -->
+    <section>
+      <h2 class="section-title">Our Moments</h2>
+      <div class="section-subtitle">Prewedding Moments</div>
+
+      <div class="gallery-grid">
+        <img src="https://i.imgur.com/8Qh1F9r.jpeg" alt="Gallery 1" onerror="this.src='https://via.placeholder.com/300x200?text=Photo+1'">
+        <img src="https://i.imgur.com/uG964H0.jpeg" alt="Gallery 2" onerror="this.src='https://via.placeholder.com/300x200?text=Photo+2'">
+        <img src="https://i.imgur.com/mWy6Dab.jpeg" alt="Gallery 3" onerror="this.src='https://via.placeholder.com/300x200?text=Photo+3'">
+        <img src="https://i.imgur.com/KqT8mD7.jpeg" alt="Gallery 4" onerror="this.src='https://via.placeholder.com/300x200?text=Photo+4'">
+        <img src="https://i.imgur.com/bZz2PjY.jpeg" alt="Gallery 5" onerror="this.src='https://via.placeholder.com/300x200?text=Photo+5'">
+      </div>
+    </section>
+      
+    <!-- DIGITAL ENVELOPE / WEDDING GIFT -->
+    <section class="event-bg">
+      <h2 class="section-title">Wedding Gift</h2>
+      <div class="section-subtitle">Digital Envelope</div>
+      <p style="font-size: 0.85rem; color: #555; line-height: 1.5;">
+        Your presence and blessings on our wedding day are the greatest gift of all. However, if you wish to give a gift, we provide a digital envelope below:
+      </p>
+
+      <div class="gift-card">
+        <div class="bank-name">BANK BCA</div>
+        <div class="account-num" id="acc-num">0214023411</div>
+        <div style="font-size: 0.9rem; color: #555; margin-bottom: 12px;">a.n. Selly Agustina</div>
+        <button class="btn-copy" onclick="copyAccount()">Copy Account Number</button>
+      </div>
+    </section>
+
+ <!-- RSVP & WISHES SECTION -->
+    <section>
+      <h2 class="section-title">RSVP & Wishes</h2>
+      <div class="section-subtitle">Please confirm your attendance</div>
+
+      <form class="rsvp-form" id="rsvp-form">
+        <div class="form-group">
+          <label>Your Name</label>
+          <input type="text" name="Name" id="rsvp-name" required placeholder="Enter your full name">
+        </div>
+
+        <div class="form-group">
+          <label>Attendance Status</label>
+          <select name="Status" id="rsvp-status" required>
+            <option value="Attending">Yes, I will attend</option>
+            <option value="Unable to attend">Sorry, I cannot attend</option>
+          </select>
+        </div>
+
+        <div class="form-group">
+          <label>Number of Guests</label>
+          <select name="Guests" id="rsvp-guests">
+            <option value="1">1 Person</option>
+            <option value="2">2 Persons</option>
+          </select>
+        </div>
+
+        <div class="form-group">
+          <label>Warm Wishes</label>
+          <textarea name="Wishes" id="rsvp-wish" rows="3" placeholder="Write your warm wishes for the couple..."></textarea>
+        </div>
+
+        <button type="submit" class="btn-submit">SEND CONFIRMATION</button>
+      </form>
+    </section>
+
+    <!-- JAVASCRIPT SHEETMONKEY INTEGRATION -->
     <script>
-        AOS.init({ duration: 1000, once: true });
+      const SHEETMONKEY_URL = 'https://api.sheetmonkey.io/form/v8GgDU9nc4FePaBRb1MSWm';
+      const rsvpForm = document.getElementById('rsvp-form');
 
-        // 1. DYNAMIC GUEST NAME IN URL (e.g. namakamu.com/?to=Budi+Santoso)
-        const urlParams = new URLSearchParams(window.location.search);
-        const guestNameParam = urlParams.get('to');
-        if (guestNameParam) {
-            document.getElementById('guest-name').innerText = guestNameParam;
-            document.getElementById('rsvp-name').value = guestNameParam;
+      rsvpForm.addEventListener('submit', async (e) => {
+        e.preventDefault();
+        const submitBtn = rsvpForm.querySelector('.btn-submit');
+        submitBtn.innerText = 'SENDING...';
+        submitBtn.disabled = true;
+
+        const formData = new FormData(rsvpForm);
+        const data = Object.fromEntries(formData.entries());
+
+        try {
+          const response = await fetch(SHEETMONKEY_URL, {
+            method: 'POST',
+            headers: {
+              'Content-Type': 'application/json',
+              'Accept': 'application/json'
+            },
+            body: JSON.stringify(data)
+          });
+
+          if (response.ok) {
+            alert('Thank you! Your RSVP and warm wishes have been saved.');
+            document.getElementById('rsvp-wish').value = '';
+          } else {
+            alert('Failed to send RSVP. Please try again.');
+          }
+        } catch (error) {
+          alert('Network error. Please try again.');
+        } finally {
+          submitBtn.innerText = 'SEND CONFIRMATION';
+          submitBtn.disabled = false;
         }
-
-        // 2. MUSIC TOGGLE CONTROLLER
-        const music = document.getElementById('bg-music');
-        const musicBtn = document.getElementById('music-toggle');
-        let isPlaying = false;
-
-        function toggleMusic() {
-            if (isPlaying) {
-                music.pause();
-                musicBtn.classList.remove('playing');
-            } else {
-                music.play();
-                musicBtn.classList.add('playing');
-            }
-            isPlaying = !isPlaying;
-        }
-
-        // 3. PAGE FLIP OPEN INVITATION
-        function openInvitation() {
-            const overlay = document.getElementById('cover-overlay');
-            overlay.classList.add('opened');
-            
-            music.play().then(() => {
-                isPlaying = true;
-                musicBtn.classList.add('playing');
-            }).catch(err => console.log("Autoplay blocked:", err));
-        }
-
-        // 4. COUNTDOWN TIMER REAL-TIME
-        const targetDate = new Date("Oct 10, 2026 18:00:00").getTime();
-        setInterval(() => {
-            const now = new Date().getTime();
-            const distance = targetDate - now;
-
-            if (distance > 0) {
-                document.getElementById("days").innerText = String(Math.floor(distance / (1000 * 60 * 60 * 24))).padStart(2, '0');
-                document.getElementById("hours").innerText = String(Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60))).padStart(2, '0');
-                document.getElementById("minutes").innerText = String(Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60))).padStart(2, '0');
-                document.getElementById("seconds").innerText = String(Math.floor((distance % (1000 * 60)) / 1000)).padStart(2, '0');
-            }
-        }, 1000);
-
-        // 5. COPY ACCOUNT NUMBER FUNCTION
-        function copyText(elementId) {
-            const text = document.getElementById(elementId).innerText;
-            navigator.clipboard.writeText(text);
-            alert("Account number copied: " + text);
-        }
-
-        // 6. SUPABASE DATABASE CONFIGURATION & SUBMIT
-        const SUPABASE_URL = 'https://jyjzcuxskbicjkjmneys.supabase.co';
-        const SUPABASE_ANON_KEY = 'sb_publishable_tUXnOJQA213Po-vfD2DgfQ_B0SUkdmX';
-        
-        let supabaseClient = null;
-        if (SUPABASE_URL !== 'https://jyjzcuxskbicjkjmneys.supabase.co') {
-            supabaseClient = supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
-        }
-
-        async function submitRSVP(event) {
-            event.preventDefault();
-            const btn = document.getElementById('btn-rsvp-submit');
-            btn.innerText = "Submitting...";
-
-            const name = document.getElementById('rsvp-name').value;
-            const status = document.getElementById('rsvp-status').value;
-            const guests = document.getElementById('rsvp-guests').value;
-            const wishes = document.getElementById('rsvp-wishes').value;
-
-            if (supabaseClient) {
-                const { data, error } = await supabaseClient
-                    .from('rsvps')
-                    .insert([{ name, status, guests, wishes }]);
-
-                if (error) {
-                    alert('Error saving RSVP: ' + error.message);
-                } else {
-                    alert('Thank you! Your RSVP confirmation has been saved.');
-                    document.getElementById('rsvp-form').reset();
-                }
-            } else {
-                // Fallback simulation if keys are not set yet
-                setTimeout(() => {
-                    alert(`Thank you, ${name}! Your RSVP has been confirmed.`);
-                    document.getElementById('rsvp-form').reset();
-                }, 1000);
-            }
-            btn.innerText = "Submit Confirmation";
-        }
-
-        // 7. CANVAS FALLING PETALS ANIMATION
-        const canvas = document.getElementById('petals-canvas');
-        const ctx = canvas.getContext('2d');
-
-        function resizeCanvas() {
-            canvas.width = canvas.parentElement.clientWidth;
-            canvas.height = window.innerHeight;
-        }
-        resizeCanvas();
-        window.addEventListener('resize', resizeCanvas);
-
-        const petals = Array.from({ length: 25 }, () => ({
-            x: Math.random() * canvas.width,
-            y: Math.random() * canvas.height,
-            size: Math.random() * 8 + 6,
-            speedY: Math.random() * 1.5 + 0.8,
-            speedX: Math.random() * 1 - 0.5,
-            rotation: Math.random() * 360,
-            rotSpeed: Math.random() * 2 - 1
-        }));
-
-        function animatePetals() {
-            ctx.clearRect(0, 0, canvas.width, canvas.height);
-            petals.forEach(p => {
-                ctx.save();
-                ctx.translate(p.x, p.y);
-                ctx.rotate((p.rotation * Math.PI) / 180);
-                ctx.fillStyle = '#E5C158';
-                ctx.beginPath();
-                ctx.ellipse(0, 0, p.size, p.size / 2, 0, 0, Math.PI * 2);
-                ctx.fill();
-                ctx.restore();
-
-                p.y += p.speedY;
-                p.x += p.speedX;
-                p.rotation += p.rotSpeed;
-
-                if (p.y > canvas.height) {
-                    p.y = -10;
-                    p.x = Math.random() * canvas.width;
-                }
-            });
-            requestAnimationFrame(animatePetals);
-        }
-        animatePetals();
+      });
     </script>
+      
+      <!-- Wishes List Display -->
+      <div class="wishes-list" id="wishes-container">
+        <!-- Wishes loaded from Supabase will appear here -->
+      </div>
+    </section>
+
+    <!-- FOOTER -->
+    <footer style="padding: 40px 20px; text-align: center; background: var(--dark-red); color: #fff;">
+      <div class="double-happiness" style="font-size: 2rem; color: var(--gold);">囍</div>
+      <p style="font-family: 'Great Vibes', cursive; font-size: 2.2rem; color: var(--gold); margin: 10px 0;">David & Selly</p>
+      <p style="font-size: 0.75rem; color: var(--light-gold); letter-spacing: 2px;">OCTOBER 10th, 2026</p>
+    </footer>
+
+  </div>
+
+  <!-- JAVASCRIPT LOGIC -->
+  <script>
+    // 1. SUPABASE CONFIGURATION (REPLACE WITH YOUR KEYS)
+    const SUPABASE_URL = 'https://jyjzcuxskbicjkjmneys.supabase.co';
+    const SUPABASE_ANON_KEY = 'sb_publishable_tUXnOJQA213Po-vfD2DgfQ_B0SUkdmX';
+    const supabaseClient = supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
+
+    // 2. PARSE GUEST NAME FROM URL (?to=Name)
+    const urlParams = new URLSearchParams(window.location.search);
+    const guestName = urlParams.get('to') || 'Valued Guest';
+    document.getElementById('guest-name-display').innerText = guestName;
+    document.getElementById('rsvp-name').value = guestName;
+
+    // 3. OPEN INVITATION & PLAY MUSIC
+    function openInvitation() {
+      document.getElementById('cover').classList.add('opened');
+      document.body.classList.remove('no-scroll');
+      
+      const audio = document.getElementById('bg-music');
+      document.getElementById('music-btn').style.display = 'flex';
+      audio.play().catch(e => console.log("Audio autoplay prevented"));
+    }
+
+    // 4. MUSIC TOGGLE
+    let isPlaying = true;
+    function toggleMusic() {
+      const audio = document.getElementById('bg-music');
+      const icon = document.getElementById('music-icon');
+      if (isPlaying) {
+        audio.pause();
+        icon.className = 'fas fa-volume-mute';
+      } else {
+        audio.play();
+        icon.className = 'fas fa-music';
+      }
+      isPlaying = !isPlaying;
+    }
+
+    // 5. COPY ACCOUNT NUMBER
+    function copyAccount() {
+      const accNum = document.getElementById('acc-num').innerText;
+      navigator.clipboard.writeText(accNum);
+      alert('Account number copied to clipboard!');
+    }
+
+    // 6. GENERATE FALLING MEIHUA PETALS
+    function createPetals() {
+      const container = document.getElementById('petals-container');
+      const petalCount = 20;
+
+      for (let i = 0; i < petalCount; i++) {
+        const petal = document.createElement('div');
+        petal.className = 'petal';
+        
+        const size = Math.random() * 12 + 8;
+        petal.style.width = `${size}px`;
+        petal.style.height = `${size}px`;
+        petal.style.left = `${Math.random() * 100}vw`;
+        petal.style.animationDuration = `${Math.random() * 5 + 5}s`;
+        petal.style.animationDelay = `${Math.random() * 5}s`;
+        
+        container.appendChild(petal);
+      }
+    }
+    createPetals();
+
+    // 7. SUPABASE RSVP SUBMISSION & RETRIEVAL
+    const rsvpForm = document.getElementById('rsvp-form');
+    const wishesContainer = document.getElementById('wishes-container');
+
+    async function loadWishes() {
+      const { data, error } = await supabaseClient
+        .from('rsvp')
+        .select('*')
+        .order('created_at', { ascending: false });
+
+      if (error) {
+        console.error('Error fetching wishes:', error);
+        return;
+      }
+
+      wishesContainer.innerHTML = '';
+      data.forEach(item => {
+        const wishDiv = document.createElement('div');
+        wishDiv.className = 'wish-item';
+        wishDiv.innerHTML = `
+          <div class="wish-name">${item.name} <small style="color:#888;">(${item.status})</small></div>
+          <div class="wish-text">${item.wishes || ''}</div>
+        `;
+        wishesContainer.appendChild(wishDiv);
+      });
+    }
+
+    rsvpForm.addEventListener('submit', async (e) => {
+      e.preventDefault();
+      const name = document.getElementById('rsvp-name').value;
+      const status = document.getElementById('rsvp-status').value;
+      const guests = document.getElementById('rsvp-guests').value;
+      const wishes = document.getElementById('rsvp-wish').value;
+
+      const { data, error } = await supabaseClient
+        .from('rsvp')
+        .insert([{ name, status, guests_count: parseInt(guests), wishes }]);
+
+      if (error) {
+        alert('Failed to send RSVP. Please try again.');
+        console.error(error);
+      } else {
+        alert('Thank you! Your RSVP and wishes have been recorded.');
+        document.getElementById('rsvp-wish').value = '';
+        loadWishes();
+      }
+    });
+
+    loadWishes();
+  </script>
 </body>
 </html>
