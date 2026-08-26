@@ -29,7 +29,7 @@
 
     body {
       font-family: 'Montserrat', sans-serif;
-      background-color: var(--bg-cream);
+      background-color: var(--dark-red);
       color: var(--text-dark);
       overflow-x: hidden;
     }
@@ -75,7 +75,7 @@
       left: 0;
       width: 100%;
       height: 100%;
-      background: linear-gradient(rgba(60, 0, 0, 0.75), rgba(40, 0, 0, 0.85)), url('images/cover.png') center/cover no-repeat;
+      background: linear-gradient(rgba(60, 0, 0, 0.75), rgba(40, 0, 0, 0.85)), url('images/cover.html.png') center/cover no-repeat;
       background-color: var(--dark-red);
       z-index: 1000;
       display: flex;
@@ -168,12 +168,29 @@
       box-shadow: 0 6px 20px rgba(212, 175, 55, 0.6);
     }
 
+    /* CONTAINER UTAMA DENGAN BACKGROUND BINGKAI ORIENTAL */
     .container {
       max-width: 600px;
       margin: 0 auto;
-      background: #fff;
+      background: url('images/bg-main.png') center/cover no-repeat fixed;
       min-height: 100vh;
-      box-shadow: 0 0 25px rgba(0,0,0,0.1);
+      box-shadow: 0 0 25px rgba(0,0,0,0.5);
+      position: relative;
+    }
+
+    /* Lapisan efek transparan di atas background agar tulisan tetap sangat jelas terbaca */
+    .container::before {
+      content: '';
+      position: absolute;
+      top: 0; left: 0; right: 0; bottom: 0;
+      background: rgba(255, 253, 249, 0.90);
+      z-index: 1;
+    }
+
+    /* Memastikan seluruh section dan footer berada di atas lapisan transparan */
+    section, footer {
+      position: relative;
+      z-index: 2;
     }
 
     section {
@@ -209,6 +226,7 @@
       border: 3px solid var(--gold);
       padding: 4px;
       margin-bottom: 15px;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.15);
     }
 
     .couple-name {
@@ -220,7 +238,7 @@
 
     .parents {
       font-size: 0.85rem;
-      color: #666;
+      color: #555;
       line-height: 1.5;
       margin-bottom: 10px;
     }
@@ -241,18 +259,19 @@
     }
 
     .event-bg {
-      background: linear-gradient(rgba(139, 0, 0, 0.03), rgba(139, 0, 0, 0.03));
-      border-top: 1px solid rgba(212, 175, 55, 0.3);
-      border-bottom: 1px solid rgba(212, 175, 55, 0.3);
+      background: rgba(139, 0, 0, 0.04);
+      border-top: 1px solid rgba(212, 175, 55, 0.4);
+      border-bottom: 1px solid rgba(212, 175, 55, 0.4);
     }
 
     .event-card {
-      background: #fff;
+      background: rgba(255, 255, 255, 0.92);
       border: 1px solid var(--gold);
       border-radius: 12px;
       padding: 30px 20px;
       margin-bottom: 25px;
-      box-shadow: 0 5px 15px rgba(0,0,0,0.03);
+      box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+      backdrop-filter: blur(2px);
     }
 
     .event-type {
@@ -293,10 +312,11 @@
       height: 180px;
       object-fit: cover;
       border-radius: 8px;
+      box-shadow: 0 3px 8px rgba(0,0,0,0.15);
     }
 
     .gift-card {
-      background: #fafafa;
+      background: rgba(255, 255, 255, 0.92);
       border: 1px dashed var(--gold);
       border-radius: 12px;
       padding: 25px;
@@ -348,6 +368,7 @@
       border: 1px solid #ddd;
       border-radius: 6px;
       font-family: inherit;
+      background: rgba(255, 255, 255, 0.95);
     }
 
     .btn-submit {
@@ -386,7 +407,7 @@
 
   <!-- Audio Element -->
   <audio id="bg-music" loop preload="auto">
-    <source src="audio/song.mp3" type="audio/mpeg">
+    <source src="audio/song.html.mp3" type="audio/mpeg">
   </audio>
 
   <!-- Audio Toggle Button -->
@@ -442,7 +463,7 @@
 
       <!-- Bride -->
       <div class="couple-card">
-        <img src="images/bride.JPEG" alt="Selly Agustina" class="couple-img" onerror="this.src='https://via.placeholder.com/160?text=Bride'">
+        <img src="images/bride.jpeg" alt="Selly Agustina" class="couple-img" onerror="this.src='https://via.placeholder.com/160?text=Bride'">
         <div class="couple-name">Selly Agustina</div>
         <div class="parents">
           Daughter of <br>
@@ -574,14 +595,12 @@
 
     // 2. OPEN INVITATION & PLAY MUSIC (SAFE MODE)
     function openInvitation() {
-      // Buka penutup undangan terlebih dahulu
       const cover = document.getElementById('cover');
       if (cover) {
         cover.classList.add('opened');
       }
       document.body.classList.remove('no-scroll');
       
-      // Coba putar musik secara terpisah agar tidak memblokir pembukaan undangan
       const audio = document.getElementById('bg-music');
       const musicBtn = document.getElementById('music-btn');
       
