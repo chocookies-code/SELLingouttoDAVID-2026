@@ -102,16 +102,12 @@
     }
 
     .caricature-img {
-      width: 130px;      /* Ukuran lebar karikatur (bisa dikecilin lagi misal jadi 100px) */
-      height: 130px;     /* Ukuran tinggi karikatur */
-      border-radius: 50%;
-      object-fit: cover;
-      border: 4px solid var(--gold);
-      padding: 4px;
-      margin: 0 auto 20px auto;
-      box-shadow: 0 5px 15px rgba(0,0,0,0.15);
+      max-width: 160px;    /* Atur ukuran maksimal lebarnya di sini (bisa dikecilin jadi 130px atau 140px kalau masih kegedean) */
+      width: 100%;         /* Responsif mengikuti layar HP */
+      height: auto;        /* Tinggi menyesuaikan otomatis agar proporsional */
       display: block;
-      background: #fff;
+      margin: 0 auto 20px auto;
+      filter: drop-shadow(0 5px 10px rgba(0,0,0,0.15)); /* Efek bayangan mengikuti bentuk transparan gambar */
     }
     .cover-sub {
       font-family: 'Cinzel', serif;
