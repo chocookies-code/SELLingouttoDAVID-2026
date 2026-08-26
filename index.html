@@ -10,9 +10,6 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;700&family=Great+Vibes&family=Montserrat:wght@300;400;500;600&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-  
-  <!-- Supabase JS Client -->
-  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 
   <style>
     :root {
@@ -37,13 +34,11 @@
       overflow-x: hidden;
     }
 
-    /* Lock scroll before cover opened */
     body.no-scroll {
       overflow: hidden;
       height: 100vh;
     }
 
-    /* Falling Flowers Container */
     #petals-container {
       position: fixed;
       top: 0;
@@ -74,14 +69,14 @@
       }
     }
 
-    /* Cover / Hero Section */
     #cover {
       position: fixed;
       top: 0;
       left: 0;
       width: 100%;
       height: 100%;
-      background: linear-gradient(rgba(60, 0, 0, 0.55), rgba(40, 0, 0, 0.65)), url('images/cover.html.png') center/cover no-repeat;
+      background: linear-gradient(rgba(60, 0, 0, 0.75), rgba(40, 0, 0, 0.85)), url('images/cover.html.png') center/cover no-repeat;
+      background-color: var(--dark-red);
       z-index: 1000;
       display: flex;
       flex-direction: column;
@@ -173,7 +168,6 @@
       box-shadow: 0 6px 20px rgba(212, 175, 55, 0.6);
     }
 
-    /* Main Container */
     .container {
       max-width: 600px;
       margin: 0 auto;
@@ -203,7 +197,6 @@
       margin-bottom: 40px;
     }
 
-    /* Couple Section */
     .couple-card {
       margin-bottom: 35px;
     }
@@ -247,7 +240,6 @@
       margin: 20px 0;
     }
 
-    /* Event Section */
     .event-bg {
       background: linear-gradient(rgba(139, 0, 0, 0.03), rgba(139, 0, 0, 0.03));
       border-top: 1px solid rgba(212, 175, 55, 0.3);
@@ -290,7 +282,6 @@
       letter-spacing: 1px;
     }
 
-    /* Gallery */
     .gallery-grid {
       display: grid;
       grid-template-columns: repeat(2, 1fr);
@@ -304,7 +295,6 @@
       border-radius: 8px;
     }
 
-    /* Gift Section */
     .gift-card {
       background: #fafafa;
       border: 1px dashed var(--gold);
@@ -337,7 +327,6 @@
       font-size: 0.8rem;
     }
 
-    /* RSVP Form */
     .rsvp-form {
       display: flex;
       flex-direction: column;
@@ -372,31 +361,6 @@
       cursor: pointer;
     }
 
-    .wishes-list {
-      margin-top: 30px;
-      text-align: left;
-      max-height: 250px;
-      overflow-y: auto;
-    }
-
-    .wish-item {
-      padding: 12px;
-      border-bottom: 1px solid #eee;
-    }
-
-    .wish-name {
-      font-weight: 600;
-      font-size: 0.85rem;
-      color: var(--primary-red);
-    }
-
-    .wish-text {
-      font-size: 0.85rem;
-      color: #555;
-      margin-top: 4px;
-    }
-
-    /* Audio Player Floating Button */
     #music-btn {
       position: fixed;
       bottom: 25px;
@@ -422,8 +386,7 @@
 
   <!-- Audio Element -->
   <audio id="bg-music" loop preload="auto">
-    <source src="audio/song.html.mp3" type="audio/mpeg">
-    Your browser does not support the audio element.
+    <source src="audio/song.mp3" type="audio/mpeg">
   </audio>
 
   <!-- Audio Toggle Button -->
@@ -525,7 +488,7 @@
       </a>
     </section>
 
-<!-- GALLERY SECTION -->
+    <!-- GALLERY SECTION -->
     <section>
       <h2 class="section-title">Our Moments</h2>
       <div class="section-subtitle">Prewedding Moments</div>
@@ -555,7 +518,7 @@
       </div>
     </section>
 
- <!-- RSVP & WISHES SECTION -->
+    <!-- RSVP & WISHES SECTION -->
     <section>
       <h2 class="section-title">RSVP & Wishes</h2>
       <div class="section-subtitle">Please confirm your attendance</div>
@@ -591,11 +554,99 @@
       </form>
     </section>
 
-    <!-- JAVASCRIPT SHEETMONKEY INTEGRATION -->
-    <script>
-      const SHEETMONKEY_URL = 'https://api.sheetmonkey.io/form/v8GgDU9nc4FePaBRb1MSWm';
-      const rsvpForm = document.getElementById('rsvp-form');
+    <!-- FOOTER -->
+    <footer style="padding: 40px 20px; text-align: center; background: var(--dark-red); color: #fff;">
+      <div class="double-happiness" style="font-size: 2rem; color: var(--gold);">囍</div>
+      <p style="font-family: 'Great Vibes', cursive; font-size: 2.2rem; color: var(--gold); margin: 10px 0;">David & Selly</p>
+      <p style="font-size: 0.75rem; color: var(--light-gold); letter-spacing: 2px;">OCTOBER 10th, 2026</p>
+    </footer>
 
+  </div>
+
+  <!-- JAVASCRIPT LOGIC -->
+  <script>
+    // 1. PARSE GUEST NAME FROM URL (?to=Name)
+    const urlParams = new URLSearchParams(window.location.search);
+    const guestName = urlParams.get('to') || 'Valued Guest';
+    document.getElementById('guest-name-display').innerText = guestName;
+    document.getElementById('rsvp-name').value = guestName;
+
+    // 2. OPEN INVITATION & PLAY MUSIC (SAFE MODE)
+    function openInvitation() {
+      // Buka penutup undangan terlebih dahulu
+      const cover = document.getElementById('cover');
+      if (cover) {
+        cover.classList.add('opened');
+      }
+      document.body.classList.remove('no-scroll');
+      
+      // Coba putar musik secara terpisah agar tidak memblokir pembukaan undangan
+      const audio = document.getElementById('bg-music');
+      const musicBtn = document.getElementById('music-btn');
+      
+      if (musicBtn) musicBtn.style.display = 'flex';
+      
+      if (audio) {
+        const playPromise = audio.play();
+        if (playPromise !== undefined) {
+          playPromise.catch(error => {
+            console.log("Autoplay diblokir oleh browser atau file audio belum disiapkan:", error);
+          });
+        }
+      }
+    }
+
+    // 3. MUSIC TOGGLE
+    let isPlaying = true;
+    function toggleMusic() {
+      const audio = document.getElementById('bg-music');
+      const icon = document.getElementById('music-icon');
+      if (!audio) return;
+
+      if (isPlaying) {
+        audio.pause();
+        if (icon) icon.className = 'fas fa-volume-mute';
+      } else {
+        audio.play().catch(e => console.log(e));
+        if (icon) icon.className = 'fas fa-music';
+      }
+      isPlaying = !isPlaying;
+    }
+
+    // 4. COPY ACCOUNT NUMBER
+    function copyAccount() {
+      const accNum = document.getElementById('acc-num').innerText;
+      navigator.clipboard.writeText(accNum);
+      alert('Account number copied to clipboard!');
+    }
+
+    // 5. GENERATE FALLING MEIHUA PETALS
+    function createPetals() {
+      const container = document.getElementById('petals-container');
+      if (!container) return;
+      const petalCount = 20;
+
+      for (let i = 0; i < petalCount; i++) {
+        const petal = document.createElement('div');
+        petal.className = 'petal';
+        
+        const size = Math.random() * 12 + 8;
+        petal.style.width = `${size}px`;
+        petal.style.height = `${size}px`;
+        petal.style.left = `${Math.random() * 100}vw`;
+        petal.style.animationDuration = `${Math.random() * 5 + 5}s`;
+        petal.style.animationDelay = `${Math.random() * 5}s`;
+        
+        container.appendChild(petal);
+      }
+    }
+    createPetals();
+
+    // 6. SHEETMONKEY INTEGRATION
+    const SHEETMONKEY_URL = 'https://api.sheetmonkey.io/form/v8GgDU9nc4FePaBRb1MSWm';
+    const rsvpForm = document.getElementById('rsvp-form');
+
+    if (rsvpForm) {
       rsvpForm.addEventListener('submit', async (e) => {
         e.preventDefault();
         const submitBtn = rsvpForm.querySelector('.btn-submit');
@@ -628,138 +679,7 @@
           submitBtn.disabled = false;
         }
       });
-    </script>
-      
-      <!-- Wishes List Display -->
-      <div class="wishes-list" id="wishes-container">
-        <!-- Wishes loaded from Supabase will appear here -->
-      </div>
-    </section>
-
-    <!-- FOOTER -->
-    <footer style="padding: 40px 20px; text-align: center; background: var(--dark-red); color: #fff;">
-      <div class="double-happiness" style="font-size: 2rem; color: var(--gold);">囍</div>
-      <p style="font-family: 'Great Vibes', cursive; font-size: 2.2rem; color: var(--gold); margin: 10px 0;">David & Selly</p>
-      <p style="font-size: 0.75rem; color: var(--light-gold); letter-spacing: 2px;">OCTOBER 10th, 2026</p>
-    </footer>
-
-  </div>
-
-  <!-- JAVASCRIPT LOGIC -->
-  <script>
-    // 1. SUPABASE CONFIGURATION (REPLACE WITH YOUR KEYS)
-    const SUPABASE_URL = 'https://jyjzcuxskbicjkjmneys.supabase.co';
-    const SUPABASE_ANON_KEY = 'sb_publishable_tUXnOJQA213Po-vfD2DgfQ_B0SUkdmX';
-    const supabaseClient = supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
-
-    // 2. PARSE GUEST NAME FROM URL (?to=Name)
-    const urlParams = new URLSearchParams(window.location.search);
-    const guestName = urlParams.get('to') || 'Valued Guest';
-    document.getElementById('guest-name-display').innerText = guestName;
-    document.getElementById('rsvp-name').value = guestName;
-
-    // 3. OPEN INVITATION & PLAY MUSIC
-    function openInvitation() {
-      document.getElementById('cover').classList.add('opened');
-      document.body.classList.remove('no-scroll');
-      
-      const audio = document.getElementById('bg-music');
-      document.getElementById('music-btn').style.display = 'flex';
-      audio.play().catch(e => console.log("Audio autoplay prevented"));
     }
-
-    // 4. MUSIC TOGGLE
-    let isPlaying = true;
-    function toggleMusic() {
-      const audio = document.getElementById('bg-music');
-      const icon = document.getElementById('music-icon');
-      if (isPlaying) {
-        audio.pause();
-        icon.className = 'fas fa-volume-mute';
-      } else {
-        audio.play();
-        icon.className = 'fas fa-music';
-      }
-      isPlaying = !isPlaying;
-    }
-
-    // 5. COPY ACCOUNT NUMBER
-    function copyAccount() {
-      const accNum = document.getElementById('acc-num').innerText;
-      navigator.clipboard.writeText(accNum);
-      alert('Account number copied to clipboard!');
-    }
-
-    // 6. GENERATE FALLING MEIHUA PETALS
-    function createPetals() {
-      const container = document.getElementById('petals-container');
-      const petalCount = 20;
-
-      for (let i = 0; i < petalCount; i++) {
-        const petal = document.createElement('div');
-        petal.className = 'petal';
-        
-        const size = Math.random() * 12 + 8;
-        petal.style.width = `${size}px`;
-        petal.style.height = `${size}px`;
-        petal.style.left = `${Math.random() * 100}vw`;
-        petal.style.animationDuration = `${Math.random() * 5 + 5}s`;
-        petal.style.animationDelay = `${Math.random() * 5}s`;
-        
-        container.appendChild(petal);
-      }
-    }
-    createPetals();
-
-    // 7. SUPABASE RSVP SUBMISSION & RETRIEVAL
-    const rsvpForm = document.getElementById('rsvp-form');
-    const wishesContainer = document.getElementById('wishes-container');
-
-    async function loadWishes() {
-      const { data, error } = await supabaseClient
-        .from('rsvp')
-        .select('*')
-        .order('created_at', { ascending: false });
-
-      if (error) {
-        console.error('Error fetching wishes:', error);
-        return;
-      }
-
-      wishesContainer.innerHTML = '';
-      data.forEach(item => {
-        const wishDiv = document.createElement('div');
-        wishDiv.className = 'wish-item';
-        wishDiv.innerHTML = `
-          <div class="wish-name">${item.name} <small style="color:#888;">(${item.status})</small></div>
-          <div class="wish-text">${item.wishes || ''}</div>
-        `;
-        wishesContainer.appendChild(wishDiv);
-      });
-    }
-
-    rsvpForm.addEventListener('submit', async (e) => {
-      e.preventDefault();
-      const name = document.getElementById('rsvp-name').value;
-      const status = document.getElementById('rsvp-status').value;
-      const guests = document.getElementById('rsvp-guests').value;
-      const wishes = document.getElementById('rsvp-wish').value;
-
-      const { data, error } = await supabaseClient
-        .from('rsvp')
-        .insert([{ name, status, guests_count: parseInt(guests), wishes }]);
-
-      if (error) {
-        alert('Failed to send RSVP. Please try again.');
-        console.error(error);
-      } else {
-        alert('Thank you! Your RSVP and wishes have been recorded.');
-        document.getElementById('rsvp-wish').value = '';
-        loadWishes();
-      }
-    });
-
-    loadWishes();
   </script>
 </body>
 </html>
