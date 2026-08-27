@@ -240,11 +240,14 @@
       opacity: 1;
       transform: scale(1);
     }
- 
-    .container {
+    
+ .container {
       max-width: 600px;
       margin: 0 auto;
-      background: url('images/cover.png') center/cover no-repeat scroll;
+      background-image: url('images/bg-main.png');
+      background-position: center top;
+      background-size: 100% auto; /* Lebar 100% pas dengan container */
+      background-repeat: repeat-y;
       min-height: 100vh;
       box-shadow: 0 0 25px rgba(0,0,0,0.5);
       position: relative;
