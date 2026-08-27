@@ -1,822 +1,844 @@
 <!DOCTYPE html>
-<html lang="id">
+<html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Wedding Invitation - David & Selly</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>The Wedding of David & Selly</title>
+  
+  <!-- Google Fonts & FontAwesome -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;700&family=Great+Vibes&family=Montserrat:wght@300;400;500;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 
-    <!-- Google Fonts & Font Awesome -->
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;1,400&family=Montserrat:wght@300;400;500;600&family=Sacramento&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <style>
+    :root {
+      --primary-red: #8B0000;
+      --dark-red: #5C0000;
+      --gold: #D4AF37;
+      --light-gold: #F3E5AB;
+      --bg-cream: #FFFDF9;
+      --text-dark: #2B2B2B;
+    }
 
-    <!-- AOS Animation Library -->
-    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
 
-    <style>
-        :root {
-            --primary: #d4af37;
-            --primary-dark: #aa8c2c;
-            --bg-dark: #121212;
-            --bg-card: rgba(30, 30, 30, 0.75);
-            --text-light: #f5f5f5;
-            --text-muted: #d0d0d0;
-            --font-heading: 'Cormorant Garamond', serif;
-            --font-body: 'Montserrat', sans-serif;
-            --font-script: 'Sacramento', cursive;
-        }
+    body {
+      font-family: 'Montserrat', sans-serif;
+      background-color: var(--dark-red);
+      color: var(--text-dark);
+      overflow-x: hidden;
+    }
 
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-            scroll-behavior: smooth;
-        }
+    body.no-scroll {
+      overflow: hidden;
+      height: 100vh;
+    }
 
-        body {
-            background-color: var(--bg-dark);
-            color: var(--text-light);
-            font-family: var(--font-body);
-            overflow-x: hidden;
-        }
+    #petals-container {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100vw;
+      height: 100vh;
+      pointer-events: none;
+      z-index: 9999;
+      overflow: hidden;
+    }
 
-        /* Lock Scroll saat cover masih terbuka */
-        body.no-scroll {
-            overflow: hidden;
-        }
+    .petal {
+      position: absolute;
+      background-color: #d63031;
+      border-radius: 15px 0 15px 0;
+      opacity: 0.8;
+      animation: fall linear infinite;
+    }
 
-        /* Music Floating Toggle */
-        .music-toggle {
-            position: fixed;
-            bottom: 20px;
-            right: 20px;
-            width: 50px;
-            height: 50px;
-            background: rgba(212, 175, 55, 0.3);
-            border: 1px solid var(--primary);
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            color: var(--primary);
-            font-size: 18px;
-            cursor: pointer;
-            z-index: 999;
-            backdrop-filter: blur(5px);
-            transition: all 0.3s ease;
-        }
+    @keyframes fall {
+      0% {
+        transform: translateY(-10vh) rotate(0deg);
+        opacity: 1;
+      }
+      100% {
+        transform: translateY(105vh) rotate(360deg);
+        opacity: 0.2;
+      }
+    }
 
-        .music-toggle.playing {
-            animation: rotateMusic 4s linear infinite;
-        }
+    #cover {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(rgba(60, 0, 0, 0.75), rgba(40, 0, 0, 0.85)), url('images/cover.png') center/cover no-repeat;
+      background-color: var(--dark-red);
+      z-index: 1000;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      text-align: center;
+      color: #fff;
+      padding: 20px;
+      transition: transform 0.8s ease-in-out, opacity 0.8s ease-in-out;
+    }
 
-        @keyframes rotateMusic {
-            from { transform: rotate(0deg); }
-            to { transform: rotate(360deg); }
-        }
+    #cover.opened {
+      transform: translateY(-100%);
+      opacity: 0;
+      pointer-events: none;
+    }
 
-        /* Cover Screen Overlay */
-        #cover-screen {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100vh;
-            background: linear-gradient(rgba(0,0,0,0.35), rgba(0,0,0,0.35)), 
-                        url('https://images.unsplash.com/photo-1519741497674-611481863552?auto=format&fit=crop&q=80&w=1200') center/cover no-repeat;
-            z-index: 1000;
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            align-items: center;
-            text-align: center;
-            padding: 20px;
-            transition: transform 0.9s cubic-bezier(0.77, 0, 0.175, 1), opacity 0.8s ease;
-        }
+    .double-happiness {
+      font-size: 3rem;
+      color: var(--gold);
+      margin-bottom: 5px;
+      text-shadow: 0 0 10px rgba(212, 175, 55, 0.5);
+    }
 
-        #cover-screen.opened {
-            transform: translateY(-100%);
-            opacity: 0;
-            pointer-events: none;
-        }
+    .caricature-img {
+      max-width: 400px;    /* Atur ukuran maksimal lebarnya di sini (bisa dikecilin jadi 130px atau 140px kalau masih kegedean) */
+      width: 100%;         /* Responsif mengikuti layar HP */
+      height: auto;        /* Tinggi menyesuaikan otomatis agar proporsional */
+      display: block;
+      margin: 0 auto 20px auto;
+      filter: drop-shadow(0 5px 10px rgba(0,0,0,0.15)); /* Efek bayangan mengikuti bentuk transparan gambar */
+    }
 
-        .cover-subtitle {
-            font-family: var(--font-body);
-            letter-spacing: 4px;
-            text-transform: uppercase;
-            font-size: 14px;
-            color: var(--primary);
-            margin-bottom: 10px;
-            text-shadow: 0 2px 4px rgba(0,0,0,0.8);
-        }
+    .countdown-grid {
+      display: flex;
+      justify-content: center;
+      gap: 10px;
+      margin-top: 10px;
+    }
 
-        .cover-title {
-            font-family: var(--font-script);
-            font-size: 64px;
-            color: var(--text-light);
-            margin-bottom: 20px;
-            text-shadow: 0 2px 8px rgba(0,0,0,0.9);
-        }
+    .countdown-box {
+      background: rgba(255, 255, 255, 0.8);
+      border: 1px solid var(--gold);
+      border-radius: 8px;
+      padding: 10px 12px;
+      min-width: 60px;
+      text-align: center;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.05);
+    }
 
-        .cover-date {
-            font-size: 16px;
-            letter-spacing: 2px;
-            margin-bottom: 30px;
-            text-shadow: 0 2px 4px rgba(0,0,0,0.8);
-        }
+    .countdown-number {
+      font-size: 1.2rem;
+      font-weight: bold;
+      color: var(--primary-red);
+    }
 
-        .btn-open {
-            background: rgba(0,0,0,0.4);
-            color: var(--primary);
-            border: 1px solid var(--primary);
-            padding: 12px 30px;
-            border-radius: 30px;
-            font-size: 14px;
-            letter-spacing: 2px;
-            text-transform: uppercase;
-            cursor: pointer;
-            backdrop-filter: blur(4px);
-            transition: all 0.3s ease;
-            box-shadow: 0 0 15px rgba(212, 175, 55, 0.3);
-            animation: pulseBtn 2s infinite;
-        }
+    .countdown-label {
+      font-size: 0.75rem;
+      text-transform: uppercase;
+      color: #555;
+      margin-top: 2px;
+    }
 
-        @keyframes pulseBtn {
-            0% { transform: scale(1); box-shadow: 0 0 0 0 rgba(212, 175, 55, 0.5); }
-            70% { transform: scale(1.03); box-shadow: 0 0 0 15px rgba(212, 175, 55, 0); }
-            100% { transform: scale(1); box-shadow: 0 0 0 0 rgba(212, 175, 55, 0); }
-        }
+    /* STYLING TOMBOL SAVE THE DATE */
+    .btn-save-date {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      background-color: var(--primary-red, #800000);
+      color: #ffffff !important;
+      font-family: 'Cinzel', serif;
+      font-size: 0.85rem;
+      font-weight: 600;
+      letter-spacing: 1px;
+      padding: 12px 24px;
+      border-radius: 25px;
+      border: 1px solid var(--gold, #d4af37);
+      text-decoration: none !important;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+      margin-top: 15px;
+      transition: all 0.3s ease;
+    }
 
-        .btn-open:hover {
-            background: var(--primary);
-            color: var(--bg-dark);
-        }
+    .btn-save-date:hover {
+      background-color: #600000;
+      transform: translateY(-2px);
+      box-shadow: 0 6px 15px rgba(0, 0, 0, 0.2);
+    }
+    
+    .cover-sub {
+      font-family: 'Cinzel', serif;
+      letter-spacing: 3px;
+      font-size: 0.85rem;
+      color: var(--light-gold);
+      margin-bottom: 25px;
+      text-transform: uppercase;
+    }
 
-        /* Main Container */
-        .container {
-            max-width: 600px;
-            margin: 0 auto;
-            background: var(--bg-dark);
-            min-height: 100vh;
-            box-shadow: 0 0 30px rgba(0,0,0,0.8);
-        }
+    .cover-title {
+      font-family: 'Great Vibes', cursive;
+      font-size: 4rem;
+      color: var(--gold);
+      text-shadow: 2px 2px 8px rgba(0,0,0,0.7);
+      margin-bottom: 10px;
+    }
 
-        section {
-            padding: 60px 20px;
-            text-align: center;
-            border-bottom: 1px solid rgba(212, 175, 55, 0.15);
-        }
+    .cover-date {
+      font-family: 'Cinzel', serif;
+      letter-spacing: 4px;
+      font-size: 1.1rem;
+      margin-bottom: 35px;
+    }
 
-        .section-title {
-            font-family: var(--font-heading);
-            font-size: 32px;
-            color: var(--primary);
-            margin-bottom: 20px;
-            text-transform: uppercase;
-            letter-spacing: 2px;
-            text-shadow: 0 2px 4px rgba(0,0,0,0.8);
-        }
+    .guest-box {
+      background: rgba(0, 0, 0, 0.5);
+      border: 1px solid var(--gold);
+      border-radius: 10px;
+      padding: 15px 25px;
+      margin-bottom: 25px;
+      max-width: 320px;
+      width: 100%;
+    }
 
-        /* Hero Section */
-        .hero {
-            height: 90vh;
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            align-items: center;
-            background: linear-gradient(rgba(18,18,18,0.25), rgba(18,18,18,0.6)), 
-                        url('https://images.unsplash.com/photo-1519741497674-611481863552?auto=format&fit=crop&q=80&w=800') center/cover no-repeat;
-        }
+    .guest-box p {
+      font-size: 0.85rem;
+      color: var(--light-gold);
+      margin-bottom: 5px;
+    }
 
-        .hero h1 {
-            font-family: var(--font-script);
-            font-size: 54px;
-            margin-top: 10px;
-            text-shadow: 0 2px 10px rgba(0,0,0,0.9);
-        }
+    .guest-name {
+      font-size: 1.2rem;
+      font-weight: 600;
+      color: #fff;
+    }
 
-        /* Couple Section & Foto Hover Effect */
-        .couple-img-wrapper {
-            overflow: hidden;
-            width: 160px;
-            height: 160px;
-            border-radius: 50%;
-            margin: 20px auto;
-            border: 2px solid var(--primary);
-            box-shadow: 0 4px 15px rgba(0,0,0,0.5);
-        }
+    .btn-open {
+      background: linear-gradient(135deg, #D4AF37, #AA7C11);
+      color: #fff;
+      border: none;
+      padding: 12px 30px;
+      font-size: 0.95rem;
+      font-family: 'Cinzel', serif;
+      font-weight: 600;
+      letter-spacing: 2px;
+      border-radius: 30px;
+      cursor: pointer;
+      box-shadow: 0 4px 15px rgba(212, 175, 55, 0.4);
+      transition: all 0.3s ease;
+    }
 
-        .couple-img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-            transition: transform 0.5s ease;
-        }
+    .btn-open:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 6px 20px rgba(212, 175, 55, 0.6);
+    }
 
-        .couple-img-wrapper:hover .couple-img {
-            transform: scale(1.1);
-        }
+    /* CONTAINER UTAMA DENGAN BACKGROUND BINGKAI ORIENTAL (Diubah ke scroll agar lancar) */
+    .container {
+      max-width: 600px;
+      margin: 0 auto;
+      background: url('images/bg-main.png') center/cover no-repeat scroll;
+      min-height: 100vh;
+      box-shadow: 0 0 25px rgba(0,0,0,0.5);
+      position: relative;
+    }
 
-        .couple-name {
-            font-family: var(--font-heading);
-            font-size: 28px;
-            color: var(--primary);
-            margin-bottom: 5px;
-        }
+    .container::before {
+      content: '';
+      position: absolute;
+      top: 0; left: 0; right: 0; bottom: 0;
+      background: rgba(255, 253, 249, 0.90);
+      z-index: 1;
+    }
 
-        .parents {
-            font-size: 13px;
-            color: var(--text-muted);
-            line-height: 1.6;
-        }
+    section, footer {
+      position: relative;
+      z-index: 2;
+    }
 
-        /* Event Details */
-        .event-card {
-            background: var(--bg-card);
-            border: 1px solid rgba(212, 175, 55, 0.3);
-            border-radius: 12px;
-            padding: 30px 20px;
-            margin-bottom: 25px;
-            backdrop-filter: blur(5px);
-            transition: transform 0.3s ease, box-shadow 0.3s ease;
-        }
+    section {
+      padding: 60px 25px;
+      text-align: center;
+    }
 
-        .event-card:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 10px 20px rgba(212, 175, 55, 0.15);
-        }
+    .section-title {
+      font-family: 'Cinzel', serif;
+      color: var(--primary-red);
+      font-size: 1.6rem;
+      margin-bottom: 10px;
+      position: relative;
+    }
 
-        .event-card h3 {
-            font-family: var(--font-heading);
-            font-size: 24px;
-            color: var(--primary);
-            margin-bottom: 15px;
-        }
+    .section-subtitle {
+      font-size: 0.85rem;
+      color: #777;
+      text-transform: uppercase;
+      letter-spacing: 2px;
+      margin-bottom: 40px;
+    }
 
-        .event-detail {
-            font-size: 14px;
-            color: var(--text-muted);
-            margin-bottom: 8px;
-            line-height: 1.5;
-        }
+    .couple-card {
+      margin-bottom: 35px;
+    }
 
-        .btn-map {
-            display: inline-block;
-            margin-top: 15px;
-            color: var(--primary);
-            border: 1px solid var(--primary);
-            padding: 8px 20px;
-            border-radius: 20px;
-            text-decoration: none;
-            font-size: 12px;
-            letter-spacing: 1px;
-            transition: 0.3s;
-            background: rgba(0,0,0,0.3);
-        }
+    .couple-img {
+      width: 160px;
+      height: 160px;
+      border-radius: 50%;
+      object-fit: cover;
+      border: 3px solid var(--gold);
+      padding: 4px;
+      margin-bottom: 15px;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.15);
+    }
 
-        .btn-map:hover {
-            background: var(--primary);
-            color: var(--bg-dark);
-        }
+    .couple-name {
+      font-family: 'Great Vibes', cursive;
+      font-size: 2.8rem;
+      color: var(--primary-red);
+      margin-bottom: 5px;
+    }
 
-        /* Countdown */
-        .countdown-container {
-            display: flex;
-            justify-content: center;
-            gap: 15px;
-            margin-top: 20px;
-        }
+    .parents {
+      font-size: 0.85rem;
+      color: #555;
+      line-height: 1.5;
+      margin-bottom: 10px;
+    }
 
-        .countdown-box {
-            background: var(--bg-card);
-            border: 1px solid rgba(212, 175, 55, 0.3);
-            width: 70px;
-            height: 70px;
-            border-radius: 8px;
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            align-items: center;
-            backdrop-filter: blur(5px);
-            transition: transform 0.3s ease;
-        }
+    .ig-link {
+      display: inline-block;
+      color: var(--gold);
+      font-size: 0.9rem;
+      text-decoration: none;
+      font-weight: 500;
+    }
 
-        .countdown-box:hover {
-            transform: scale(1.05);
-        }
+    .and-sym {
+      font-family: 'Great Vibes', cursive;
+      font-size: 3rem;
+      color: var(--gold);
+      margin: 20px 0;
+    }
 
-        .countdown-number {
-            font-size: 20px;
-            font-weight: 600;
-            color: var(--primary);
-        }
+    .event-bg {
+      background: rgba(139, 0, 0, 0.04);
+      border-top: 1px solid rgba(212, 175, 55, 0.4);
+      border-bottom: 1px solid rgba(212, 175, 55, 0.4);
+    }
 
-        .countdown-label {
-            font-size: 10px;
-            color: var(--text-muted);
-            text-transform: uppercase;
-        }
+    .event-card {
+      background: rgba(255, 255, 255, 0.92);
+      border: 1px solid var(--gold);
+      border-radius: 12px;
+      padding: 30px 20px;
+      margin-bottom: 25px;
+      box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+    }
 
-        /* SLIDESHOW GALLERY (Updated Effects) */
-        .slideshow-container {
-            position: relative;
-            max-width: 100%;
-            margin: auto;
-            border-radius: 12px;
-            overflow: hidden;
-            box-shadow: 0 8px 20px rgba(0,0,0,0.7);
-            border: 1px solid rgba(212, 175, 55, 0.3);
-        }
+    /* Latar belakang selang-seling untuk pemisah antar section */
+.section-alt {
+      background: linear-gradient(180deg, transparent 0%, rgba(212, 175, 55, 0.08) 15%, rgba(212, 175, 55, 0.08) 85%, transparent 100%);
+      padding: 40px 15px;
+      margin: 20px 0;
+      border: none;
+      position: relative;
+    }
+    .event-type {
+      font-family: 'Cinzel', serif;
+      font-size: 1.2rem;
+      color: var(--primary-red);
+      margin-bottom: 15px;
+      letter-spacing: 1px;
+    }
 
-        .slide-item {
-            display: none;
-            width: 100%;
-            height: 380px;
-            object-fit: cover;
-            transition: transform 0.5s ease;
-        }
+    .event-detail {
+      font-size: 0.9rem;
+      color: #444;
+      margin-bottom: 8px;
+    }
 
-        .slide-item.active {
-            display: block;
-            animation: zoomFadeEffect 0.8s ease;
-        }
+    .btn-map {
+      display: inline-block;
+      margin-top: 15px;
+      padding: 10px 22px;
+      background: var(--primary-red);
+      color: #fff;
+      text-decoration: none;
+      border-radius: 25px;
+      font-size: 0.85rem;
+      font-family: 'Cinzel', serif;
+      letter-spacing: 1px;
+    }
 
-        @keyframes zoomFadeEffect {
-            from { opacity: 0.2; transform: scale(1.05); }
-            to { opacity: 1; transform: scale(1); }
-        }
+    .gallery-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 10px;
+    }
 
-        .prev-btn, .next-btn {
-            cursor: pointer;
-            position: absolute;
-            top: 50%;
-            transform: translateY(-50%);
-            width: 40px;
-            height: 40px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            color: var(--primary);
-            background: rgba(18, 18, 18, 0.6);
-            border: 1px solid var(--primary);
-            font-size: 16px;
-            border-radius: 50%;
-            user-select: none;
-            transition: 0.3s;
-            z-index: 10;
-        }
+    .gallery-grid img {
+      width: 100%;
+      height: 180px;
+      object-fit: cover;
+      border-radius: 8px;
+      box-shadow: 0 3px 8px rgba(0,0,0,0.15);
+    }
 
-        .prev-btn { left: 10px; }
-        .next-btn { right: 10px; }
+    .gift-card {
+      background: rgba(255, 255, 255, 0.92);
+      border: 1px dashed var(--gold);
+      border-radius: 12px;
+      padding: 25px;
+      margin-top: 20px;
+    }
 
-        .prev-btn:hover, .next-btn:hover {
-            background: var(--primary);
-            color: var(--bg-dark);
-        }
+    .bank-name {
+      font-weight: bold;
+      color: var(--primary-red);
+      font-size: 1.1rem;
+    }
 
-        .dots-container {
-            text-align: center;
-            margin-top: 15px;
-        }
+    .account-num {
+      font-size: 1.3rem;
+      font-weight: bold;
+      letter-spacing: 2px;
+      margin: 10px 0;
+      color: #333;
+    }
 
-        .dot {
-            cursor: pointer;
-            height: 10px;
-            width: 10px;
-            margin: 0 4px;
-            background-color: #555;
-            border-radius: 50%;
-            display: inline-block;
-            transition: all 0.4s ease;
-        }
+    .btn-copy {
+      background: var(--gold);
+      color: #fff;
+      border: none;
+      padding: 6px 16px;
+      border-radius: 15px;
+      cursor: pointer;
+      font-size: 0.8rem;
+    }
 
-        .dot.active, .dot:hover {
-            background-color: var(--primary);
-            width: 22px;
-            border-radius: 10px;
-        }
+    .rsvp-form {
+      display: flex;
+      flex-direction: column;
+      gap: 15px;
+      text-align: left;
+    }
 
-        /* Digital Gift */
-        .bank-card {
-            background: var(--bg-card);
-            border: 1px solid rgba(212, 175, 55, 0.3);
-            padding: 20px;
-            border-radius: 12px;
-            margin-top: 15px;
-            backdrop-filter: blur(5px);
-        }
+    .form-group label {
+      font-size: 0.85rem;
+      font-weight: 600;
+      color: #444;
+      display: block;
+      margin-bottom: 5px;
+    }
 
-        .bank-name {
-            font-weight: 600;
-            color: var(--primary);
-            margin-bottom: 5px;
-        }
+    .form-group input, .form-group select, .form-group textarea {
+      width: 100%;
+      padding: 10px;
+      border: 1px solid #ddd;
+      border-radius: 6px;
+      font-family: inherit;
+      background: rgba(255, 255, 255, 0.95);
+    }
 
-        .account-num {
-            font-size: 18px;
-            letter-spacing: 2px;
-            margin: 10px 0;
-        }
+    .btn-submit {
+      background: var(--primary-red);
+      color: #fff;
+      border: none;
+      padding: 12px;
+      border-radius: 6px;
+      font-family: 'Cinzel', serif;
+      font-weight: 600;
+      cursor: pointer;
+    }
 
-        .btn-copy {
-            background: transparent;
-            color: var(--text-light);
-            border: 1px solid var(--text-muted);
-            padding: 6px 15px;
-            border-radius: 15px;
-            font-size: 12px;
-            cursor: pointer;
-            transition: 0.3s;
-        }
-
-        .btn-copy:hover {
-            border-color: var(--primary);
-            color: var(--primary);
-        }
-
-        /* RSVP Form */
-        .rsvp-form {
-            background: var(--bg-card);
-            padding: 25px 20px;
-            border-radius: 12px;
-            border: 1px solid rgba(212, 175, 55, 0.3);
-            text-align: left;
-            backdrop-filter: blur(5px);
-        }
-
-        .form-group {
-            margin-bottom: 15px;
-        }
-
-        .form-group label {
-            display: block;
-            font-size: 12px;
-            color: var(--text-muted);
-            margin-bottom: 5px;
-        }
-
-        .form-control {
-            width: 100%;
-            padding: 10px;
-            background: rgba(18, 18, 18, 0.8);
-            border: 1px solid #444;
-            border-radius: 6px;
-            color: var(--text-light);
-            font-family: var(--font-body);
-        }
-
-        .form-control:focus {
-            outline: none;
-            border-color: var(--primary);
-        }
-
-        .btn-submit {
-            width: 100%;
-            background: var(--primary);
-            color: var(--bg-dark);
-            border: none;
-            padding: 12px;
-            border-radius: 6px;
-            font-weight: 600;
-            cursor: pointer;
-            margin-top: 10px;
-            transition: 0.3s;
-        }
-
-        .btn-submit:hover {
-            background: var(--primary-dark);
-        }
-
-        /* Footer */
-        footer {
-            padding: 30px 20px;
-            text-align: center;
-            font-size: 12px;
-            color: var(--text-muted);
-            border-top: 1px solid rgba(212, 175, 55, 0.15);
-        }
-    </style>
+    #music-btn {
+      position: fixed;
+      bottom: 25px;
+      right: 25px;
+      width: 45px;
+      height: 45px;
+      background: var(--gold);
+      color: #fff;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.3);
+      z-index: 999;
+    }
+  </style>
 </head>
 <body class="no-scroll">
 
-    <!-- Audio Element -->
-    <audio id="weddingMusic" loop>
-        <source src="https://www.soundhelix.com/examples/mp3/SoundHelix-Song-1.mp3" type="audio/mpeg">
-    </audio>
+  <!-- Falling Flower Petals Container -->
+  <div id="petals-container"></div>
 
-    <!-- Floating Music Toggle -->
-    <div class="music-toggle" id="musicToggle" onclick="toggleMusic()">
-        <i class="fas fa-music"></i>
+  <!-- Audio Element -->
+  <audio id="bg-music" loop preload="auto">
+    <source src="audio/song.html.mp3" type="audio/mpeg">
+  </audio>
+
+  <!-- Audio Toggle Button -->
+  <div id="music-btn" onclick="toggleMusic()" style="display: none;">
+    <i id="music-icon" class="fas fa-music"></i>
+  </div>
+
+  <!-- COVER / LOCK SCREEN -->
+  <div id="cover">
+    <div class="double-happiness">囍</div>
+    <div class="cover-sub">Welcome To Our Wedding</div>
+    <div class="cover-title">David & Selly</div>
+    <div class="cover-date">10 . 10 . 2026</div>
+
+    <div class="guest-box">
+      <p>Dear,</p>
+      <div class="guest-name" id="guest-name-display">Guest Name</div>
     </div>
 
-    <!-- Cover Overlay -->
-    <div id="cover-screen">
-        <div class="cover-subtitle" data-aos="fade-down">The Wedding of</div>
-        <div class="cover-title" data-aos="zoom-in" data-aos-delay="200">David & Selly</div>
-        <div class="cover-date" data-aos="fade-up" data-aos-delay="400">10 . 10 . 2026</div>
-        <button class="btn-open" onclick="openInvitation()" data-aos="fade-up" data-aos-delay="600">Open Invitation</button>
-    </div>
+    <button class="btn-open" onclick="openInvitation()">OPEN INVITATION</button>
+  </div>
 
-    <!-- Main Web Container -->
-    <div class="container">
+  <!-- MAIN CONTENT CONTAINER -->
+  <div class="container">
+    
+<!-- OUR JOURNEY SECTION -->
+    <section>
+      <h2 class="section-title">Our Journey</h2>
+      <div class="section-subtitle">The Beginning of Forever</div>
+
+      <!-- Karikatur Couple (Logo 囍 dihapus) -->
+      <img src="images/caricature.png" alt="Caricature of David & Selly" class="caricature-img" onerror="this.src='https://via.placeholder.com/220?text=Caricature'">
+
+      <!-- Kutipan Dhammapada -->
+      <div class="quote-box">
+        <p>
+          "If in the journey of life, you find a wise and suitable companion who leads a good life, walk with them, joyful and mindful, overcoming all dangers."
+        </p>
+        <p style="margin-top: 8px; font-size: 0.8rem; color: var(--primary-red); font-weight: 600;">(Dhammapada XXIII - 328)</p>
+      </div>
+
+      <!-- Countdown Timer -->
+      <div style="margin: 30px 0 15px 0;">
+        <h3 style="font-family: 'Cinzel', serif; font-size: 1.05rem; color: var(--primary-red); margin-bottom: 15px;">Countdown to Our Big Day</h3>
+        <div class="countdown-grid">
+          <div class="countdown-box">
+            <div class="countdown-number" id="days">00</div>
+            <div class="countdown-label">Days</div>
+          </div>
+          <div class="countdown-box">
+            <div class="countdown-number" id="hours">00</div>
+            <div class="countdown-label">Hours</div>
+          </div>
+          <div class="countdown-box">
+            <div class="countdown-number" id="minutes">00</div>
+            <div class="countdown-label">Minutes</div>
+          </div>
+          <div class="countdown-box">
+            <div class="countdown-number" id="seconds">00</div>
+            <div class="countdown-label">Seconds</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Save The Date Button (Google Calendar Link) -->
+      <a href="https://calendar.google.com/calendar/render?action=TEMPLATE&text=The+Wedding+of+David+%26+Selly&dates=20261010T110000Z/20261010T150000Z&details=The+Wedding+Reception+of+David+and+Selly+at+Ballroom+Aston+Palembang&location=Aston+Palembang+Hotel" target="_blank" class="btn-save-date">
+        <i class="far fa-calendar-alt"></i> SAVE THE DATE
+      </a>
+    </section>
+
+    <!-- BRIDE & GROOM SECTION -->
+    <section class="section-alt">
+      <h2 class="section-title">The Bride & Groom</h2>
+      <div class="section-subtitle">We are getting married</div>
+
+      <!-- Groom -->
+      <div class="couple-card">
+        <img src="images/groom.html.jpeg" alt="David Herry Sutanto" class="couple-img" onerror="this.src='https://via.placeholder.com/160?text=Groom'">
+        <div class="couple-name">David Herry Sutanto</div>
+        <div class="parents">
+          Son of <br>
+          <b>Mr. Tan Bun Liong & Mrs. Ng Siu Chen</b>
+        </div>
+        <a href="https://instagram.com/davidherrys" target="_blank" class="ig-link">
+          <i class="fab fa-instagram"></i> @davidherrys
+        </a>
+      </div>
+
+      <div class="and-sym">&</div>
+
+      <!-- Bride -->
+      <div class="couple-card">
+        <img src="images/bride.jpeg" alt="Selly Agustina" class="couple-img" onerror="this.src='https://via.placeholder.com/160?text=Bride'">
+        <div class="couple-name">Selly Agustina</div>
+        <div class="parents">
+          Daughter of <br>
+          <b>Mr. Ong Sing Guat & Late Mrs. Theng Tin Tju</b>
+        </div>
+        <a href="https://instagram.com/agustinaselly" target="_blank" class="ig-link">
+          <i class="fab fa-instagram"></i> @agustinaselly
+        </a>
+      </div>
+    </section>
+
+    <!-- WEDDING EVENTS SECTION -->
+    <section class="event-bg">
+      <h2 class="section-title">Wedding Events</h2>
+      <div class="section-subtitle">Save The Date</div>
+
+      <!-- Holy Matrimony -->
+      <div class="event-card">
+        <div class="event-type">Holy Matrimony</div>
+        <div class="event-detail"><b>Date:</b> Friday, October 09th, 2026</div>
+        <div class="event-detail"><b>Time:</b> 10:00 AM WIB</div>
+        <div class="event-detail" style="margin-top: 10px;">
+          <b>Location:</b><br>
+          Golden Sand 5–6 Lt. 3, Aston Palembang<br>
+          <small>Jl. Jendral Basuki Rahmat No. 189, Palembang</small>
+        </div>
+      </div>
+
+      <!-- Wedding Reception -->
+      <div class="event-card">
+        <div class="event-type">Wedding Reception</div>
+        <div class="event-detail"><b>Date:</b> Saturday, October 10th, 2026</div>
+        <div class="event-detail"><b>Time:</b> 06:00 PM WIB</div>
+        <div class="event-detail" style="margin-top: 10px;">
+          <b>Location:</b><br>
+          Ballroom Aston Palembang<br>
+          <small>Jl. Jendral Basuki Rahmat No. 189, Palembang</small>
+        </div>
+      </div>
+
+      <a href="https://maps.app.goo.gl/VwrjECcnC8ALh9Lx6" target="_blank" class="btn-map">
+        <i class="fas fa-map-marker-alt"></i> VIEW LOCATION ON MAPS
+      </a>
+    </section>
+
+    <!-- GALLERY SECTION -->
+    <section>
+      <h2 class="section-title">Our Moments</h2>
+      <div class="section-subtitle">Prewedding Moments</div>
+
+      <div class="gallery-grid">
+        <img src="images/photo1.jpeg" alt="Gallery 1">
+        <img src="images/photo2.jpeg" alt="Gallery 2">
+        <img src="images/photo3.jpeg" alt="Gallery 3">
+        <img src="images/photo4.jpeg" alt="Gallery 4">
+        <img src="images/photo5.jpeg" alt="Gallery 5">
+        <img src="images/photo6.jpeg" alt="Gallery 6">
+      </div>
+    </section>
+      
+    <!-- DIGITAL ENVELOPE / WEDDING GIFT -->
+    <section class="event-bg">
+      <h2 class="section-title">Wedding Gift</h2>
+      <div class="section-subtitle">Digital Envelope</div>
+      <p style="font-size: 0.85rem; color: #555; line-height: 1.5;">
+        Your presence and blessings on our wedding day are the greatest gift of all. However, if you wish to give a gift, we provide a digital envelope below:
+      </p>
+
+      <div class="gift-card">
+        <div class="bank-name">BANK BCA</div>
+        <div class="account-num" id="acc-num">0214023411</div>
+        <div style="font-size: 0.9rem; color: #555; margin-bottom: 12px;">a.n. Selly Agustina</div>
+        <button class="btn-copy" onclick="copyAccount()">Copy Account Number</button>
+      </div>
+    </section>
+
+    <!-- RSVP & WISHES SECTION -->
+    <section>
+      <h2 class="section-title">RSVP & Wishes</h2>
+      <div class="section-subtitle">Please confirm your attendance</div>
+
+      <form class="rsvp-form" id="rsvp-form">
+        <div class="form-group">
+          <label>Your Name</label>
+          <input type="text" name="Name" id="rsvp-name" required placeholder="Enter your full name">
+        </div>
+
+        <div class="form-group">
+          <label>Attendance Status</label>
+          <select name="Status" id="rsvp-status" required>
+            <option value="Attending">Yes, I will attend</option>
+            <option value="Unable to attend">Sorry, I cannot attend</option>
+          </select>
+        </div>
+
+        <div class="form-group">
+          <label>Number of Guests</label>
+          <select name="Guests" id="rsvp-guests">
+            <option value="1">1 Person</option>
+            <option value="2">2 Persons</option>
+          </select>
+        </div>
+
+        <div class="form-group">
+          <label>Warm Wishes</label>
+          <textarea name="Wishes" id="rsvp-wish" rows="3" placeholder="Write your warm wishes for the couple..."></textarea>
+        </div>
+
+        <button type="submit" class="btn-submit">SEND CONFIRMATION</button>
+      </form>
+    </section>
+
+    <!-- FOOTER -->
+    <footer style="padding: 40px 20px; text-align: center; background: var(--dark-red); color: #fff;">
+      <div class="double-happiness" style="font-size: 2rem; color: var(--gold);">囍</div>
+      <p style="font-family: 'Great Vibes', cursive; font-size: 2.2rem; color: var(--gold); margin: 10px 0;">David & Selly</p>
+      <p style="font-size: 0.75rem; color: var(--light-gold); letter-spacing: 2px; margin-bottom: 15px;">OCTOBER 10th, 2026</p>
+      
+      <!-- CREDIT TAMBAHAN -->
+      <p style="font-size: 0.7rem; color: rgba(255, 253, 249, 0.6); letter-spacing: 1px; border-top: 1px solid rgba(212, 175, 55, 0.2); padding-top: 15px;">
+        Created by <span style="color: var(--light-gold);">chocookiesgo</span> x <span style="color: var(--light-gold);">exitoorganizer</span>
+      </p>
+    </footer>
+
+  </div>
+
+  <!-- JAVASCRIPT LOGIC -->
+  <script>
+    // 1. PARSE GUEST NAME FROM URL (?to=Name)
+    const urlParams = new URLSearchParams(window.location.search);
+    const guestName = urlParams.get('to') || 'Valued Guest';
+    document.getElementById('guest-name-display').innerText = guestName;
+    document.getElementById('rsvp-name').value = guestName;
+
+    // 2. OPEN INVITATION & PLAY MUSIC (SAFE MODE)
+    function openInvitation() {
+      const cover = document.getElementById('cover');
+      if (cover) {
+        cover.classList.add('opened');
+      }
+      document.body.classList.remove('no-scroll');
+      
+      const audio = document.getElementById('bg-music');
+      const musicBtn = document.getElementById('music-btn');
+      
+      if (musicBtn) musicBtn.style.display = 'flex';
+      
+      if (audio) {
+        const playPromise = audio.play();
+        if (playPromise !== undefined) {
+          playPromise.catch(error => {
+            console.log("Autoplay diblokir oleh browser atau file audio belum disiapkan:", error);
+          });
+        }
+      }
+    }
+
+    // 3. MUSIC TOGGLE
+    let isPlaying = true;
+    function toggleMusic() {
+      const audio = document.getElementById('bg-music');
+      const icon = document.getElementById('music-icon');
+      if (!audio) return;
+
+      if (isPlaying) {
+        audio.pause();
+        if (icon) icon.className = 'fas fa-volume-mute';
+      } else {
+        audio.play().catch(e => console.log(e));
+        if (icon) icon.className = 'fas fa-music';
+      }
+      isPlaying = !isPlaying;
+    }
+
+    // 4. COPY ACCOUNT NUMBER
+    function copyAccount() {
+      const accNum = document.getElementById('acc-num').innerText;
+      navigator.clipboard.writeText(accNum);
+      alert('Account number copied to clipboard!');
+    }
+
+    // 5. GENERATE FALLING MEIHUA PETALS
+    function createPetals() {
+      const container = document.getElementById('petals-container');
+      if (!container) return;
+      const petalCount = 20;
+
+      for (let i = 0; i < petalCount; i++) {
+        const petal = document.createElement('div');
+        petal.className = 'petal';
         
-        <!-- Hero Section -->
-        <section class="hero">
-            <p class="cover-subtitle" data-aos="fade-down" data-aos-duration="1200">WE ARE GETTING MARRIED</p>
-            <h1 data-aos="zoom-in" data-aos-duration="1200" data-aos-delay="200">David & Selly</h1>
-            <p data-aos="fade-up" data-aos-duration="1200" data-aos-delay="400" style="margin-top: 10px; color: var(--text-muted);">October 10, 2026</p>
-        </section>
-
-        <!-- Couple Section -->
-        <section id="couple">
-            <h2 class="section-title" data-aos="fade-up">The Couple</h2>
-            <div data-aos="fade-up" data-aos-delay="100">
-                <div class="couple-img-wrapper">
-                    <img src="https://images.unsplash.com/photo-1519741497674-611481863552?auto=format&fit=crop&q=80&w=800" alt="Couple" class="couple-img">
-                </div>
-                <div class="couple-name">David Herry Sutanto</div>
-                <div class="parents">
-                    Son of <br>
-                    <b>Mr. Tan Bun Liong & Mrs. Ng Siu Chen</b>
-                </div>
-            </div>
-
-            <div style="font-family: var(--font-script); font-size: 36px; color: var(--primary); margin: 30px 0;" data-aos="zoom-in" data-aos-delay="200">&</div>
-
-            <div data-aos="fade-up" data-aos-delay="300">
-                <div class="couple-name">Selly Agustina</div>
-                <div class="parents">
-                    Daughter of <br>
-                    <b>Mr. Ong Sing Guat & Late Mrs. Theng Tin Tju</b>
-                </div>
-            </div>
-        </section>
-
-        <!-- Event Details Section -->
-        <section id="event">
-            <h2 class="section-title" data-aos="fade-up">Wedding Events</h2>
-            
-            <div class="event-card" data-aos="fade-up" data-aos-delay="100">
-                <h3>Holy Matrimony</h3>
-                <div class="event-detail"><b>Date:</b> Friday, October 09th, 2026</div>
-                <div class="event-detail"><b>Time:</b> 10:00 AM WIB</div>
-                <div class="event-detail">
-                    <b>Location:</b><br>
-                    Golden Sand 5–6 Lt. 3, Aston Palembang<br>
-                    <small>Jl. Jendral Basuki Rahmat No. 189, Palembang</small>
-                </div>
-                <a href="https://maps.google.com" target="_blank" class="btn-map"><i class="fas fa-location-dot"></i> View Location</a>
-            </div>
-
-            <div class="event-card" data-aos="fade-up" data-aos-delay="200">
-                <h3>Wedding Reception</h3>
-                <div class="event-detail"><b>Date:</b> Saturday, October 10th, 2026</div>
-                <div class="event-detail"><b>Time:</b> 06:00 PM WIB</div>
-                <div class="event-detail">
-                    <b>Location:</b><br>
-                    Golden Sand 5–6 Lt. 3, Aston Palembang<br>
-                    <small>Jl. Jendral Basuki Rahmat No. 189, Palembang</small>
-                </div>
-                <a href="https://maps.google.com" target="_blank" class="btn-map"><i class="fas fa-location-dot"></i> View Location</a>
-            </div>
-
-            <!-- Countdown Timer -->
-            <div style="margin-top: 40px;" data-aos="zoom-in" data-aos-delay="300">
-                <p style="font-size: 14px; color: var(--text-muted);">Counting down to the big day:</p>
-                <div class="countdown-container">
-                    <div class="countdown-box"><span class="countdown-number" id="days">00</span><span class="countdown-label">Days</span></div>
-                    <div class="countdown-box"><span class="countdown-number" id="hours">00</span><span class="countdown-label">Hours</span></div>
-                    <div class="countdown-box"><span class="countdown-number" id="minutes">00</span><span class="countdown-label">Mins</span></div>
-                    <div class="countdown-box"><span class="countdown-number" id="seconds">00</span><span class="countdown-label">Secs</span></div>
-                </div>
-            </div>
-        </section>
-
-        <!-- Gallery Section -->
-        <section id="gallery">
-            <h2 class="section-title" data-aos="fade-up">Our Moments</h2>
-            
-            <div class="slideshow-container" data-aos="zoom-in" data-aos-delay="100">
-                <img class="slide-item active" src="https://images.unsplash.com/photo-1511285560929-80b456fea0bc?auto=format&fit=crop&q=80&w=800" alt="Moment 1">
-                <img class="slide-item" src="https://images.unsplash.com/photo-1519225421980-715cb0215aed?auto=format&fit=crop&q=80&w=800" alt="Moment 2">
-                <img class="slide-item" src="https://images.unsplash.com/photo-1583939003579-730e3918a45a?auto=format&fit=crop&q=80&w=800" alt="Moment 3">
-                <img class="slide-item" src="https://images.unsplash.com/photo-1465495976277-4387d4b0b4c6?auto=format&fit=crop&q=80&w=800" alt="Moment 4">
-                <img class="slide-item" src="https://images.unsplash.com/photo-1519741497674-611481863552?auto=format&fit=crop&q=80&w=800" alt="Moment 5">
-                <img class="slide-item" src="https://images.unsplash.com/photo-1522673607200-164d1b6ce486?auto=format&fit=crop&q=80&w=800" alt="Moment 6">
-
-                <a class="prev-btn" onclick="moveSlide(-1)"><i class="fas fa-chevron-left"></i></a>
-                <a class="next-btn" onclick="moveSlide(1)"><i class="fas fa-chevron-right"></i></a>
-            </div>
-
-            <div class="dots-container" data-aos="fade-up" data-aos-delay="200">
-                <span class="dot active" onclick="currentSlide(0)"></span>
-                <span class="dot" onclick="currentSlide(1)"></span>
-                <span class="dot" onclick="currentSlide(2)"></span>
-                <span class="dot" onclick="currentSlide(3)"></span>
-                <span class="dot" onclick="currentSlide(4)"></span>
-                <span class="dot" onclick="currentSlide(5)"></span>
-            </div>
-        </section>
-
-        <!-- Digital Gift Section -->
-        <section id="gift">
-            <h2 class="section-title" data-aos="fade-up">Wedding Gift</h2>
-            <p style="font-size: 13px; color: var(--text-muted); line-height: 1.6;" data-aos="fade-up">
-                Your presence is the greatest gift of all. However, if you wish to honor us with a gift, a digital envelope is available below:
-            </p>
-            
-            <div class="bank-card" data-aos="fade-up" data-aos-delay="100">
-                <div class="bank-name">BANK BCA</div>
-                <div class="account-num" id="acc-num">0214023411</div>
-                <div style="font-size: 13px; color: var(--text-muted); margin-bottom: 10px;">a.n. Selly Agustina</div>
-                <button class="btn-copy" onclick="copyAccount()"><i class="far fa-copy"></i> Copy Number</button>
-            </div>
-        </section>
-
-        <!-- RSVP Section -->
-        <section id="rsvp">
-            <h2 class="section-title" data-aos="fade-up">RSVP</h2>
-            <div class="rsvp-form" data-aos="fade-up" data-aos-delay="100">
-                <form id="weddingRsvpForm">
-                    <div class="form-group">
-                        <label for="name">Full Name</label>
-                        <input type="text" id="name" name="name" class="form-control" required placeholder="Enter your name">
-                    </div>
-                    <div class="form-group">
-                        <label for="attendance">Attendance</label>
-                        <select id="attendance" name="attendance" class="form-control" required>
-                            <option value="Yes, I will attend">Yes, I will attend</option>
-                            <option value="Sorry, I cannot attend">Sorry, I cannot attend</option>
-                        </select>
-                    </div>
-                    <div class="form-group">
-                        <label for="guests">Number of Guests</label>
-                        <select id="guests" name="guests" class="form-control">
-                            <option value="1 Person">1 Person</option>
-                            <option value="2 Persons">2 Persons</option>
-                        </select>
-                    </div>
-                    <div class="form-group">
-                        <label for="message">Wishes / Message</label>
-                        <textarea id="message" name="message" rows="3" class="form-control" placeholder="Write your wishes..."></textarea>
-                    </div>
-                    <button type="submit" class="btn-submit" id="submitBtn">Send RSVP</button>
-                </form>
-            </div>
-        </section>
-
-        <!-- Footer -->
-        <footer>
-            <p>Thank you for being part of our special day.</p>
-            <p style="margin-top: 5px; color: var(--primary);">David & Selly</p>
-        </footer>
-
-    </div>
-
-    <!-- AOS Script -->
-    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
-    <script>
-        // Inisialisasi AOS Animation
-        AOS.init({
-            duration: 1000,
-            once: true,
-            easing: 'ease-in-out'
-        });
-
-        // Music Controls
-        const music = document.getElementById('weddingMusic');
-        const musicToggle = document.getElementById('musicToggle');
-        let isPlaying = false;
-
-        function toggleMusic() {
-            if (isPlaying) {
-                music.pause();
-                musicToggle.classList.remove('playing');
-            } else {
-                music.play();
-                musicToggle.classList.add('playing');
-            }
-            isPlaying = !isPlaying;
-        }
-
-        // Open Invitation dengan Efek Animasi Ulang
-        function openInvitation() {
-            document.getElementById('cover-screen').classList.add('opened');
-            document.body.classList.remove('no-scroll');
-            toggleMusic();
-
-            // Refresh animasi AOS agar muncul mulus setelah cover terbuka
-            setTimeout(() => {
-                AOS.refreshHard();
-            }, 300);
-        }
-
-        // Countdown Timer
-        const targetDate = new Date("2026-10-10T10:00:00").getTime();
+        const size = Math.random() * 12 + 8;
+        petal.style.width = `${size}px`;
+        petal.style.height = `${size}px`;
+        petal.style.left = `${Math.random() * 100}vw`;
+        petal.style.animationDuration = `${Math.random() * 5 + 5}s`;
+        petal.style.animationDelay = `${Math.random() * 5}s`;
         
-        setInterval(function() {
-            const now = new Date().getTime();
-            const difference = targetDate - now;
+        container.appendChild(petal);
+      }
+    }
+    createPetals();
 
-            if (difference > 0) {
-                const days = Math.floor(difference / (1000 * 60 * 60 * 24));
-                const hours = Math.floor((difference % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
-                const minutes = Math.floor((difference % (1000 * 60 * 60)) / (1000 * 60));
-                const seconds = Math.floor((difference % (1000 * 60)) / 1000);
+    // 6. SHEETMONKEY INTEGRATION
+    const SHEETMONKEY_URL = 'https://api.sheetmonkey.io/form/v8GgDU9nc4FePaBRb1MSWm';
+    const rsvpForm = document.getElementById('rsvp-form');
 
-                document.getElementById("days").innerText = days < 10 ? "0" + days : days;
-                document.getElementById("hours").innerText = hours < 10 ? "0" + hours : hours;
-                document.getElementById("minutes").innerText = minutes < 10 ? "0" + minutes : minutes;
-                document.getElementById("seconds").innerText = seconds < 10 ? "0" + seconds : seconds;
-            }
-        }, 1000);
+    if (rsvpForm) {
+      rsvpForm.addEventListener('submit', async (e) => {
+        e.preventDefault();
+        const submitBtn = rsvpForm.querySelector('.btn-submit');
+        submitBtn.innerText = 'SENDING...';
+        submitBtn.disabled = true;
 
-        // SLIDESHOW LOGIC
-        let slideIndex = 0;
-        const slides = document.querySelectorAll('.slide-item');
-        const dots = document.querySelectorAll('.dot');
+        const formData = new FormData(rsvpForm);
+        const data = Object.fromEntries(formData.entries());
 
-        function showSlide(index) {
-            if (index >= slides.length) slideIndex = 0;
-            if (index < 0) slideIndex = slides.length - 1;
+        try {
+          const response = await fetch(SHEETMONKEY_URL, {
+            method: 'POST',
+            headers: {
+              'Content-Type': 'application/json',
+              'Accept': 'application/json'
+            },
+            body: JSON.stringify(data)
+          });
 
-            slides.forEach(slide => slide.classList.remove('active'));
-            dots.forEach(dot => dot.classList.remove('active'));
-
-            slides[slideIndex].classList.add('active');
-            dots[slideIndex].classList.add('active');
+          if (response.ok) {
+            alert('Thank you! Your RSVP and warm wishes have been saved.');
+            document.getElementById('rsvp-wish').value = '';
+          } else {
+            alert('Failed to send RSVP. Please try again.');
+          }
+        } catch (error) {
+          alert('Network error. Please try again.');
+        } finally {
+          submitBtn.innerText = 'SEND CONFIRMATION';
+          submitBtn.disabled = false;
         }
+      });
+    }
+    // 7. COUNTDOWN TIMER LOGIC
+    const targetDate = new Date("2026-10-10T10:00:00").getTime();
 
-        function moveSlide(n) {
-            slideIndex += n;
-            showSlide(slideIndex);
-        }
+    function updateCountdown() {
+      const now = new Date().getTime();
+      const difference = targetDate - now;
 
-        function currentSlide(n) {
-            slideIndex = n;
-            showSlide(slideIndex);
-        }
+      if (difference > 0) {
+        const days = Math.floor(difference / (1000 * 60 * 60 * 24));
+        const hours = Math.floor((difference % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+        const minutes = Math.floor((difference % (1000 * 60 * 60)) / (1000 * 60));
+        const seconds = Math.floor((difference % (1000 * 60)) / 1000);
 
-        setInterval(() => {
-            slideIndex++;
-            showSlide(slideIndex);
-        }, 4000);
+        document.getElementById("days").innerText = String(days).padStart(2, '0');
+        document.getElementById("hours").innerText = String(hours).padStart(2, '0');
+        document.getElementById("minutes").innerText = String(minutes).padStart(2, '0');
+        document.getElementById("seconds").innerText = String(seconds).padStart(2, '0');
+      } else {
+        document.getElementById("days").innerText = "00";
+        document.getElementById("hours").innerText = "00";
+        document.getElementById("minutes").innerText = "00";
+        document.getElementById("seconds").innerText = "00";
+      }
+    }
 
-        // Swipe Gesture Support
-        let touchStartX = 0;
-        let touchEndX = 0;
-        const slideshowContainer = document.querySelector('.slideshow-container');
-
-        slideshowContainer.addEventListener('touchstart', e => {
-            touchStartX = e.changedTouches[0].screenX;
-        });
-
-        slideshowContainer.addEventListener('touchend', e => {
-            touchEndX = e.changedTouches[0].screenX;
-            handleGesture();
-        });
-
-        function handleGesture() {
-            if (touchEndX < touchStartX - 30) moveSlide(1);
-            if (touchEndX > touchStartX + 30) moveSlide(-1);
-        }
-
-        // Copy Account Number
-        function copyAccount() {
-            const accNum = document.getElementById('acc-num').innerText;
-            navigator.clipboard.writeText(accNum);
-            alert("Account number copied: " + accNum);
-        }
-
-        // RSVP Form Submission
-        const SHEETMONKEY_URL = 'https://api.sheetmonkey.io/form/v8GgDU9nc4FePaBRb1MSWm';
-        const form = document.getElementById('weddingRsvpForm');
-        
-        form.addEventListener('submit', function(e) {
-            e.preventDefault();
-            const submitBtn = document.getElementById('submitBtn');
-            submitBtn.innerText = "Sending...";
-            submitBtn.disabled = true;
-
-            const formData = new FormData(form);
-
-            fetch(SHEETMONKEY_URL, {
-                method: 'POST',
-                body: formData,
-            })
-            .then(response => {
-                alert("Thank you! Your RSVP response has been submitted.");
-                form.reset();
-                submitBtn.innerText = "Send RSVP";
-                submitBtn.disabled = false;
-            })
-            .catch(error => {
-                alert("Something went wrong. Please try again.");
-                submitBtn.innerText = "Send RSVP";
-                submitBtn.disabled = false;
-            });
-        });
-    </script>
+    updateCountdown();
+    setInterval(updateCountdown, 1000);
+  </script>
 </body>
 </html>
