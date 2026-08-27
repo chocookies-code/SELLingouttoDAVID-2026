@@ -635,6 +635,40 @@
       box-shadow: 0 4px 10px rgba(0,0,0,0.3);
       z-index: 999;
     }
+  /* STYLE UNTUK LIST UCAPAN TAMU */
+    .wish-card {
+      background: rgba(255, 255, 255, 0.95);
+      border-left: 4px solid var(--gold);
+      border-radius: 8px;
+      padding: 12px 15px;
+      margin-bottom: 12px;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+    }
+    .wish-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 6px;
+    }
+    .wish-name {
+      font-weight: 600;
+      font-size: 0.9rem;
+      color: var(--primary-red);
+    }
+    .wish-status {
+      font-size: 0.7rem;
+      padding: 2px 8px;
+      border-radius: 10px;
+      background: #eee;
+      color: #333;
+    }
+    .wish-text {
+      font-size: 0.85rem;
+      color: #444;
+      line-height: 1.4;
+      white-space: pre-line;
+    }
+    
   </style>
 </head>
 <body class="no-scroll">
@@ -886,6 +920,15 @@
  
         <button type="submit" class="btn-submit">SEND CONFIRMATION</button>
       </form>
+      
+      <!-- TEMPAT MENAMPILKAN UCAPAN TAMU -->
+      <div class="wishes-container reveal" id="wishes-container" style="margin-top: 35px; text-align: left;">
+        <h3 style="font-family: 'Cinzel', serif; font-size: 1.1rem; color: var(--primary-red); margin-bottom: 15px; text-align: center;">Warm Wishes</h3>
+        <div id="wishes-list" style="max-height: 350px; overflow-y: auto; padding-right: 5px;">
+          <p style="text-align: center; font-size: 0.85rem; color: #777;">Loading wishes...</p>
+        </div>
+      </div>
+      
     </section>
  
     <!-- FOOTER -->
@@ -1098,6 +1141,7 @@ preloadSliderImages();
           if (response.ok) {
             alert('Thank you! Your RSVP and warm wishes have been saved.');
             document.getElementById('rsvp-wish').value = '';
+            fetchWishes();
           } else {
             alert('Failed to send RSVP. Please try again.');
           }
@@ -1109,6 +1153,44 @@ preloadSliderImages();
         }
       });
     }
+    // FUNGSI UNTUK MEMANGGIL DATA UCAPAN DARI SHEETMONKEY
+  async function fetchWishes() {
+    const wishesList = document.getElementById('wishes-list');
+    if (!wishesList) return;
+
+    try {
+      const response = await fetch(SHEETMONKEY_URL);
+      if (!response.ok) throw new Error('Gagal mengambil data');
+      
+      const data = await response.json();
+      
+      // Ambil data yang isi pesannya tidak kosong
+      const validWishes = data.filter(item => item.Wishes && item.Wishes.trim() !== '');
+
+      if (validWishes.length === 0) {
+        wishesList.innerHTML = '<p style="text-align: center; font-size: 0.85rem; color: #777;">Belum ada ucapan. Jadilah yang pertama!</p>';
+        return;
+      }
+
+      // Urutkan dari ucapan terbaru (paling atas)
+      wishesList.innerHTML = validWishes.reverse().map(item => `
+        <div class="wish-card">
+          <div class="wish-header">
+            <span class="wish-name">${item.Name || 'Guest'}</span>
+            <span class="wish-status">${item.Status === 'Attending' ? 'Hadir' : 'Absen'}</span>
+          </div>
+          <div class="wish-text">${item.Wishes}</div>
+        </div>
+      `).join('');
+
+    } catch (error) {
+      console.error('Error fetching wishes:', error);
+      wishesList.innerHTML = '<p style="text-align: center; font-size: 0.85rem; color: #777;">Gagal memuat ucapan.</p>';
+    }
+  }
+
+  // Langsung jalankan saat halaman terbuka
+  fetchWishes();
 
     // 10. COUNTDOWN TIMER LOGIC
     const targetDate = new Date("2026-10-10T10:00:00").getTime();
