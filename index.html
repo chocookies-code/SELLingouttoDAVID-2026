@@ -173,7 +173,7 @@
       color: #fff;
     }
  
-    .btn-open {
+   .btn-open {
       background: linear-gradient(135deg, #D4AF37, #AA7C11);
       color: #fff;
       border: none;
@@ -186,7 +186,26 @@
       cursor: pointer;
       box-shadow: 0 4px 15px rgba(212, 175, 55, 0.4);
       transition: all 0.3s ease;
-      animation: pulse 2s infinite alternate;
+      opacity: 0;
+      transform: translateY(30px);
+      /* Menjalankan animasi muncul (fadeInUp) dulu, lalu disusul animasi pulse */
+      animation: fadeInUp 1s ease 1.2s forwards, pulse 2s infinite alternate 2.2s;
+    }
+ 
+    .btn-open:hover {
+      transform: translateY(-2px) scale(1.05);
+      box-shadow: 0 6px 20px rgba(212, 175, 55, 0.6);
+    }
+
+    @keyframes pulse {
+      0% { 
+        box-shadow: 0 0 0 0 rgba(212, 175, 55, 0.7); 
+        transform: scale(1);
+      }
+      100% { 
+        box-shadow: 0 0 0 15px rgba(212, 175, 55, 0); 
+        transform: scale(1.03);
+      }
     }
  
     .btn-open:hover {
@@ -649,7 +668,7 @@
       <div class="guest-name" id="guest-name-display">Guest Name</div>
     </div>
  
-    <button class="btn-open cover-animate" onclick="openInvitation()">OPEN INVITATION</button>
+    <button class="btn-open" onclick="openInvitation()">OPEN INVITATION</button>
   </div>
  
   <!-- MAIN CONTENT CONTAINER -->
