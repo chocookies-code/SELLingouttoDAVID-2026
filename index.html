@@ -107,12 +107,25 @@
     }
  
     .caricature-img {
-      max-width: 400px;
+      max-width: 260px;
       width: 100%;
       height: auto;
       display: block;
       margin: 0 auto 20px auto;
       filter: drop-shadow(0 5px 10px rgba(0,0,0,0.15));
+    }
+
+    .quote-box {
+      background: rgba(212, 175, 55, 0.08);
+      border-left: 3px solid var(--gold);
+      border-right: 3px solid var(--gold);
+      padding: 15px 20px;
+      margin: 20px 0;
+      border-radius: 8px;
+      font-style: italic;
+      font-size: 0.88rem;
+      line-height: 1.6;
+      color: #444;
     }
  
     .countdown-grid {
@@ -439,7 +452,7 @@
       background-color: #ccc;
       border-radius: 50%;
       display: inline-block;
-      transition: background-color 0.3s ease;
+      transition: all 0.3s ease;
       cursor: pointer;
     }
 
@@ -619,7 +632,7 @@
  
       <!-- Groom -->
       <div class="couple-card">
-        <img src="images/groom.html.jpeg" alt="David Herry Sutanto" class="couple-img" onerror="this.src='https://via.placeholder.com/160?text=Groom'">
+        <img src="images/groom.jpeg" alt="David Herry Sutanto" class="couple-img" onerror="this.src='https://via.placeholder.com/160?text=Groom'">
         <div class="couple-name">David Herry Sutanto</div>
         <div class="parents">
           Son of <br>
@@ -830,7 +843,7 @@
       alert('Account number copied to clipboard!');
     }
  
-    // 5. GENERATE FALLING MEIHUA PETALS
+    // 5. GENERATE FALLING PETALS
     function createPetals() {
       const container = document.getElementById('petals-container');
       if (!container) return;
