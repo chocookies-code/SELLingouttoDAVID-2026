@@ -1,206 +1,1480 @@
 <!DOCTYPE html>
-<html lang="id">
+<html lang="en">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Generator Link RSVP WhatsApp</title>
+  <title>The Wedding of David & Selly</title>
+  
+  <!-- Google Fonts & FontAwesome -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;700&family=Great+Vibes&family=Montserrat:wght@300;400;500;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+ 
   <style>
+    :root {
+      --primary-red: #8B0000;
+      --dark-red: #5C0000;
+      --gold: #D4AF37;
+      --light-gold: #F3E5AB;
+      --bg-cream: #FFFDF9;
+      --text-dark: #2B2B2B;
+    }
+ 
     * {
       box-sizing: border-box;
-      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      margin: 0;
+      padding: 0;
     }
-
+ 
     body {
-      background-color: #f4f7f6;
+      font-family: 'Montserrat', sans-serif;
+      background-color: var(--dark-red);
+      color: var(--text-dark);
+      overflow-x: hidden;
+    }
+ 
+    body.no-scroll {
+      overflow: hidden;
+      height: 100vh;
+    }
+ 
+    /* PETALS CONTAINER & ANIMATION */
+    #petals-container {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100vw;
+      height: 100vh;
+      pointer-events: none;
+      z-index: 9999;
+      overflow: hidden;
+    }
+ 
+    .petal {
+      position: absolute;
+      background: linear-gradient(135deg, #e74c3c, #c0392b);
+      border-radius: 15px 0 15px 0;
+      opacity: 0.8;
+      box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+      animation: fall linear infinite;
+    }
+ 
+    @keyframes fall {
+      0% {
+        transform: translateY(-10vh) rotate(0deg) scale(0.8);
+        opacity: 1;
+      }
+      50% {
+        transform: translateY(50vh) rotate(180deg) scale(1);
+      }
+      100% {
+        transform: translateY(105vh) rotate(360deg) scale(0.6);
+        opacity: 0.2;
+      }
+    }
+ 
+    /* COVER ANIMATIONS & STYLING */
+    #cover {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(rgba(60, 0, 0, 0.75), rgba(40, 0, 0, 0.85)), url('images/cover-ktlg.png') center/cover no-repeat;
+      background-color: var(--dark-red);
+      z-index: 1000;
       display: flex;
+      flex-direction: column;
       justify-content: center;
       align-items: center;
-      min-height: 100vh;
-      margin: 0;
-      padding: 20px;
-    }
-
-    .card {
-      background-color: #ffffff;
-      padding: 30px;
-      border-radius: 12px;
-      box-shadow: 0 8px 24px rgba(0, 0, 0, 0.1);
-      width: 100%;
-      max-width: 480px;
-    }
-
-    h2 {
-      margin-top: 0;
-      color: #075e54;
-      font-size: 22px;
       text-align: center;
-      margin-bottom: 20px;
+      color: #fff;
+      padding: 20px;
+      transition: transform 0.8s ease-in-out, opacity 0.8s ease-in-out;
+    }
+ 
+    #cover.opened {
+      transform: translateY(-100%);
+      opacity: 0;
+      pointer-events: none;
     }
 
-    .form-group {
-      margin-bottom: 18px;
+    .cover-animate {
+      opacity: 0;
+      transform: translateY(30px);
+      animation: fadeInUp 1s ease forwards;
     }
 
-    label {
-      display: block;
-      font-weight: 600;
-      margin-bottom: 6px;
-      color: #333;
-      font-size: 14px;
+    .double-happiness.cover-animate { animation-delay: 0.4s; }
+    .cover-sub.cover-animate { animation-delay: 0.6s; }
+    .cover-title.cover-animate { animation-delay: 0.8s; }
+    .cover-date.cover-animate { animation-delay: 0.1s; }
+    .guest-box.cover-animate { animation-delay: 1.2s; }
+    .btn-open.cover-animate { animation-delay: 1.4s; }
+
+    @keyframes fadeInUp {
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+ 
+    .double-happiness {
+      font-size: 3rem;
+      color: var(--gold);
+      margin-bottom: 5px;
+      text-shadow: 0 0 10px rgba(212, 175, 55, 0.5);
     }
 
-    input[type="text"], textarea {
+    .cover-sub {
+      font-family: 'Cinzel', serif;
+      letter-spacing: 3px;
+      font-size: 0.85rem;
+      color: var(--light-gold);
+      margin-bottom: 25px;
+      text-transform: uppercase;
+    }
+ 
+    .cover-title {
+      font-family: 'Great Vibes', cursive;
+      font-size: 4rem;
+      color: var(--gold);
+      text-shadow: 2px 2px 8px rgba(0,0,0,0.7);
+      margin-bottom: 10px;
+    }
+ 
+    .cover-date {
+      font-family: 'Cinzel', serif;
+      letter-spacing: 4px;
+      font-size: 1.1rem;
+      margin-bottom: 35px;
+    }
+ 
+    .guest-box {
+      background: rgba(0, 0, 0, 0.5);
+      border: 1px solid var(--gold);
+      border-radius: 10px;
+      padding: 15px 25px;
+      margin-bottom: 25px;
+      max-width: 320px;
       width: 100%;
-      padding: 12px;
-      border: 1px solid #ccc;
-      border-radius: 8px;
-      font-size: 14px;
-      transition: border-color 0.2s;
     }
-
-    input[type="text"]:focus, textarea:focus {
-      outline: none;
-      border-color: #25d366;
+ 
+    .guest-box p {
+      font-size: 0.85rem;
+      color: var(--light-gold);
+      margin-bottom: 5px;
     }
-
-    textarea {
-      resize: vertical;
-    }
-
-    .btn-group {
-      display: flex;
-      gap: 10px;
-      margin-top: 20px;
-    }
-
-    button {
-      flex: 1;
-      padding: 12px;
-      border: none;
-      border-radius: 8px;
-      font-size: 14px;
-      font-weight: bold;
-      cursor: pointer;
-      transition: background-color 0.2s, opacity 0.2s;
-    }
-
-    .btn-whatsapp {
-      background-color: #25d366;
-      color: white;
-    }
-
-    .btn-whatsapp:hover {
-      background-color: #128c7e;
-    }
-
-    .btn-copy {
-      background-color: #eceff1;
-      color: #455a64;
-    }
-
-    .btn-copy:hover {
-      background-color: #cfd8dc;
-    }
-
-    .result-box {
-      margin-top: 20px;
-      padding: 12px;
-      background-color: #e8f5e9;
-      border-radius: 8px;
-      border: 1px solid #c8e6c9;
-      word-break: break-all;
-      font-size: 13px;
-    }
-
-    .result-box a {
-      color: #075e54;
-      text-decoration: none;
+ 
+    .guest-name {
+      font-size: 1.2rem;
       font-weight: 600;
+      color: #fff;
+    }
+ 
+   .btn-open {
+      background: linear-gradient(135deg, #D4AF37, #AA7C11);
+      color: #fff;
+      border: none;
+      padding: 12px 30px;
+      font-size: 0.95rem;
+      font-family: 'Cinzel', serif;
+      font-weight: 600;
+      letter-spacing: 2px;
+      border-radius: 30px;
+      cursor: pointer;
+      box-shadow: 0 4px 15px rgba(212, 175, 55, 0.4);
+      transition: all 0.3s ease;
+      opacity: 0;
+      transform: translateY(30px);
+      /* Menjalankan animasi muncul (fadeInUp) dulu, lalu disusul animasi pulse */
+      animation: fadeInUp 1s ease 1.2s forwards, pulse 2s infinite alternate 2.2s;
+    }
+ 
+    .btn-open:hover {
+      transform: translateY(-2px) scale(1.05);
+      box-shadow: 0 6px 20px rgba(212, 175, 55, 0.6);
     }
 
-    .result-box a:hover {
-      text-decoration: underline;
+    @keyframes pulse {
+      0% { 
+        box-shadow: 0 0 0 0 rgba(212, 175, 55, 0.7); 
+        transform: scale(1);
+      }
+      100% { 
+        box-shadow: 0 0 0 15px rgba(212, 175, 55, 0); 
+        transform: scale(1.03);
+      }
     }
+ 
+    .btn-open:hover {
+      transform: translateY(-2px) scale(1.05);
+      box-shadow: 0 6px 20px rgba(212, 175, 55, 0.6);
+    }
+
+    @keyframes pulse {
+      0% { box-shadow: 0 0 0 0 rgba(212, 175, 55, 0.7); }
+      100% { box-shadow: 0 0 0 15px rgba(212, 175, 55, 0); }
+    }
+
+    /* SCROLL REVEAL ANIMATIONS */
+    .reveal {
+      opacity: 0;
+      transform: translateY(40px);
+      transition: all 0.8s ease-out;
+    }
+
+    .reveal.active {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    .reveal-zoom {
+      opacity: 0;
+      transform: scale(0.85);
+      transition: all 0.8s ease-out;
+    }
+
+    .reveal-zoom.active {
+      opacity: 1;
+      transform: scale(1);
+    }
+    
+ .container {
+      max-width: 600px;
+      margin: 0 auto;
+      background-image: url('images/cover-ktlg.png');
+      background-position: center;
+      background-size: cover;
+      background-repeat: no-repeat;
+      background-attachment: fixed;
+      min-height: 100vh;
+      box-shadow: 0 0 25px rgba(0,0,0,0.5);
+      position: relative;
+    }
+ 
+    .container::before {
+      content: '';
+      position: absolute;
+      top: 0; left: 0; right: 0; bottom: 0;
+      background: rgba(255, 253, 249, 0.90);
+      z-index: 1;
+    }
+ 
+    section, footer {
+      position: relative;
+      z-index: 2;
+    }
+ 
+    section {
+      padding: 60px 25px;
+      text-align: center;
+    }
+ 
+    .section-title {
+      font-family: 'Cinzel', serif;
+      color: var(--primary-red);
+      font-size: 1.6rem;
+      margin-bottom: 10px;
+      position: relative;
+    }
+ 
+    .section-subtitle {
+      font-size: 0.85rem;
+      color: #777;
+      text-transform: uppercase;
+      letter-spacing: 2px;
+      margin-bottom: 40px;
+    }
+
+    .caricature-img {
+      max-width: 400px;
+      width: 100%;
+      height: auto;
+      display: block;
+      margin: 0 auto 20px auto;
+      filter: drop-shadow(0 5px 10px rgba(0,0,0,0.15));
+    }
+ 
+    .countdown-grid {
+      display: flex;
+      justify-content: center;
+      gap: 10px;
+      margin-top: 10px;
+    }
+ 
+    .countdown-box {
+      background: rgba(255, 255, 255, 0.8);
+      border: 1px solid var(--gold);
+      border-radius: 8px;
+      padding: 10px 12px;
+      min-width: 60px;
+      text-align: center;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.05);
+    }
+ 
+    .countdown-number {
+      font-size: 1.2rem;
+      font-weight: bold;
+      color: var(--primary-red);
+    }
+ 
+    .countdown-label {
+      font-size: 0.75rem;
+      text-transform: uppercase;
+      color: #555;
+      margin-top: 2px;
+    }
+ 
+    .btn-save-date {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      background-color: var(--primary-red, #800000);
+      color: #ffffff !important;
+      font-family: 'Cinzel', serif;
+      font-size: 0.85rem;
+      font-weight: 600;
+      letter-spacing: 1px;
+      padding: 12px 24px;
+      border-radius: 25px;
+      border: 1px solid var(--gold, #d4af37);
+      text-decoration: none !important;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+      margin-top: 15px;
+      transition: all 0.3s ease;
+    }
+ 
+    .btn-save-date:hover {
+      background-color: #600000;
+      transform: translateY(-2px);
+      box-shadow: 0 6px 15px rgba(0, 0, 0, 0.2);
+    }
+ 
+    .couple-card {
+      margin-bottom: 35px;
+    }
+ 
+    .couple-img {
+      width: 160px;
+      height: 160px;
+      border-radius: 50%;
+      object-fit: cover;
+      border: 3px solid var(--gold);
+      padding: 4px;
+      margin-bottom: 15px;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.15);
+    }
+ 
+    .couple-name {
+      font-family: 'Great Vibes', cursive;
+      font-size: 2.8rem;
+      color: var(--primary-red);
+      margin-bottom: 5px;
+    }
+ 
+    .parents {
+      font-size: 0.85rem;
+      color: #555;
+      line-height: 1.5;
+      margin-bottom: 10px;
+    }
+ 
+    .ig-link {
+      display: inline-block;
+      color: var(--gold);
+      font-size: 0.9rem;
+      text-decoration: none;
+      font-weight: 500;
+    }
+ 
+    .and-sym {
+      font-family: 'Great Vibes', cursive;
+      font-size: 3rem;
+      color: var(--gold);
+      margin: 20px 0;
+    }
+ 
+    .event-bg {
+      background: rgba(139, 0, 0, 0.04);
+      border-top: 1px solid rgba(212, 175, 55, 0.4);
+      border-bottom: 1px solid rgba(212, 175, 55, 0.4);
+    }
+ 
+    .event-card {
+      background: rgba(255, 255, 255, 0.92);
+      border: 1px solid var(--gold);
+      border-radius: 12px;
+      padding: 30px 20px;
+      margin-bottom: 25px;
+      box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+    }
+ 
+    .section-alt {
+      background: linear-gradient(180deg, transparent 0%, rgba(212, 175, 55, 0.08) 15%, rgba(212, 175, 55, 0.08) 85%, transparent 100%);
+      padding: 40px 15px;
+      margin: 20px 0;
+      border: none;
+      position: relative;
+    }
+    
+    .event-type {
+      font-family: 'Cinzel', serif;
+      font-size: 1.2rem;
+      color: var(--primary-red);
+      margin-bottom: 15px;
+      letter-spacing: 1px;
+    }
+ 
+    .event-detail {
+      font-size: 0.9rem;
+      color: #444;
+      margin-bottom: 8px;
+    }
+ 
+    .btn-map {
+      display: inline-block;
+      margin-top: 15px;
+      padding: 10px 22px;
+      background: var(--primary-red);
+      color: #fff;
+      text-decoration: none;
+      border-radius: 25px;
+      font-size: 0.85rem;
+      font-family: 'Cinzel', serif;
+      letter-spacing: 1px;
+    }
+ 
+    /* SLIDESHOW / CAROUSEL STYLES */
+    .slider-container {
+      position: relative;
+      max-width: 100%;
+      margin: 0 auto;
+      border-radius: 12px;
+      overflow: hidden;
+      box-shadow: 0 6px 18px rgba(0, 0, 0, 0.15);
+      border: 2px solid var(--gold);
+      background-color: #000;
+    }
+
+    .slider-wrapper {
+      display: flex;
+      transition: transform 0.6s cubic-bezier(0.25, 1, 0.5, 1);
+      width: 100%;
+      will-change: transform;
+      backface-visibility: hidden;
+    }
+
+    .slide {
+      min-width: 100%;
+      box-sizing: border-box;
+      cursor: pointer;
+    }
+
+    .slide img {
+      width: 100%;
+      height: 380px;
+      object-fit: cover;
+      display: block;
+    }
+
+    .prev-btn, .next-btn {
+      position: absolute;
+      top: 50%;
+      transform: translateY(-50%);
+      background: rgba(0, 0, 0, 0.4);
+      color: var(--gold);
+      border: 1px solid var(--gold);
+      font-size: 1.2rem;
+      padding: 12px 15px;
+      cursor: pointer;
+      border-radius: 50%;
+      transition: 0.3s;
+      z-index: 10;
+    }
+
+    .prev-btn:hover, .next-btn:hover {
+      background: rgba(139, 0, 0, 0.8);
+      color: #fff;
+    }
+
+    .prev-btn { left: 12px; }
+    .next-btn { right: 12px; }
+
+    .dots-container {
+      text-align: center;
+      margin-top: 15px;
+    }
+
+    .dot {
+      height: 10px;
+      width: 10px;
+      margin: 0 4px;
+      background-color: #ccc;
+      border-radius: 50%;
+      display: inline-block;
+      transition: all 0.3s ease;
+      cursor: pointer;
+    }
+
+    .dot.active {
+      background-color: var(--primary-red);
+      width: 24px;
+      border-radius: 10px;
+    }
+
+    /* LIGHTBOX / FULLSCREEN MODAL */
+    .lightbox {
+      display: none;
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100vw;
+      height: 100vh;
+      background: rgba(0, 0, 0, 0.9);
+      z-index: 10000;
+      justify-content: center;
+      align-items: center;
+    }
+
+    .lightbox-img {
+      max-width: 90%;
+      max-height: 85vh;
+      border-radius: 8px;
+      border: 2px solid var(--gold);
+      box-shadow: 0 0 20px rgba(0,0,0,0.8);
+    }
+
+    .lightbox-close {
+      position: absolute;
+      top: 20px;
+      right: 25px;
+      color: #fff;
+      font-size: 2rem;
+      cursor: pointer;
+    }
+ 
+    .gift-card {
+      background: rgba(255, 255, 255, 0.92);
+      border: 1px dashed var(--gold);
+      border-radius: 12px;
+      padding: 25px;
+      margin-top: 20px;
+    }
+ 
+    .bank-name {
+      font-weight: bold;
+      color: var(--primary-red);
+      font-size: 1.1rem;
+    }
+ 
+    .account-num {
+      font-size: 1.3rem;
+      font-weight: bold;
+      letter-spacing: 2px;
+      margin: 10px 0;
+      color: #333;
+    }
+ 
+    .btn-copy {
+      background: var(--gold);
+      color: #fff;
+      border: none;
+      padding: 6px 16px;
+      border-radius: 15px;
+      cursor: pointer;
+      font-size: 0.8rem;
+    }
+ 
+    .rsvp-form {
+      display: flex;
+      flex-direction: column;
+      gap: 15px;
+      text-align: left;
+    }
+ 
+    .form-group label {
+      font-size: 0.85rem;
+      font-weight: 600;
+      color: #444;
+      display: block;
+      margin-bottom: 5px;
+    }
+ 
+    .form-group input, .form-group select, .form-group textarea {
+      width: 100%;
+      padding: 10px;
+      border: 1px solid #ddd;
+      border-radius: 6px;
+      font-family: inherit;
+      background: rgba(255, 255, 255, 0.95);
+    }
+ 
+    .btn-submit {
+      background: var(--primary-red);
+      color: #fff;
+      border: none;
+      padding: 12px;
+      border-radius: 6px;
+      font-family: 'Cinzel', serif;
+      font-weight: 600;
+      cursor: pointer;
+    }
+ 
+    #music-btn {
+      position: fixed;
+      bottom: 25px;
+      right: 25px;
+      width: 45px;
+      height: 45px;
+      background: var(--gold);
+      color: #fff;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.3);
+      z-index: 999;
+    }
+  /* STYLE UNTUK LIST UCAPAN TAMU */
+    .wish-card {
+      background: rgba(255, 255, 255, 0.95);
+      border-left: 4px solid var(--gold);
+      border-radius: 8px;
+      padding: 12px 15px;
+      margin-bottom: 12px;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+    }
+    .wish-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 6px;
+    }
+    .wish-name {
+      font-weight: 600;
+      font-size: 0.9rem;
+      color: var(--primary-red);
+    }
+    .wish-status {
+      font-size: 0.7rem;
+      padding: 2px 8px;
+      border-radius: 10px;
+      background: #eee;
+      color: #333;
+    }
+    .wish-text {
+      font-size: 0.85rem;
+      color: #444;
+      line-height: 1.4;
+      white-space: pre-line;
+    }
+    
   </style>
 </head>
-<body>
-
-  <div class="card">
-    <h2>RSVP WhatsApp Link Generator</h2>
-
-    <div class="form-group">
-      <label for="phone">Nomor WhatsApp (Gunakan Kode Negara 62):</label>
-      <input type="text" id="phone" value="628123456789" placeholder="Contoh: 628123456789">
-    </div>
-
-    <div class="form-group">
-      <label for="message">Format Pesan RSVP:</label>
-      <textarea id="message" rows="6">Halo, saya mau konfirmasi kehadiran untuk RSVP Acara Pernikahan.
-
-Nama: 
-Jumlah Tamu: 
-Status: (Hadir / Tidak Hadir)</textarea>
-    </div>
-
-    <div class="btn-group">
-      <button class="btn-whatsapp" onclick="generateAndOpen()">Buka di WA</button>
-      <button class="btn-copy" onclick="copyLink()">Salin Link</button>
-    </div>
-
-    <div class="result-box" id="resultContainer" style="display: none;">
-      <strong>Hasil Link RSVP:</strong><br>
-      <a id="generatedUrl" href="#" target="_blank">-</a>
-    </div>
+<body class="no-scroll">
+ 
+  <!-- Falling Flower Petals Container -->
+  <div id="petals-container"></div>
+ 
+  <!-- Audio Element -->
+  <audio id="bg-music" loop preload="auto">
+    <source src="audio/song.html.mp3" type="audio/mpeg">
+  </audio>
+ 
+  <!-- Audio Toggle Button -->
+  <div id="music-btn" onclick="toggleMusic()" style="display: none;">
+    <i id="music-icon" class="fas fa-music"></i>
   </div>
 
+  <!-- LIGHTBOX FOR SLIDESHOW -->
+  <div class="lightbox" id="lightbox" onclick="closeLightbox()">
+    <span class="lightbox-close">&times;</span>
+    <img class="lightbox-img" id="lightbox-img" src="" alt="Fullscreen Image">
+  </div>
+ 
+  <!-- COVER / LOCK SCREEN WITH ANIMATED ELEMENTS -->
+  <div id="cover">
+    <div class="double-happiness cover-animate">囍</div>
+    <div class="cover-sub cover-animate">Welcome To Our Wedding</div>
+    <div class="cover-title cover-animate">David & Selly</div>
+    <div class="cover-date cover-animate">10 . 10 . 2026</div>
+ 
+    <div class="guest-box cover-animate">
+      <p>Dear,</p>
+      <div class="guest-name" id="guest-name-display">Guest Name</div>
+    </div>
+ 
+    <button class="btn-open" onclick="openInvitation()">OPEN INVITATION</button>
+  </div>
+ 
+  <!-- MAIN CONTENT CONTAINER -->
+  <div class="container">
+    
+    <!-- YOU'RE INVITED SECTION -->
+    <section>
+      <div class="reveal">
+        <h2 class="section-title">YOU'RE INVITED</h2>
+        <div class="section-subtitle">The Beginning of Forever</div>
+      </div>
+ 
+      <!-- Karikatur Couple -->
+      <div class="reveal-zoom">
+        <img src="images/caricature-ktlg.png" alt="Caricature of David & Selly" class="caricature-img" onerror="this.src='https://via.placeholder.com/220?text=Caricature'">
+      </div>
+ 
+      <!-- Kutipan Dhammapada -->
+      <div class="quote-box reveal">
+        <p>
+          "If in the journey of life, you find a wise and suitable companion who leads a good life, walk with them, joyful and mindful, overcoming all dangers."
+        </p>
+        <p style="margin-top: 8px; font-size: 0.8rem; color: var(--primary-red); font-weight: 600;">(Dhammapada XXIII - 328)</p>
+      </div>
+ 
+      <!-- Countdown Timer -->
+      <div class="reveal" style="margin: 30px 0 15px 0;">
+        <h3 style="font-family: 'Cinzel', serif; font-size: 1.05rem; color: var(--primary-red); margin-bottom: 15px;">Countdown to Our Big Day</h3>
+        <div class="countdown-grid">
+          <div class="countdown-box">
+            <div class="countdown-number" id="days">00</div>
+            <div class="countdown-label">Days</div>
+          </div>
+          <div class="countdown-box">
+            <div class="countdown-number" id="hours">00</div>
+            <div class="countdown-label">Hours</div>
+          </div>
+          <div class="countdown-box">
+            <div class="countdown-number" id="minutes">00</div>
+            <div class="countdown-label">Minutes</div>
+          </div>
+          <div class="countdown-box">
+            <div class="countdown-number" id="seconds">00</div>
+            <div class="countdown-label">Seconds</div>
+          </div>
+        </div>
+      </div>
+ 
+      <!-- Save The Date Button (Google Calendar Link) -->
+      <div class="reveal">
+        <a href="https://calendar.google.com/calendar/render?action=TEMPLATE&text=The+Wedding+of+David+%26+Selly&dates=20261010T110000Z/20261010T150000Z&details=The+Wedding+Reception+of+David+and+Selly+at+Ballroom+Aston+Palembang&location=Aston+Palembang+Hotel" target="_blank" class="btn-save-date">
+          <i class="far fa-calendar-alt"></i> SAVE THE DATE
+        </a>
+      </div>
+    </section>
+ 
+    <!-- BRIDE & GROOM SECTION -->
+    <section class="section-alt">
+      <div class="reveal">
+        <h2 class="section-title">The Bride & Groom</h2>
+        <div class="section-subtitle">We are getting married</div>
+      </div>
+ 
+      <!-- Groom -->
+      <div class="couple-card reveal">
+        <img src="images/groom-ktlg.png" alt="David Herry Sutanto" class="couple-img" onerror="this.src='https://via.placeholder.com/160?text=Groom'">
+        <div class="couple-name">David Herry Sutanto</div>
+        <div class="parents">
+          Son of <br>
+          <b>Mr. Tan Bun Liong & Mrs. Ng Siu Chen</b>
+        </div>
+        <a href="https://instagram.com/davidherrys" target="_blank" class="ig-link">
+          <i class="fab fa-instagram"></i> @davidherrys
+        </a>
+      </div>
+ 
+      <div class="and-sym reveal">&</div>
+ 
+      <!-- Bride -->
+      <div class="couple-card reveal">
+        <img src="images/bride-ktlg.png" alt="Selly Agustina" class="couple-img" onerror="this.src='https://via.placeholder.com/160?text=Bride'">
+        <div class="couple-name">Selly Agustina</div>
+        <div class="parents">
+          Daughter of <br>
+          <b>Mr. Ong Sing Guat & Late Mrs. Theng Tin Tju</b>
+        </div>
+        <a href="https://instagram.com/agustinaselly" target="_blank" class="ig-link">
+          <i class="fab fa-instagram"></i> @agustinaselly
+        </a>
+      </div>
+    </section>
+ 
+    <!-- WEDDING EVENTS SECTION -->
+    <section class="event-bg">
+      <div class="reveal">
+        <h2 class="section-title">Wedding Events</h2>
+        <div class="section-subtitle">Save The Date</div>
+      </div>
+ 
+      <!-- Holy Matrimony -->
+      <div class="event-card reveal">
+        <div class="event-type">Holy Matrimony</div>
+        <div class="event-detail"><b>Date:</b> Friday, October 09th, 2026</div>
+        <div class="event-detail"><b>Time:</b> 10:00 WIB</div>
+        <div class="event-detail" style="margin-top: 10px;">
+          <b>Location:</b><br>
+          Golden Sand 5–6 Lt. 3, Aston Palembang<br>
+          <small>Jl. Jendral Basuki Rahmat No. 189, Palembang</small>
+        </div>
+      </div>
+ 
+      <!-- Wedding Reception -->
+      <div class="event-card reveal">
+        <div class="event-type">Wedding Reception</div>
+        <div class="event-detail"><b>Date:</b> Saturday, October 10th, 2026</div>
+        <div class="event-detail"><b>Time:</b> 18:00 WIB</div>
+        <div class="event-detail" style="margin-top: 10px;">
+          <b>Location:</b><br>
+          Ballroom Aston Palembang<br>
+          <small>Jl. Jendral Basuki Rahmat No. 189, Palembang</small>
+        </div>
+      </div>
+ 
+      <div class="reveal">
+        <a href="https://maps.app.goo.gl/VwrjECcnC8ALh9Lx6" target="_blank" class="btn-map">
+          <i class="fas fa-map-marker-alt"></i> VIEW LOCATION ON MAPS
+        </a>
+      </div>
+    </section>
+ 
+    <!-- GALLERY SECTION (SLIDESHOW & FULLSCREEN LIGHTBOX) -->
+    <section>
+      <div class="reveal">
+        <h2 class="section-title">Our Moments</h2>
+        <div class="section-subtitle">Prewedding Moments</div>
+      </div>
+ 
+      <div class="slider-container reveal-zoom">
+        <div class="slider-wrapper" id="slider-wrapper">
+          <div class="slide" onclick="openLightbox(this)"><img src="images/prewed1-ktlg.png" alt="Gallery 1" onerror="this.src='https://via.placeholder.com/600x380?text=Photo+1'"></div>
+          <div class="slide" onclick="openLightbox(this)"><img src="images/prewed2-ktlg.png" alt="Gallery 2" onerror="this.src='https://via.placeholder.com/600x380?text=Photo+2'"></div>
+          <div class="slide" onclick="openLightbox(this)"><img src="images/prewed3-ktlg.png" alt="Gallery 3" onerror="this.src='https://via.placeholder.com/600x380?text=Photo+3'"></div>
+          <div class="slide" onclick="openLightbox(this)"><img src="images/groom-ktlg.png" alt="Gallery 4" onerror="this.src='https://via.placeholder.com/600x380?text=Photo+4'"></div>
+          <div class="slide" onclick="openLightbox(this)"><img src="images/bride-ktlg.png" alt="Gallery 5" onerror="this.src='https://via.placeholder.com/600x380?text=Photo+5'"></div>
+         
+        </div>
+        <button class="prev-btn" onclick="moveSlide(-1)">&#10094;</button>
+        <button class="next-btn" onclick="moveSlide(1)">&#10095;</button>
+      </div>
+      
+      <!-- Dots Indicator -->
+      <div class="dots-container reveal" id="dots-container">
+        <span class="dot active" onclick="currentSlide(0)"></span>
+        <span class="dot" onclick="currentSlide(1)"></span>
+        <span class="dot" onclick="currentSlide(2)"></span>
+        <span class="dot" onclick="currentSlide(3)"></span>
+        <span class="dot" onclick="currentSlide(4)"></span>
+        <span class="dot" onclick="currentSlide(5)"></span>
+      </div>
+    </section>
+      
+    <!-- DIGITAL ENVELOPE / WEDDING GIFT -->
+    <section class="event-bg">
+      <div class="reveal">
+        <h2 class="section-title">Wedding Gift</h2>
+        <div class="section-subtitle">Digital Envelope</div>
+        <p style="font-size: 0.85rem; color: #555; line-height: 1.5;">
+          Your presence and blessings on our wedding day are the greatest gift of all. However, if you wish to give a gift, we provide a digital envelope below:
+        </p>
+      </div>
+ 
+      <div class="gift-card reveal">
+        <div class="bank-name">BANK BCA</div>
+        <div class="account-num" id="acc-num">0214023411</div>
+        <div style="font-size: 0.9rem; color: #555; margin-bottom: 12px;">a.n. Selly Agustina</div>
+        <button class="btn-copy" onclick="copyAccount()">Copy Account Number</button>
+      </div>
+    </section>
+ 
+    <!-- RSVP & WISHES SECTION -->
+    <section>
+      <div class="reveal">
+        <h2 class="section-title">RSVP & Wishes</h2>
+        <div class="section-subtitle">Please confirm your attendance</div>
+      </div>
+ 
+      <form class="rsvp-form reveal" id="rsvp-form">
+        <div class="form-group">
+          <label>Your Name</label>
+          <input type="text" name="Name" id="rsvp-name" required placeholder="Enter your full name">
+        </div>
+ 
+        <div class="form-group">
+          <label>Attendance Status</label>
+          <select name="Status" id="rsvp-status" required>
+            <option value="Attending">Yes, I will attend</option>
+            <option value="Unable to attend">Sorry, I cannot attend</option>
+          </select>
+        </div>
+ 
+        <div class="form-group">
+          <label>Number of Guests</label>
+          <select name="Guests" id="rsvp-guests">
+            <option value="1">1 Person</option>
+            <option value="2">2 Persons</option>
+          </select>
+        </div>
+ 
+        <div class="form-group">
+          <label>Warm Wishes</label>
+          <textarea name="Wishes" id="rsvp-wish" rows="3" placeholder="Write your warm wishes for the couple..."></textarea>
+        </div>
+ 
+        <button type="submit" class="btn-submit">SEND CONFIRMATION</button>
+      </form>
+      
+      <!-- TEMPAT MENAMPILKAN UCAPAN TAMU -->
+      <div class="wishes-container reveal" id="wishes-container" style="margin-top: 35px; text-align: left;">
+        <h3 style="font-family: 'Cinzel', serif; font-size: 1.1rem; color: var(--primary-red); margin-bottom: 15px; text-align: center;">Warm Wishes</h3>
+        <div id="wishes-list" style="max-height: 350px; overflow-y: auto; padding-right: 5px;">
+          <p style="text-align: center; font-size: 0.85rem; color: #777;">Loading wishes...</p>
+        </div>
+      </div>
+      
+    </section>
+
+<!-- VENDOR CREDITS SECTION -->
+<section style="padding: 40px 20px; background: rgba(0, 0, 0, 0.02); text-align: center;">
+  <div class="reveal">
+    <h3 style="font-family: 'Great Vibes', cursive; font-size: 2.2rem; color: var(--gold); margin-bottom: 5px;">Event Vendors</h3>
+    <p style="font-size: 0.75rem; letter-spacing: 2px; text-transform: uppercase; color: #666; margin-bottom: 10px;">Supported by</p>
+
+    <!-- PETUNJUK VISUAL (SWIPE/SCROLL HINT) -->
+    <p style="font-size: 0.7rem; color: #888; margin-bottom: 15px; display: flex; align-items: center; justify-content: center; gap: 6px;">
+      <span>&larr;</span> Swipe to see more vendors <span>&rarr;</span>
+    </p>
+
+    <!-- CONTAINER GRID 2 BARIS + SCROLL KE SAMPING -->
+    <div id="vendor-grid-container" style="display: grid; grid-template-rows: repeat(2, auto); grid-auto-flow: column; grid-auto-columns: 160px; gap: 12px; overflow-x: auto; padding: 10px 20px 20px 20px; scroll-snap-type: x mandatory; -webkit-overflow-scrolling: touch; scroll-behavior: smooth;">
+            
+      <!-- VENDOR 1: DIGITAL INVITATION -->
+      <a href="https://instagram.com/chocookies.studio" target="_blank" style="text-decoration: none; color: inherit; display: block; background: #fff; padding: 12px 10px; border-radius: 10px; border: 1px solid rgba(0,0,0,0.06); box-shadow: 0 2px 5px rgba(0,0,0,0.03); scroll-snap-align: start;">
+        <p style="font-size: 0.65rem; color: #888; text-transform: uppercase; margin: 0 0 4px 0;">Digital Invitation</p>
+        <span style="font-size: 0.7rem; color: var(--gold); display: flex; align-items: center; justify-content: center; gap: 4px;">
+          <svg width="12" height="12" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/></svg>
+          @chocookies.studio
+        </span>
+      </a>
+      
+      <!-- VENDOR 2: WEDDING CAKE -->
+      <a href="https://instagram.com/inidapurku" target="_blank" style="text-decoration: none; color: inherit; display: block; background: #fff; padding: 12px 10px; border-radius: 10px; border: 1px solid rgba(0,0,0,0.06); box-shadow: 0 2px 5px rgba(0,0,0,0.03); scroll-snap-align: start;">
+        <p style="font-size: 0.65rem; color: #888; text-transform: uppercase; margin: 0 0 4px 0;">Wedding Cake</p>
+        <span style="font-size: 0.7rem; color: var(--gold); display: flex; align-items: center; justify-content: center; gap: 4px;">
+          <svg width="12" height="12" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/></svg>
+          @inidapurku
+        </span>
+      </a>
+
+      <!-- VENDOR 3: WEDDING ORGANIZER -->
+      <a href="https://instagram.com/exitoorganizer" target="_blank" style="text-decoration: none; color: inherit; display: block; background: #fff; padding: 12px 10px; border-radius: 10px; border: 1px solid rgba(0,0,0,0.06); box-shadow: 0 2px 5px rgba(0,0,0,0.03); scroll-snap-align: start;">
+        <p style="font-size: 0.65rem; color: #888; text-transform: uppercase; margin: 0 0 4px 0;">Wedding Organizer</p>
+        <span style="font-size: 0.7rem; color: var(--gold); display: flex; align-items: center; justify-content: center; gap: 4px;">
+          <svg width="12" height="12" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/></svg>
+          @exitoorganizer
+        </span>
+      </a>
+
+      <!-- VENDOR 4: DECORATION -->
+      <a href="https://instagram.com/hope.decoration" target="_blank" style="text-decoration: none; color: inherit; display: block; background: #fff; padding: 12px 10px; border-radius: 10px; border: 1px solid rgba(0,0,0,0.06); box-shadow: 0 2px 5px rgba(0,0,0,0.03); scroll-snap-align: start;">
+        <p style="font-size: 0.65rem; color: #888; text-transform: uppercase; margin: 0 0 4px 0;">Decoration</p>
+        <span style="font-size: 0.7rem; color: var(--gold); display: flex; align-items: center; justify-content: center; gap: 4px;">
+          <svg width="12" height="12" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/></svg>
+          @hope.decoration
+        </span>
+      </a>
+        
+      <!-- VENDOR 5: PHOTO & VIDEO -->
+      <a href="https://instagram.com/ELMOREPHOTOGRAPH" target="_blank" style="text-decoration: none; color: inherit; display: block; background: #fff; padding: 12px 10px; border-radius: 10px; border: 1px solid rgba(0,0,0,0.06); box-shadow: 0 2px 5px rgba(0,0,0,0.03); scroll-snap-align: start;">
+        <p style="font-size: 0.65rem; color: #888; text-transform: uppercase; margin: 0 0 4px 0;">Photo & Video</p>
+        <span style="font-size: 0.7rem; color: var(--gold); display: flex; align-items: center; justify-content: center; gap: 4px;">
+          <svg width="12" height="12" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/></svg>
+          @elmorephotograph
+        </span>
+      </a>
+        
+      <!-- VENDOR 6: VENUE -->
+      <a href="https://instagram.com/astonpalembang" target="_blank" style="text-decoration: none; color: inherit; display: block; background: #fff; padding: 12px 10px; border-radius: 10px; border: 1px solid rgba(0,0,0,0.06); box-shadow: 0 2px 5px rgba(0,0,0,0.03); scroll-snap-align: start;">
+        <p style="font-size: 0.65rem; color: #888; text-transform: uppercase; margin: 0 0 4px 0;">Venue</p>
+        <span style="font-size: 0.7rem; color: var(--gold); display: flex; align-items: center; justify-content: center; gap: 4px;">
+          <svg width="12" height="12" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/></svg>
+          @astonpalembang
+        </span>
+      </a>
+
+      <!-- VENDOR 7: MC -->
+      <a href="https://instagram.com/hansenfuu" target="_blank" style="text-decoration: none; color: inherit; display: block; background: #fff; padding: 12px 10px; border-radius: 10px; border: 1px solid rgba(0,0,0,0.06); box-shadow: 0 2px 5px rgba(0,0,0,0.03); scroll-snap-align: start;">
+        <p style="font-size: 0.65rem; color: #888; text-transform: uppercase; margin: 0 0 4px 0;">MC</p>
+        <span style="font-size: 0.7rem; color: var(--gold); display: flex; align-items: center; justify-content: center; gap: 4px;">
+          <svg width="12" height="12" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/></svg>
+          @hansenfuu
+        </span>
+      </a>
+      
+      <!-- VENDOR 7: Entertainment / Music -->
+      <a href="https://instagram.com/capella_entertaint" target="_blank" style="text-decoration: none; color: inherit; display: block; background: #fff; padding: 12px 10px; border-radius: 10px; border: 1px solid rgba(0,0,0,0.06); box-shadow: 0 2px 5px rgba(0,0,0,0.03); scroll-snap-align: start;">
+        <p style="font-size: 0.65rem; color: #888; text-transform: uppercase; margin: 0 0 4px 0;">MC</p>
+        <span style="font-size: 0.7rem; color: var(--gold); display: flex; align-items: center; justify-content: center; gap: 4px;">
+          <svg width="12" height="12" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/></svg>
+          @capella_entertaint
+        </span>
+      </a>
+        
+      <!-- VENDOR 8: MUA BRIDE -->
+      <a href="https://instagram.com/joanaangelika" target="_blank" style="text-decoration: none; color: inherit; display: block; background: #fff; padding: 12px 10px; border-radius: 10px; border: 1px solid rgba(0,0,0,0.06); box-shadow: 0 2px 5px rgba(0,0,0,0.03); scroll-snap-align: start;">
+        <p style="font-size: 0.65rem; color: #888; text-transform: uppercase; margin: 0 0 4px 0;">MUA Bride</p>
+        <span style="font-size: 0.7rem; color: var(--gold); display: flex; align-items: center; justify-content: center; gap: 4px;">
+          <svg width="12" height="12" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/></svg>
+          @joanaangelika
+        </span>
+      </a>
+           
+      <!-- VENDOR 9: HAIRDO BRIDE -->
+      <a href="https://instagram.com/joanaangelika" target="_blank" style="text-decoration: none; color: inherit; display: block; background: #fff; padding: 12px 10px; border-radius: 10px; border: 1px solid rgba(0,0,0,0.06); box-shadow: 0 2px 5px rgba(0,0,0,0.03); scroll-snap-align: start;">
+        <p style="font-size: 0.65rem; color: #888; text-transform: uppercase; margin: 0 0 4px 0;">Hairdo Bride</p>
+        <span style="font-size: 0.7rem; color: var(--gold); display: flex; align-items: center; justify-content: center; gap: 4px;">
+          <svg width="12" height="12" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/></svg>
+          @joanaangelika
+        </span>
+      </a>
+
+      <!-- VENDOR 10: NAILART BRIDE -->
+      <a href="https://instagram.com/joanaangelika" target="_blank" style="text-decoration: none; color: inherit; display: block; background: #fff; padding: 12px 10px; border-radius: 10px; border: 1px solid rgba(0,0,0,0.06); box-shadow: 0 2px 5px rgba(0,0,0,0.03); scroll-snap-align: start;">
+        <p style="font-size: 0.65rem; color: #888; text-transform: uppercase; margin: 0 0 4px 0;">Nailart Bride</p>
+        <span style="font-size: 0.7rem; color: var(--gold); display: flex; align-items: center; justify-content: center; gap: 4px;">
+          <svg width="12" height="12" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/></svg>
+          @joanaangelika
+        </span>
+      </a>
+      
+      <!-- VENDOR 11: GOWN BRIDE -->
+      <a href="https://instagram.com/modesta_bridalplg" target="_blank" style="text-decoration: none; color: inherit; display: block; background: #fff; padding: 12px 10px; border-radius: 10px; border: 1px solid rgba(0,0,0,0.06); box-shadow: 0 2px 5px rgba(0,0,0,0.03); scroll-snap-align: start;">
+        <p style="font-size: 0.65rem; color: #888; text-transform: uppercase; margin: 0 0 4px 0;">Gown Bride</p>
+        <span style="font-size: 0.7rem; color: var(--gold); display: flex; align-items: center; justify-content: center; gap: 4px;">
+          <svg width="12" height="12" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/></svg>
+          @modesta_bridalplg
+        </span>
+      </a>
+      
+      <!-- VENDOR 12: SUIT GROOM (DUAL VENDOR) -->
+      <div style="background: #fff; padding: 12px 10px; border-radius: 10px; border: 1px solid rgba(0,0,0,0.06); box-shadow: 0 2px 5px rgba(0,0,0,0.03); scroll-snap-align: start; text-align: center;">
+        <p style="font-size: 0.65rem; color: #888; text-transform: uppercase; margin: 0 0 4px 0;">Suit Groom</p>
+        <div style="display: flex; flex-direction: column; gap: 4px; align-items: center;">
+          <a href="https://instagram.com/suit.avenue" target="_blank" style="text-decoration: none; font-size: 0.7rem; color: var(--gold); display: flex; align-items: center; gap: 4px;">
+            <svg width="12" height="12" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/></svg>
+            @suit.avenue
+          </a>
+          <a href="https://instagram.com/suitpalace.id" target="_blank" style="text-decoration: none; font-size: 0.7rem; color: var(--gold); display: flex; align-items: center; gap: 4px;">
+            <svg width="12" height="12" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/></svg>
+            @suitpalace.id
+          </a>
+        </div>
+      </div>
+      
+      <!-- VENDOR 13: HAIRDO GROOM -->
+      <a href="https://instagram.com/theluxmen_hairstudio" target="_blank" style="text-decoration: none; color: inherit; display: block; background: #fff; padding: 12px 10px; border-radius: 10px; border: 1px solid rgba(0,0,0,0.06); box-shadow: 0 2px 5px rgba(0,0,0,0.03); scroll-snap-align: start;">
+        <p style="font-size: 0.65rem; color: #888; text-transform: uppercase; margin: 0 0 4px 0;">Hairdo Groom</p>
+        <span style="font-size: 0.7rem; color: var(--gold); display: flex; align-items: center; justify-content: center; gap: 4px;">
+          <svg width="12" height="12" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/></svg>
+          @theluxmen_hairstudio
+        </span>
+      </a>
+      
+      <!-- VENDOR 14: HAND BOUQUET & CORSAGE (DUAL VENDOR) -->
+      <div style="background: #fff; padding: 12px 10px; border-radius: 10px; border: 1px solid rgba(0,0,0,0.06); box-shadow: 0 2px 5px rgba(0,0,0,0.03); scroll-snap-align: start; text-align: center;">
+        <p style="font-size: 0.65rem; color: #888; text-transform: uppercase; margin: 0 0 4px 0;">Bouquet & Corsage</p>
+        <div style="display: flex; flex-direction: column; gap: 4px; align-items: center;">
+          <a href="https://instagram.com/sunflowerflorist" target="_blank" style="text-decoration: none; font-size: 0.7rem; color: var(--gold); display: flex; align-items: center; gap: 4px;">
+            <svg width="12" height="12" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/></svg>
+            @sunflowerflorist
+          </a>
+          <a href="https://instagram.com/larisflorist88" target="_blank" style="text-decoration: none; font-size: 0.7rem; color: var(--gold); display: flex; align-items: center; gap: 4px;">
+            <svg width="12" height="12" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/></svg>
+            @larisflorist88
+          </a>
+        </div>
+      </div>
+      
+      <!-- VENDOR 15: Souvenir -->
+      <a href="https://instagram.com/jiagift.id" target="_blank" style="text-decoration: none; color: inherit; display: block; background: #fff; padding: 12px 10px; border-radius: 10px; border: 1px solid rgba(0,0,0,0.06); box-shadow: 0 2px 5px rgba(0,0,0,0.03); scroll-snap-align: start;">
+        <p style="font-size: 0.65rem; color: #888; text-transform: uppercase; margin: 0 0 4px 0;">Souvenir</p>
+        <span style="font-size: 0.7rem; color: var(--gold); display: flex; align-items: center; justify-content: center; gap: 4px;">
+          <svg width="12" height="12" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/></svg>
+          @jiagift.id
+        </span>
+      </a>
+      
+      <!-- VENDOR 16: MUA Mom -->
+      <a href="https://instagram.com/anachaemakeup.plg" target="_blank" style="text-decoration: none; color: inherit; display: block; background: #fff; padding: 12px 10px; border-radius: 10px; border: 1px solid rgba(0,0,0,0.06); box-shadow: 0 2px 5px rgba(0,0,0,0.03); scroll-snap-align: start;">
+        <p style="font-size: 0.65rem; color: #888; text-transform: uppercase; margin: 0 0 4px 0;">MUA Mom</p>
+        <span style="font-size: 0.7rem; color: var(--gold); display: flex; align-items: center; justify-content: center; gap: 4px;">
+          <svg width="12" height="12" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/></svg>
+          @anachaemakeup.plg
+        </span>
+      </a>
+         
+      <!-- VENDOR 18: MUA Bridesmaid -->
+      <a href="https://instagram.com/kristin.makeup_" target="_blank" style="text-decoration: none; color: inherit; display: block; background: #fff; padding: 12px 10px; border-radius: 10px; border: 1px solid rgba(0,0,0,0.06); box-shadow: 0 2px 5px rgba(0,0,0,0.03); scroll-snap-align: start;">
+        <p style="font-size: 0.65rem; color: #888; text-transform: uppercase; margin: 0 0 4px 0;">MUA Bridesmaid</p>
+        <span style="font-size: 0.7rem; color: var(--gold); display: flex; align-items: center; justify-content: center; gap: 4px;">
+          <svg width="12" height="12" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/></svg>
+          @kristin.makeup_
+        </span>
+      </a>
+<!-- VENDOR: MUA SISTER (GRID 2 KOLOM RAPI & COMPACT) -->
+      <div style="background: #fff; padding: 10px; border-radius: 10px; border: 1px solid rgba(0,0,0,0.06); box-shadow: 0 2px 5px rgba(0,0,0,0.03); scroll-snap-align: start; align-self: start;">
+        <p style="font-size: 0.65rem; color: #888; text-transform: uppercase; margin: 0 0 6px 0; text-align: center;">MUA Sister</p>
+        <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 4px;">
+          <!-- MUA 1 -->
+          <a href="https://instagram.com/icil.mua" target="_blank" style="text-decoration: none; color: var(--gold); background: transparent; padding: 4px 2px; border-radius: 0; border: none; font-size: 0.55rem; display: flex; align-items: center; justify-content: center; gap: 2px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis;">
+            <svg width="8" height="8" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/></svg>
+            @icil.mua
+          </a>
+          <!-- MUA 2 -->
+          <a href="https://instagram.com/bydeviong" target="_blank" style="text-decoration: none; color: var(--gold); background: transparent; padding: 4px 2px; border-radius: 0; border: none; font-size: 0.55rem; display: flex; align-items: center; justify-content: center; gap: 2px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis;">
+            <svg width="8" height="8" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/></svg>
+            @bydeviong
+          </a>
+          <!-- MUA 3 (Memenuhi lebar bawah) -->
+          <a href="https://instagram.com/mariaxuan_makeup" target="_blank" style="grid-column: span 2; text-decoration: none; color: var(--gold); background: transparent; padding: 4px 2px; border-radius: 0; border: none; font-size: 0.55rem; display: flex; align-items: center; justify-content: center; gap: 2px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis;">
+            <svg width="8" height="8" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/></svg>
+            @mariaxuan_makeup
+          </a>
+        </div>
+      </div>
+       
+      
+    </div>
+  </div>
+</section>
+
+    
+<!-- SCRIPT SLIDESHOW OTOMATIS -->
+<script>
+  (function() {
+    const container = document.getElementById('vendor-grid-container');
+    if (!container) return;
+
+    let scrollAmount = 0;
+    const step = 172; // Jarak geser (lebar card 160px + gap 12px)
+    let isHovered = false;
+
+    // Hentikan auto-scroll jika pengguna menyentuh/meng-hover vendor
+    container.addEventListener('mouseenter', () => isHovered = true);
+    container.addEventListener('mouseleave', () => isHovered = false);
+    container.addEventListener('touchstart', () => isHovered = true, { passive: true });
+    container.addEventListener('touchend', () => {
+      setTimeout(() => isHovered = false, 2000);
+    });
+
+    // Jalankan pergeseran otomatis setiap 3 detik
+    setInterval(() => {
+      if (isHovered) return;
+
+      const maxScroll = container.scrollWidth - container.clientWidth;
+      if (container.scrollLeft >= maxScroll - 10) {
+        // Kembali ke paling awal jika sudah mentok di ujung
+        container.scrollTo({ left: 0, behavior: 'smooth' });
+      } else {
+        // Geser ke samping secara halus
+        container.scrollBy({ left: step, behavior: 'smooth' });
+      }
+    }, 3000);
+  })();
+</script>
+ 
+    <!-- FOOTER -->
+    <footer style="padding: 40px 20px; text-align: center; background: var(--dark-red); color: #fff;">
+      <div class="reveal">
+        <img src="images/logo.png" alt="Logo" style="max-width: 60px; height: auto; margin-bottom: 10px;" onerror="this.src='https://via.placeholder.com/60?text=Logo'">
+        <p style="font-family: 'Great Vibes', cursive; font-size: 2.2rem; color: var(--gold); margin: 10px 0;">David & Selly</p>
+        <p style="font-size: 0.75rem; color: var(--light-gold); letter-spacing: 2px; margin-bottom: 15px;">OCTOBER 10th, 2026</p>
+        
+        <!-- CREDIT TAMBAHAN -->
+        <p style="font-size: 0.7rem; color: rgba(255, 253, 249, 0.6); letter-spacing: 1px; border-top: 1px solid rgba(212, 175, 55, 0.2); padding-top: 15px;">
+          Created by 
+          <a href="https://instagram.com/chocookies.studio" target="_blank" rel="noopener noreferrer" style="color: var(--light-gold); text-decoration: none;">chocookies.studio</a> 
+          x 
+          <a href="https://instagram.com/exitoorganizer" target="_blank" rel="noopener noreferrer" style="color: var(--light-gold); text-decoration: none;">exitoorganizer</a>
+        </p>
+      </div>
+    </footer>
+ 
+  </div>
+ 
+  <!-- JAVASCRIPT LOGIC -->
   <script>
-    function buildWaUrl() {
-      let phone = document.getElementById('phone').value.trim();
-      let message = document.getElementById('message').value;
-
-      // Hapus karakter selain angka
-      phone = phone.replace(/[^0-9]/g, '');
-
-      // Jika user menulis diawali angka '0', ubah ke kode negara '62' secara otomatis
-      if (phone.startsWith('0')) {
-        phone = '62' + phone.slice(1);
+    // 1. PARSE GUEST NAME FROM URL (?to=Name)
+    const urlParams = new URLSearchParams(window.location.search);
+    const guestName = urlParams.get('to') || 'Valued Guest';
+    document.getElementById('guest-name-display').innerText = guestName;
+    document.getElementById('rsvp-name').value = guestName;
+ 
+    // 2. OPEN INVITATION & PLAY MUSIC (SAFE MODE) + TRIGGER REVEAL
+    function openInvitation() {
+      const cover = document.getElementById('cover');
+      if (cover) {
+        cover.classList.add('opened');
+      }
+      document.body.classList.remove('no-scroll');
+      
+      const audio = document.getElementById('bg-music');
+      const musicBtn = document.getElementById('music-btn');
+      
+      if (musicBtn) musicBtn.style.display = 'flex';
+      
+      if (audio) {
+        const playPromise = audio.play();
+        if (playPromise !== undefined) {
+          playPromise.catch(error => {
+            console.log("Autoplay diblokir oleh browser atau file audio belum disiapkan:", error);
+          });
+        }
       }
 
-      // Encode pesan teks agar format baris baru dan spasi aman di URL
-      const encodedMessage = encodeURIComponent(message);
-      return `https://wa.me/${phone}?text=${encodedMessage}`;
+      // Trigger scroll check immediately after open
+      setTimeout(handleScrollReveal, 300);
     }
-
-    function generateAndOpen() {
-      const waUrl = buildWaUrl();
-      
-      // Tampilkan hasil di kotak link
-      const linkElem = document.getElementById('generatedUrl');
-      linkElem.href = waUrl;
-      linkElem.innerText = waUrl;
-      document.getElementById('resultContainer').style.display = 'block';
-
-      // Buka tab WhatsApp
-      window.open(waUrl, '_blank');
+ 
+    // 3. MUSIC TOGGLE
+    let isPlaying = true;
+    function toggleMusic() {
+      const audio = document.getElementById('bg-music');
+      const icon = document.getElementById('music-icon');
+      if (!audio) return;
+ 
+      if (isPlaying) {
+        audio.pause();
+        if (icon) icon.className = 'fas fa-volume-mute';
+      } else {
+        audio.play().catch(e => console.log(e));
+        if (icon) icon.className = 'fas fa-music';
+      }
+      isPlaying = !isPlaying;
     }
+ 
+    // 4. COPY ACCOUNT NUMBER
+    function copyAccount() {
+      const accNum = document.getElementById('acc-num').innerText;
+      navigator.clipboard.writeText(accNum);
+      alert('Account number copied to clipboard!');
+    }
+ 
+    // 5. GENERATE FALLING MEIHUA PETALS
+    function createPetals() {
+      const container = document.getElementById('petals-container');
+      if (!container) return;
+      const petalCount = 25;
+ 
+      for (let i = 0; i < petalCount; i++) {
+        const petal = document.createElement('div');
+        petal.className = 'petal';
+        
+        const size = Math.random() * 12 + 8;
+        petal.style.width = `${size}px`;
+        petal.style.height = `${size}px`;
+        petal.style.left = `${Math.random() * 100}vw`;
+        petal.style.animationDuration = `${Math.random() * 5 + 5}s`;
+        petal.style.animationDelay = `${Math.random() * 5}s`;
+        
+        container.appendChild(petal);
+      }
+    }
+    createPetals();
 
-    function copyLink() {
-      const waUrl = buildWaUrl();
-      
-      // Salin teks link ke clipboard
-      navigator.clipboard.writeText(waUrl).then(() => {
-        alert("Link RSVP berhasil disalin!");
-      }).catch(err => {
-        console.error('Gagal menyalin link: ', err);
+    // 6. SLIDESHOW / CAROUSEL LOGIC
+    let currentSlideIndex = 0;
+    const slides = document.querySelectorAll('.slide');
+    const dots = document.querySelectorAll('.dot');
+    const totalSlides = slides.length;
+    let autoSlideInterval;
+    
+    // PRELOAD GAMBAR SLIDER
+function preloadSliderImages() {
+  slides.forEach(slide => {
+    const img = slide.querySelector('img');
+    if (img && img.src) {
+      const imgPreload = new Image();
+      imgPreload.src = img.src;
+    }
+  });
+}
+preloadSliderImages();
+
+    function showSlide(index) {
+      if (index >= totalSlides) currentSlideIndex = 0;
+      else if (index < 0) currentSlideIndex = totalSlides - 1;
+      else currentSlideIndex = index;
+
+      const wrapper = document.getElementById('slider-wrapper');
+      if (wrapper) {
+        wrapper.style.transform = `translateX(-${currentSlideIndex * 100}%)`;
+      }
+
+      dots.forEach((dot, i) => {
+        dot.classList.toggle('active', i === currentSlideIndex);
       });
-
-      // Tampilkan hasil di halaman
-      const linkElem = document.getElementById('generatedUrl');
-      linkElem.href = waUrl;
-      linkElem.innerText = waUrl;
-      document.getElementById('resultContainer').style.display = 'block';
     }
-  </script>
 
+    function moveSlide(step) {
+      showSlide(currentSlideIndex + step);
+      resetAutoSlide();
+    }
+
+    function currentSlide(index) {
+      showSlide(index);
+      resetAutoSlide();
+    }
+
+    function startAutoSlide() {
+      autoSlideInterval = setInterval(() => {
+        showSlide(currentSlideIndex + 1);
+      }, 4000);
+    }
+
+    function resetAutoSlide() {
+      clearInterval(autoSlideInterval);
+      startAutoSlide();
+    }
+
+    startAutoSlide();
+
+    // 7. LIGHTBOX / FULLSCREEN IMAGE FUNCTIONALITY
+    function openLightbox(element) {
+      const imgSrc = element.querySelector('img').src;
+      const lightbox = document.getElementById('lightbox');
+      const lightboxImg = document.getElementById('lightbox-img');
+      lightboxImg.src = imgSrc;
+      lightbox.style.display = 'flex';
+    }
+
+    function closeLightbox() {
+      document.getElementById('lightbox').style.display = 'none';
+    }
+
+    // 8. SCROLL REVEAL ANIMATION OBSERVER
+    function handleScrollReveal() {
+      const reveals = document.querySelectorAll('.reveal, .reveal-zoom');
+      const windowHeight = window.innerHeight;
+
+      reveals.forEach(el => {
+        const elementTop = el.getBoundingClientRect().top;
+        const elementVisible = 100;
+
+        if (elementTop < windowHeight - elementVisible) {
+          el.classList.add('active');
+        }
+      });
+    }
+
+    window.addEventListener('scroll', handleScrollReveal);
+
+    // 9. SHEETMONKEY INTEGRATION
+    const SHEETMONKEY_URL = 'https://script.google.com/macros/s/AKfycbxLACeQFsJ4yayj96Mh5JEKC0ThwRPLcUAlpelbgaPW1K9ykIzuq3GN7jacuTuvJAQr/exec';
+    const rsvpForm = document.getElementById('rsvp-form');
+ 
+    if (rsvpForm) {
+      rsvpForm.addEventListener('submit', async (e) => {
+        e.preventDefault();
+        const submitBtn = rsvpForm.querySelector('.btn-submit');
+        submitBtn.innerText = 'SENDING...';
+        submitBtn.disabled = true;
+ 
+        const formData = new FormData(rsvpForm);
+        const data = Object.fromEntries(formData.entries());
+ 
+        try {
+          const response = await fetch(SHEETMONKEY_URL, {
+            method: 'POST',
+            headers: {
+              'Content-Type': 'application/json',
+              'Accept': 'application/json'
+            },
+            body: JSON.stringify(data)
+          });
+ 
+          if (response.ok) {
+            alert('Thank you! Your RSVP and warm wishes have been saved.');
+            document.getElementById('rsvp-wish').value = '';
+            fetchWishes();
+          } else {
+            alert('Failed to send RSVP. Please try again.');
+          }
+        } catch (error) {
+          alert('Network error. Please try again.');
+        } finally {
+          submitBtn.innerText = 'SEND CONFIRMATION';
+          submitBtn.disabled = false;
+        }
+      });
+    }
+    // FUNGSI UNTUK MEMANGGIL DATA UCAPAN DARI SHEETMONKEY
+  async function fetchWishes() {
+    const wishesList = document.getElementById('wishes-list');
+    if (!wishesList) return;
+
+    try {
+      const response = await fetch(SHEETMONKEY_URL);
+      if (!response.ok) throw new Error('Gagal mengambil data');
+      
+      const data = await response.json();
+      
+      // Ambil data yang isi pesannya tidak kosong
+      const validWishes = data.filter(item => item.Wishes && item.Wishes.trim() !== '');
+
+      if (validWishes.length === 0) {
+        wishesList.innerHTML = '<p style="text-align: center; font-size: 0.85rem; color: #777;">Belum ada ucapan. Jadilah yang pertama!</p>';
+        return;
+      }
+
+      // Urutkan dari ucapan terbaru (paling atas)
+      wishesList.innerHTML = validWishes.reverse().map(item => `
+        <div class="wish-card">
+          <div class="wish-header">
+            <span class="wish-name">${item.Name || 'Guest'}</span>
+            <span class="wish-status">${item.Status === 'Attending' ? 'Hadir' : 'Absen'}</span>
+          </div>
+          <div class="wish-text">${item.Wishes}</div>
+        </div>
+      `).join('');
+
+    } catch (error) {
+      console.error('Error fetching wishes:', error);
+      wishesList.innerHTML = '<p style="text-align: center; font-size: 0.85rem; color: #777;">Gagal memuat ucapan.</p>';
+    }
+  }
+
+  // Langsung jalankan saat halaman terbuka
+  fetchWishes();
+
+    // 10. COUNTDOWN TIMER LOGIC
+    const targetDate = new Date("2026-10-10T10:00:00").getTime();
+ 
+    function updateCountdown() {
+      const now = new Date().getTime();
+      const difference = targetDate - now;
+ 
+      if (difference > 0) {
+        const days = Math.floor(difference / (1000 * 60 * 60 * 24));
+        const hours = Math.floor((difference % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+        const minutes = Math.floor((difference % (1000 * 60 * 60)) / (1000 * 60));
+        const seconds = Math.floor((difference % (1000 * 60)) / 1000);
+ 
+        document.getElementById("days").innerText = String(days).padStart(2, '0');
+        document.getElementById("hours").innerText = String(hours).padStart(2, '0');
+        document.getElementById("minutes").innerText = String(minutes).padStart(2, '0');
+        document.getElementById("seconds").innerText = String(seconds).padStart(2, '0');
+      } else {
+        document.getElementById("days").innerText = "00";
+        document.getElementById("hours").innerText = "00";
+        document.getElementById("minutes").innerText = "00";
+        document.getElementById("seconds").innerText = "00";
+      }
+    }
+ 
+    updateCountdown();
+    setInterval(updateCountdown, 1000);
+  </script>
 </body>
 </html>
