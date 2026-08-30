@@ -1,6 +1,20 @@
 {
   "rewrites": [
-    { "source": "/katalog", "destination": "/katalog/index.html" },
-    { "source": "/katalog/", "destination": "/katalog/index.html" }
+    { 
+      "source": "/sellingouttodavid-2026", 
+      "destination": "/SELLINGouttoDAVID-2026/index.html" 
+    },
+    { 
+      "source": "/sellingouttodavid-2026/", 
+      "destination": "/SELLINGouttoDAVID-2026/index.html" 
+    },
+    { 
+      "source": "/katalog", 
+      "destination": "/katalog/index.html" 
+    },
+    { 
+      "source": "/katalog/", 
+      "destination": "/katalog/index.html" 
+    }
   ]
 }
