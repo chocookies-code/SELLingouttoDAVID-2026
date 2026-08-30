@@ -1,1 +1,6 @@
-vercel.json
+{
+  "rewrites": [
+    { "source": "/katalog", "destination": "/katalog/index.html" },
+    { "source": "/katalog/", "destination": "/katalog/index.html" }
+  ]
+}
