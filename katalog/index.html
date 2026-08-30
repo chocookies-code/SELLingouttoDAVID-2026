@@ -20,7 +20,7 @@
       --gold-solid: #D4AF37;
       --gold-light: #F3E5AB;
       --gold-border: rgba(212, 175, 55, 0.4);
-      --glass-bg: rgba(10, 17, 24, 0.75);
+      --glass-bg: rgba(10, 17, 24, 0.82);
       --text-light: #F5F5F7;
       --text-muted: #C5A059;
     }
@@ -41,6 +41,17 @@
     body.no-scroll {
       overflow: hidden;
       height: 100vh;
+    }
+
+    /* REVISI 1: BACKGROUND LEBIH JELAS & RINGAN */
+    .bg-overlay {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100vw;
+      height: 100vh;
+      background: linear-gradient(rgba(5, 8, 12, 0.65), rgba(5, 8, 12, 0.65)), url('images/cover-ktlg.png') center/cover no-repeat fixed;
+      z-index: -1;
     }
 
     /* ROYAL GOLD SPARKLES PARTICLES ANIMATION */
@@ -70,12 +81,8 @@
         transform: translateY(105vh) scale(0.3);
         opacity: 0;
       }
-      20% {
-        opacity: 1;
-      }
-      80% {
-        opacity: 0.8;
-      }
+      20% { opacity: 1; }
+      80% { opacity: 0.8; }
       100% {
         transform: translateY(-10vh) scale(1.2);
         opacity: 0;
@@ -94,7 +101,7 @@
       left: 0;
       width: 100%;
       height: 100%;
-      background: radial-gradient(circle, rgba(10,25,40,0.85) 0%, rgba(5,8,12,0.98) 100%), url('images/cover-ktlg.png') center/cover no-repeat;
+      background: radial-gradient(circle, rgba(10,25,40,0.75) 0%, rgba(5,8,12,0.92) 100%), url('images/cover-ktlg.png') center/cover no-repeat;
       z-index: 1000;
       display: flex;
       flex-direction: column;
@@ -131,6 +138,19 @@
         transform: translateY(0);
       }
     }
+
+    /* REVISI 4: ANIMASI TAMBAHAN (FLOAT & GLOW) */
+    @keyframes floating {
+      0% { transform: translateY(0px); }
+      50% { transform: translateY(-8px); }
+      100% { transform: translateY(0px); }
+    }
+
+    @keyframes borderGlow {
+      0% { box-shadow: 0 0 10px rgba(212, 175, 55, 0.2); }
+      50% { box-shadow: 0 0 25px rgba(212, 175, 55, 0.6); }
+      100% { box-shadow: 0 0 10px rgba(212, 175, 55, 0.2); }
+    }
  
     .royal-crest {
       font-size: 2.5rem;
@@ -139,6 +159,7 @@
       -webkit-text-fill-color: transparent;
       margin-bottom: 10px;
       filter: drop-shadow(0 2px 8px rgba(212, 175, 55, 0.4));
+      animation: floating 3s ease-in-out infinite;
     }
 
     .cover-sub {
@@ -182,6 +203,7 @@
       max-width: 340px;
       width: 100%;
       position: relative;
+      animation: borderGlow 4s infinite alternate;
     }
 
     .guest-box::before, .guest-box::after {
@@ -252,7 +274,7 @@
     .reveal {
       opacity: 0;
       transform: translateY(40px);
-      transition: all 1s ease-out;
+      transition: all 1s cubic-bezier(0.165, 0.84, 0.44, 1);
     }
 
     .reveal.active {
@@ -262,8 +284,8 @@
 
     .reveal-zoom {
       opacity: 0;
-      transform: scale(0.9);
-      transition: all 1s ease-out;
+      transform: scale(0.88);
+      transition: all 1s cubic-bezier(0.165, 0.84, 0.44, 1);
     }
 
     .reveal-zoom.active {
@@ -274,9 +296,7 @@
     .container {
       max-width: 600px;
       margin: 0 auto;
-      background-color: var(--royal-navy);
-      background-image: radial-gradient(rgba(212, 175, 55, 0.05) 1px, transparent 0);
-      background-size: 24px 24px;
+      background-color: rgba(10, 17, 24, 0.88);
       min-height: 100vh;
       box-shadow: 0 0 50px rgba(0,0,0,0.9);
       position: relative;
@@ -320,6 +340,7 @@
       padding: 8px;
       background: rgba(255,255,255,0.02);
       box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+      animation: floating 4s ease-in-out infinite;
     }
 
     .quote-box {
@@ -341,13 +362,18 @@
     }
  
     .countdown-box {
-      background: rgba(5, 8, 12, 0.8);
+      background: rgba(5, 8, 12, 0.85);
       border: 1px solid var(--gold-solid);
       border-radius: 4px;
       padding: 12px 8px;
       min-width: 65px;
       text-align: center;
       box-shadow: 0 4px 15px rgba(0,0,0,0.5);
+      transition: transform 0.3s;
+    }
+
+    .countdown-box:hover {
+      transform: translateY(-4px);
     }
  
     .countdown-number {
@@ -408,6 +434,11 @@
       margin-bottom: 20px;
       box-shadow: 0 0 25px rgba(212, 175, 55, 0.2);
       background: rgba(10, 17, 24, 0.5);
+      transition: transform 0.5s ease;
+    }
+
+    .couple-img:hover {
+      transform: scale(1.05);
     }
  
     .couple-name {
@@ -443,6 +474,7 @@
       color: var(--gold-solid);
       margin: 25px 0;
       opacity: 0.8;
+      animation: floating 3s ease-in-out infinite;
     }
  
     .event-bg {
@@ -662,15 +694,30 @@
       color: #0A1118;
     }
  
-    .rsvp-form {
-      display: flex;
-      flex-direction: column;
-      gap: 18px;
+    /* REVISI 2: TABEL RSVP & WISHES DIPISAH */
+    .form-box {
       text-align: left;
       background: var(--glass-bg);
-      padding: 30px 20px;
+      padding: 25px 20px;
       border: 1px solid var(--gold-border);
       border-radius: 4px;
+      margin-bottom: 25px;
+      box-shadow: 0 8px 20px rgba(0,0,0,0.3);
+    }
+
+    .form-box-title {
+      font-family: 'Cinzel', serif;
+      font-size: 1rem;
+      color: var(--gold-light);
+      margin-bottom: 15px;
+      letter-spacing: 1.5px;
+      text-align: center;
+      border-bottom: 1px dashed var(--gold-border);
+      padding-bottom: 10px;
+    }
+
+    .form-group {
+      margin-bottom: 15px;
     }
  
     .form-group label {
@@ -688,7 +735,7 @@
       border: 1px solid rgba(212, 175, 55, 0.3);
       border-radius: 2px;
       font-family: 'Montserrat', sans-serif;
-      background: rgba(5, 8, 12, 0.8);
+      background: rgba(5, 8, 12, 0.85);
       color: #FFF;
       outline: none;
       transition: border 0.3s;
@@ -699,17 +746,18 @@
     }
  
     .btn-submit {
+      width: 100%;
       background: var(--royal-gold);
       color: #0A1118;
       border: none;
-      padding: 14px;
+      padding: 12px;
       border-radius: 2px;
       font-family: 'Cinzel', serif;
       font-weight: 700;
       letter-spacing: 2px;
       cursor: pointer;
       transition: all 0.3s;
-      margin-top: 10px;
+      margin-top: 5px;
     }
 
     .btn-submit:hover {
@@ -756,24 +804,54 @@
       font-size: 0.95rem;
       color: var(--gold-light);
     }
-    .wish-status {
-      font-size: 0.65rem;
-      padding: 2px 8px;
-      border-radius: 2px;
-      background: rgba(212, 175, 55, 0.15);
-      color: var(--gold-solid);
-      border: 1px solid var(--gold-border);
-    }
     .wish-text {
       font-size: 0.85rem;
       color: #DDD;
       line-height: 1.5;
       white-space: pre-line;
     }
+
+    /* REVISI 3: FOOTER YANG TERLIHAT JELAS & ELEGAN */
+    footer {
+      background: rgba(5, 8, 12, 0.95);
+      border-top: 1px solid var(--gold-solid);
+      padding: 40px 20px;
+      text-align: center;
+      position: relative;
+      margin-top: 20px;
+    }
+
+    .footer-title {
+      font-family: 'Cinzel Decorative', serif;
+      font-size: 1.5rem;
+      background: var(--royal-gold);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      margin-bottom: 10px;
+    }
+
+    .footer-text {
+      font-size: 0.8rem;
+      color: var(--gold-light);
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      margin-bottom: 15px;
+    }
+
+    .footer-copyright {
+      font-size: 0.7rem;
+      color: #777;
+      margin-top: 20px;
+      border-top: 1px solid rgba(212, 175, 55, 0.15);
+      padding-top: 15px;
+    }
   </style>
 </head>
 <body class="no-scroll">
  
+  <!-- BACKGROUND FIX -->
+  <div class="bg-overlay"></div>
+
   <!-- Royal Sparkles / Dust Particles Container -->
   <div id="sparkles-container"></div>
  
@@ -872,13 +950,13 @@
       <!-- Groom -->
       <div class="couple-card reveal">
         <img src="images/groom-ktlg.png" alt="David Herry Sutanto" class="couple-img" onerror="this.src='https://via.placeholder.com/170/0A1118/D4AF37?text=Groom'">
-        <div class="couple-name">David Herry Sutanto</div>
+        <div class="couple-name">Romeo</div>
         <div class="parents">
           Son of <br>
-          <b style="color: #FFF;">Mr. Tan Bun Liong & Mrs. Ng Siu Chen</b>
+          <b style="color: #FFF;">Mr. Anton & Mrs. Ani</b>
         </div>
         <a href="https://instagram.com/davidherrys" target="_blank" class="ig-link">
-          <i class="fab fa-instagram"></i> @davidherrys
+          <i class="fab fa-instagram"></i> @romeo
         </a>
       </div>
  
@@ -887,13 +965,13 @@
       <!-- Bride -->
       <div class="couple-card reveal">
         <img src="images/bride-ktlg.png" alt="Selly Agustina" class="couple-img" onerror="this.src='https://via.placeholder.com/170/0A1118/D4AF37?text=Bride'">
-        <div class="couple-name">Selly Agustina</div>
+        <div class="couple-name">Juliet</div>
         <div class="parents">
           Daughter of <br>
-          <b style="color: #FFF;">Mr. Ong Sing Guat & Late Mrs. Theng Tin Tju</b>
+          <b style="color: #FFF;">Mr. Angga & Late Mrs. Cinta</b>
         </div>
         <a href="https://instagram.com/agustinaselly" target="_blank" class="ig-link">
-          <i class="fab fa-instagram"></i> @agustinaselly
+          <i class="fab fa-instagram"></i> @juliet
         </a>
       </div>
     </section>
@@ -908,7 +986,7 @@
       <!-- Holy Matrimony -->
       <div class="event-card reveal">
         <div class="event-type">Holy Matrimony</div>
-        <div class="event-detail"><b>Date:</b> Friday, October 09th, 2026</div>
+        <div class="event-detail"><b>Date:</b> Friday, October 12th, 2021</div>
         <div class="event-detail"><b>Time:</b> 10:00 WIB</div>
         <div class="event-detail" style="margin-top: 15px; border-top: 1px dashed var(--gold-border); padding-top: 12px;">
           <b style="color: var(--gold-light);">Location:</b><br>
@@ -920,7 +998,7 @@
       <!-- Wedding Reception -->
       <div class="event-card reveal">
         <div class="event-type">Wedding Reception</div>
-        <div class="event-detail"><b>Date:</b> Saturday, October 10th, 2026</div>
+        <div class="event-detail"><b>Date:</b> Saturday, October 13th, 2021</div>
         <div class="event-detail"><b>Time:</b> 18:00 WIB</div>
         <div class="event-detail" style="margin-top: 15px; border-top: 1px dashed var(--gold-border); padding-top: 12px;">
           <b style="color: var(--gold-light);">Location:</b><br>
@@ -977,8 +1055,8 @@
  
       <div class="gift-card reveal">
         <div class="bank-name">BANK BCA</div>
-        <div class="account-num" id="acc-num">0214023411</div>
-        <div style="font-size: 0.85rem; color: #AAA; margin-bottom: 15px;">a.n. Selly Agustina</div>
+        <div class="account-num" id="acc-num">123456789</div>
+        <div style="font-size: 0.85rem; color: #AAA; margin-bottom: 15px;">a.n. Juliet</div>
         <button class="btn-copy" onclick="copyAccount()"><i class="far fa-copy"></i> Copy Account Number</button>
       </div>
     </section>
@@ -987,47 +1065,78 @@
     <section>
       <div class="reveal">
         <h2 class="section-title">RSVP & Wishes</h2>
-        <div class="section-subtitle">Please confirm your attendance</div>
+        <div class="section-subtitle">Confirm Attendance & Send Wishes</div>
       </div>
  
-      <form class="rsvp-form reveal" id="rsvp-form">
-        <div class="form-group">
-          <label>Your Name</label>
-          <input type="text" name="Name" id="rsvp-name" required placeholder="Enter your full name">
-        </div>
- 
-        <div class="form-group">
-          <label>Attendance Status</label>
-          <select name="Status" id="rsvp-status" required>
-            <option value="Attending">Yes, I will attend</option>
-            <option value="Unable to attend">Sorry, I cannot attend</option>
-          </select>
-        </div>
- 
-        <div class="form-group">
-          <label>Number of Guests</label>
-          <select name="Guests" id="rsvp-guests">
-            <option value="1">1 Person</option>
-            <option value="2">2 Persons</option>
-          </select>
-        </div>
- 
-        <div class="form-group">
-          <label>Warm Wishes</label>
-          <textarea name="Wishes" id="rsvp-wish" rows="3" placeholder="Write your warm wishes for the couple..."></textarea>
-        </div>
- 
-        <button type="submit" class="btn-submit">SEND CONFIRMATION</button>
-      </form>
+      <!-- REVISI 2: TABEL 1 - FORM KONFIRMASI KEHADIRAN (RSVP) -->
+      <div class="form-box reveal">
+        <div class="form-box-title"><i class="far fa-calendar-check"></i> RSVP Confirmation</div>
+        <form id="rsvp-form" onsubmit="submitRSVP(event)">
+          <div class="form-group">
+            <label>Your Name</label>
+            <input type="text" id="rsvp-name" required placeholder="Enter your name">
+          </div>
+          <div class="form-group">
+            <label>Attendance Status</label>
+            <select id="rsvp-status" required>
+              <option value="Attending">Yes, I will attend</option>
+              <option value="Unable to attend">Sorry, I cannot attend</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <label>Number of Guests</label>
+            <select id="rsvp-guests">
+              <option value="1">1 Person</option>
+              <option value="2">2 Persons</option>
+            </select>
+          </div>
+          <button type="submit" class="btn-submit">CONFIRM ATTENDANCE</button>
+        </form>
+      </div>
+
+      <!-- REVISI 2: TABEL 2 - FORM UCAPAN TERPISAH (WISHES) -->
+      <div class="form-box reveal">
+        <div class="form-box-title"><i class="far fa-comment-dots"></i> Send Warm Wishes</div>
+        <form id="wishes-form" onsubmit="submitWish(event)">
+          <div class="form-group">
+            <label>Your Name</label>
+            <input type="text" id="wish-name" required placeholder="Enter your name">
+          </div>
+          <div class="form-group">
+            <label>Warm Wishes</label>
+            <textarea id="wish-message" rows="3" required placeholder="Write your prayers & warm wishes..."></textarea>
+          </div>
+          <button type="submit" class="btn-submit">SEND WISHES</button>
+        </form>
+      </div>
       
-      <!-- TEMPAT MENAMPILKAN UCAPAN TAMU -->
-      <div class="wishes-container reveal" id="wishes-container" style="margin-top: 40px; text-align: left;">
-        <h3 style="font-family: 'Cinzel', serif; font-size: 1rem; color: var(--gold-light); margin-bottom: 20px; text-align: center; letter-spacing: 2px;">WARM WISHES FROM GUESTS</h3>
+      <!-- DAFTAR UCAPAN TAMU -->
+      <div class="wishes-container reveal" id="wishes-container" style="margin-top: 30px; text-align: left;">
+        <h3 style="font-family: 'Cinzel', serif; font-size: 0.95rem; color: var(--gold-light); margin-bottom: 15px; text-align: center; letter-spacing: 2px;">WARM WISHES FROM GUESTS</h3>
         <div id="wishes-list" style="max-height: 350px; overflow-y: auto; padding-right: 5px;">
-          <p style="text-align: center; font-size: 0.85rem; color: #777;">Loading wishes...</p>
+          <!-- Ucapan Default / Dinamis -->
+          <div class="wish-card">
+            <div class="wish-header">
+              <span class="wish-name">Keluarga Big Uncle</span>
+            </div>
+            <div class="wish-text">Selamat atas pernikahan David & Selly! Semoga berbahagia selalu sampai kakek nenek.</div>
+          </div>
         </div>
       </div>
     </section>
+
+    <!-- REVISI 3: FOOTER KERAJAAN ELEGAN -->
+    <footer class="reveal">
+      <div class="royal-crest" style="font-size: 1.8rem; margin-bottom: 5px;">👑</div>
+      <div class="footer-title">David & Selly</div>
+      <div class="footer-text">Thank You For Your Blessings</div>
+      <p style="font-size: 0.75rem; color: #AAA; font-style: italic;">"Two souls, one heart, forever in love."</p>
+      
+      <div class="footer-copyright">
+        © 2026 The Royal Wedding of David & Selly. All Rights Reserved.
+      </div>
+    </footer>
+
   </div>
 
   <script>
@@ -1088,7 +1197,7 @@
         const windowHeight = window.innerHeight;
         reveals.forEach(el => {
           const revealTop = el.getBoundingClientRect().top;
-          if (revealTop < windowHeight - 80) {
+          if (revealTop < windowHeight - 60) {
             el.classList.add('active');
           }
         });
@@ -1153,6 +1262,35 @@
       const accNum = document.getElementById('acc-num').innerText;
       navigator.clipboard.writeText(accNum);
       alert("Account number copied to clipboard!");
+    }
+
+    // HANDLER FORM RSVP & WISHES TERPISAH
+    function submitRSVP(event) {
+      event.preventDefault();
+      const name = document.getElementById('rsvp-name').value;
+      const status = document.getElementById('rsvp-status').value;
+      alert(`Thank you, ${name}! Your RSVP status (${status}) has been recorded.`);
+      document.getElementById('rsvp-form').reset();
+    }
+
+    function submitWish(event) {
+      event.preventDefault();
+      const name = document.getElementById('wish-name').value;
+      const message = document.getElementById('wish-message').value;
+
+      const wishesList = document.getElementById('wishes-list');
+      const newWish = document.createElement('div');
+      newWish.className = 'wish-card';
+      newWish.innerHTML = `
+        <div class="wish-header">
+          <span class="wish-name">${name}</span>
+        </div>
+        <div class="wish-text">${message}</div>
+      `;
+
+      wishesList.prepend(newWish);
+      alert("Thank you for your warm wishes!");
+      document.getElementById('wishes-form').reset();
     }
 
     // INITIALIZATION
