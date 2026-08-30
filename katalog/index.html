@@ -20,7 +20,7 @@
       --gold-solid: #D4AF37;
       --gold-light: #F3E5AB;
       --gold-border: rgba(212, 175, 55, 0.5);
-      --glass-bg: rgba(10, 17, 24, 0.75); /* Ditipiskan agar background lebih tembus */
+      --glass-bg: rgba(10, 17, 24, 0.75);
       --text-light: #F5F5F7;
       --text-muted: #C5A059;
     }
@@ -43,7 +43,7 @@
       height: 100vh;
     }
 
-    /* REVISI 1 & 2: BACKGROUND DIPERCEPAT & LAYER HITAM TIPIS */
+    /* BACKGROUND OVERLAY */
     .bg-overlay {
       position: fixed;
       top: 0;
@@ -57,18 +57,19 @@
       z-index: -2;
     }
 
+    /* LAYER HITAM TIPIS (DITURUNKAN KE 15%) */
     .bg-dark-layer {
       position: fixed;
       top: 0;
       left: 0;
       width: 100vw;
       height: 100vh;
-      background: rgba(5, 8, 12, 0.4); /* Layer hitam ditipiskan jadi 40% opacity */
+      background: rgba(5, 8, 12, 0.15);
       z-index: -1;
       pointer-events: none;
     }
 
-    /* REVISI 3: ANIMASI GLITTER MEWAH (GLITTER / SPARKLES PARTICLES) */
+    /* GLITTER PARTICLES */
     #glitter-container {
       position: fixed;
       top: 0;
@@ -113,7 +114,7 @@
       left: 0;
       width: 100%;
       height: 100%;
-      background: rgba(5, 8, 12, 0.45); /* Layer hitam cover lebih tipis & transparan */
+      background: rgba(5, 8, 12, 0.45);
       backdrop-filter: blur(2px);
       z-index: 1000;
       display: flex;
@@ -308,12 +309,13 @@
       transform: scale(1);
     }
     
+    /* CONTAINER KINI TRANSPARAN TOTAL AGAR GAMBAR BACKGROUND TAMPAK JELAS */
     .container {
       max-width: 600px;
       margin: 0 auto;
-      background-color: rgba(10, 17, 24, 0.72); /* Transparansi dinaikkan agar background foto lebih kelihatan */
+      background-color: transparent;
       min-height: 100vh;
-      box-shadow: 0 0 50px rgba(0,0,0,0.8);
+      box-shadow: 0 0 50px rgba(0,0,0,0.5);
       position: relative;
       border-left: 1px solid var(--gold-border);
       border-right: 1px solid var(--gold-border);
@@ -492,8 +494,9 @@
       animation: floating 3s ease-in-out infinite;
     }
  
+    /* DIBUAT TRANSPARAN TERBUKA TANPA GRADIENT MENUTUPI */
     .event-bg {
-      background: linear-gradient(180deg, rgba(5,8,12,0.4) 0%, rgba(10,31,28,0.3) 50%, rgba(5,8,12,0.4) 100%);
+      background: transparent;
       border-top: 1px solid var(--gold-border);
       border-bottom: 1px solid var(--gold-border);
     }
@@ -516,8 +519,9 @@
       pointer-events: none;
     }
  
+    /* DIBUAT TRANSPARAN AGAR TIDAK MEMBUAT GARIS POTONG DI TENGAH */
     .section-alt {
-      background: rgba(5, 8, 12, 0.3);
+      background: transparent;
       padding: 50px 20px;
       margin: 20px 0;
     }
@@ -826,9 +830,9 @@
       white-space: pre-line;
     }
 
-    /* REVISI 4: FOOTER KUSTOM DENGAN LINK INSTAGRAM CHOCOOKIES STUDIO */
+    /* FOOTER */
     footer {
-      background: rgba(5, 8, 12, 0.92);
+      background: rgba(5, 8, 12, 0.85);
       border-top: 1px solid var(--gold-solid);
       padding: 40px 20px 30px 20px;
       text-align: center;
@@ -878,11 +882,9 @@
 </head>
 <body class="no-scroll">
  
-  <!-- REVISI 1 & 2: BACKGROUND TERPISAH + LAYER TIPIS -->
   <div class="bg-overlay"></div>
   <div class="bg-dark-layer"></div>
 
-  <!-- REVISI 3: ROYAL GLITTER & SPARKLES PARTICLES -->
   <div id="glitter-container"></div>
  
   <!-- Audio Element -->
@@ -1154,7 +1156,7 @@
       </div>
     </section>
 
-    <!-- REVISI 4: FOOTER TERKUSTOM DENGAN LINK INSTAGRAM -->
+    <!-- FOOTER -->
     <footer class="reveal">
       <div class="royal-crest" style="font-size: 1.8rem; margin-bottom: 5px;">👑</div>
       <div class="footer-title">Romeo & Juliet</div>
@@ -1172,16 +1174,15 @@
   </div>
 
   <script>
-    // REVISI 3: GENERATOR PARTICLES GLITTER / SPARKLES ELEGANT
     function createGlitter() {
       const container = document.getElementById('glitter-container');
-      const glitterCount = 50; // Jumlah kilau glitter
+      const glitterCount = 50;
       
       for (let i = 0; i < glitterCount; i++) {
         const particle = document.createElement('div');
         particle.classList.add('glitter-particle');
         
-        const size = Math.random() * 4 + 2; // Ukuran bervariasi 2px - 6px
+        const size = Math.random() * 4 + 2;
         particle.style.width = `${size}px`;
         particle.style.height = `${size}px`;
         particle.style.left = `${Math.random() * 100}vw`;
@@ -1197,7 +1198,6 @@
       }
     }
 
-    // OPEN INVITATION & MUSIC
     function openInvitation() {
       document.getElementById('cover').classList.add('opened');
       document.body.classList.remove('no-scroll');
@@ -1223,7 +1223,6 @@
       }
     }
 
-    // SCROLL REVEAL FUNCTION
     function initScrollReveal() {
       const reveals = document.querySelectorAll('.reveal, .reveal-zoom');
       
@@ -1241,7 +1240,6 @@
       checkReveal();
     }
 
-    // COUNTDOWN TIMER
     const weddingDate = new Date("October 10, 2026 18:00:00").getTime();
     setInterval(function() {
       const now = new Date().getTime();
@@ -1255,7 +1253,6 @@
       }
     }, 1000);
 
-    // SLIDESHOW CAROUSEL
     let currentSlideIndex = 0;
     const slides = document.querySelectorAll('.slide');
     const dots = document.querySelectorAll('.dot');
@@ -1280,7 +1277,6 @@
       showSlide(currentSlideIndex);
     }
 
-    // LIGHTBOX
     function openLightbox(element) {
       const imgSrc = element.querySelector('img').src;
       document.getElementById('lightbox-img').src = imgSrc;
@@ -1291,14 +1287,12 @@
       document.getElementById('lightbox').style.display = 'none';
     }
 
-    // COPY ACCOUNT NUMBER
     function copyAccount() {
       const accNum = document.getElementById('acc-num').innerText;
       navigator.clipboard.writeText(accNum);
       alert("Account number copied to clipboard!");
     }
 
-    // FORM HANDLERS
     function submitRSVP(event) {
       event.preventDefault();
       const name = document.getElementById('rsvp-name').value;
@@ -1327,7 +1321,6 @@
       document.getElementById('wishes-form').reset();
     }
 
-    // INITIALIZATION
     window.onload = function() {
       createGlitter();
       
