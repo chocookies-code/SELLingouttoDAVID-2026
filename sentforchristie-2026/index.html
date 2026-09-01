@@ -3,26 +3,26 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>The Royal Wedding of Romeo & Juliet</title>
+  <title>The Wedding of Sen-Sen & Christie</title>
   
   <!-- Google Fonts & FontAwesome -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Cinzel+Decorative:wght@700&family=Cinzel:wght@400;600;700&family=Great+Vibes&family=Playfair+Display:ital,wght@0,400;0,600;1,400&family=Montserrat:wght@300;400;500;600&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Ma+Shan+Zheng&family=Cinzel+Decorative:wght@700&family=Cinzel:wght@400;600;700&family=Playfair+Display:ital,wght@0,400;0,600;1,400&family=Montserrat:wght@300;400;500;600&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
  
   <style>
     :root {
-      --royal-navy: #0A1118;
-      --royal-dark: #05080C;
-      --royal-emerald: #0A1F1C;
+      --chinese-red-dark: #4A0000;
+      --chinese-red: #8B0000;
+      --chinese-red-bright: #B30000;
       --royal-gold: linear-gradient(135deg, #BF953F 0%, #FCF6BA 25%, #B38728 50%, #FBF5B7 75%, #AA771C 100%);
       --gold-solid: #D4AF37;
       --gold-light: #F3E5AB;
-      --gold-border: rgba(212, 175, 55, 0.6);
-      --glass-bg: rgba(10, 17, 24, 0.85);
-      --text-light: #F5F5F7;
-      --text-muted: #C5A059;
+      --gold-border: rgba(212, 175, 55, 0.7);
+      --glass-bg: rgba(60, 0, 0, 0.85);
+      --text-light: #FFF8E7;
+      --text-muted: #E2C075;
     }
  
     * {
@@ -33,7 +33,7 @@
  
     body {
       font-family: 'Montserrat', sans-serif;
-      background-color: var(--royal-dark);
+      background-color: var(--chinese-red-dark);
       color: var(--text-light);
       overflow-x: hidden;
     }
@@ -50,10 +50,7 @@
       left: 0;
       width: 100vw;
       height: 100vh;
-      background-image: url('images/bg-main-ktlg.png');
-      background-size: cover;
-      background-position: center;
-      background-repeat: no-repeat;
+      background: radial-gradient(circle, #8B0000 0%, #4A0000 70%, #200000 100%);
       z-index: -2;
     }
 
@@ -63,7 +60,7 @@
       left: 0;
       width: 100vw;
       height: 100vh;
-      background: rgba(5, 8, 12, 0.4);
+      background: rgba(0, 0, 0, 0.35);
       z-index: -1;
       pointer-events: none;
     }
@@ -113,10 +110,7 @@
       left: 0;
       width: 100%;
       height: 100vh;
-      background-image: linear-gradient(rgba(5, 8, 12, 0.35), rgba(5, 8, 12, 0.35)), url('images/cover-ktlg.png');
-      background-size: cover;
-      background-position: center;
-      background-repeat: no-repeat;
+      background: radial-gradient(circle, #8B0000 0%, #3D0000 100%);
       backdrop-filter: blur(2px);
       z-index: 1000;
       display: flex !important;
@@ -127,6 +121,7 @@
       padding: 30px 20px;
       gap: 16px;
       transition: transform 1s cubic-bezier(0.77, 0, 0.175, 1), opacity 1s ease-in-out;
+      border: 12px solid var(--gold-solid);
     }
  
     #cover.opened {
@@ -141,7 +136,7 @@
       animation: fadeInUp 1.2s cubic-bezier(0.22, 1, 0.36, 1) forwards;
     }
 
-    .royal-crest.cover-animate { animation-delay: 0.2s; }
+    .chinese-symbol.cover-animate { animation-delay: 0.2s; }
     .cover-sub.cover-animate { animation-delay: 0.4s; }
     .cover-title.cover-animate { animation-delay: 0.6s; }
     .cover-date.cover-animate { animation-delay: 0.8s; }
@@ -161,14 +156,16 @@
       100% { transform: translateY(0px); }
     }
 
-    .royal-crest {
-      font-size: 2.2rem;
+    .chinese-symbol {
+      font-family: 'Ma Shan Zheng', cursive, serif;
+      font-size: 4.5rem;
       background: var(--royal-gold);
       -webkit-background-clip: text;
       -webkit-text-fill-color: transparent;
-      margin-bottom: 0px;
-      filter: drop-shadow(0 2px 8px rgba(212, 175, 55, 0.5));
+      margin-bottom: -10px;
+      filter: drop-shadow(0 2px 8px rgba(212, 175, 55, 0.6));
       animation: floating 3s ease-in-out infinite;
+      line-height: 1;
     }
 
     .cover-sub {
@@ -182,8 +179,8 @@
     }
  
     .cover-title {
-      font-family: 'Cinzel Decorative', 'Great Vibes', cursive;
-      font-size: 2.6rem;
+      font-family: 'Ma Shan Zheng', 'Cinzel Decorative', cursive;
+      font-size: 2.8rem;
       background: var(--royal-gold);
       -webkit-background-clip: text;
       -webkit-text-fill-color: transparent;
@@ -202,7 +199,7 @@
       border-top: 1px solid var(--gold-border);
       border-bottom: 1px solid var(--gold-border);
       padding: 6px 24px;
-      background: rgba(5, 8, 12, 0.6);
+      background: rgba(40, 0, 0, 0.7);
       border-radius: 4px;
     }
  
@@ -212,7 +209,7 @@
       flex-direction: column !important;
       align-items: center !important;
       justify-content: center !important;
-      background: rgba(5, 8, 12, 0.88) !important;
+      background: rgba(60, 0, 0, 0.9) !important;
       border: 1px solid var(--gold-solid) !important;
       box-shadow: 0 10px 25px rgba(0,0,0,0.8), inset 0 0 10px rgba(212, 175, 55, 0.2) !important;
       border-radius: 8px;
@@ -226,10 +223,11 @@
     }
 
     .guest-box::before, .guest-box::after {
-      content: '❖';
+      content: '囍';
       position: absolute;
       color: #D4AF37;
-      font-size: 0.75rem;
+      font-size: 0.9rem;
+      font-family: 'Ma Shan Zheng', serif;
     }
     .guest-box::before { top: 6px; left: 10px; }
     .guest-box::after { bottom: 6px; right: 10px; }
@@ -268,7 +266,7 @@
     /* TOMBOL OPEN INVITATION FIX */
     .btn-open {
       background: var(--royal-gold);
-      color: #0A1118;
+      color: #4A0000;
       border: 1px solid var(--gold-solid);
       padding: 14px 38px;
       font-size: 0.85rem;
@@ -333,12 +331,12 @@
     .container {
       max-width: 600px;
       margin: 0 auto;
-      background-color: rgba(10, 17, 24, 0.85);
+      background-color: rgba(70, 0, 0, 0.9);
       min-height: 100vh;
       box-shadow: 0 0 50px rgba(0,0,0,0.9);
       position: relative;
-      border-left: 1px solid var(--gold-border);
-      border-right: 1px solid var(--gold-border);
+      border-left: 2px solid var(--gold-solid);
+      border-right: 2px solid var(--gold-solid);
     }
  
     section {
@@ -348,11 +346,11 @@
     }
  
     .section-title {
-      font-family: 'Cinzel Decorative', serif;
+      font-family: 'Ma Shan Zheng', 'Cinzel Decorative', serif;
       background: var(--royal-gold);
       -webkit-background-clip: text;
       -webkit-text-fill-color: transparent;
-      font-size: 1.8rem;
+      font-size: 2.2rem;
       margin-bottom: 8px;
       letter-spacing: 2px;
     }
@@ -373,14 +371,13 @@
       display: block;
       margin: 0 auto 25px auto;
       border-radius: 12px;
-      border: 1px solid var(--gold-solid);
+      border: 2px solid var(--gold-solid);
       padding: 8px;
-      background: rgba(10, 17, 24, 0.6);
+      background: rgba(40, 0, 0, 0.6);
       box-shadow: 0 10px 30px rgba(0,0,0,0.6);
       animation: floating 4s ease-in-out infinite;
     }
 
-    /* BORDER FIX: Quote Box */
     .quote-box {
       background: var(--glass-bg);
       border: 1px solid var(--gold-border);
@@ -402,9 +399,8 @@
       margin-top: 20px;
     }
  
-    /* BORDER FIX: Countdown Box */
     .countdown-box {
-      background: rgba(5, 8, 12, 0.85);
+      background: rgba(40, 0, 0, 0.95);
       border: 1px solid var(--gold-border);
       border-radius: 8px;
       padding: 12px 8px;
@@ -436,13 +432,12 @@
       margin-top: 4px;
     }
  
-    /* BORDER FIX: Save Date Button */
     .btn-save-date {
       display: inline-flex;
       align-items: center;
       justify-content: center;
       gap: 10px;
-      background: rgba(5, 8, 12, 0.8);
+      background: rgba(40, 0, 0, 0.9);
       color: var(--gold-light) !important;
       font-family: 'Cinzel', serif;
       font-size: 0.8rem;
@@ -459,7 +454,7 @@
  
     .btn-save-date:hover {
       background: var(--royal-gold);
-      color: #0A1118 !important;
+      color: #4A0000 !important;
       box-shadow: 0 0 20px rgba(212, 175, 55, 0.6);
     }
  
@@ -477,7 +472,7 @@
       padding: 6px;
       margin-bottom: 20px;
       box-shadow: 0 0 25px rgba(212, 175, 55, 0.3);
-      background: rgba(10, 17, 24, 0.5);
+      background: rgba(40, 0, 0, 0.5);
       transition: transform 0.5s ease;
     }
 
@@ -486,8 +481,8 @@
     }
  
     .couple-name {
-      font-family: 'Playfair Display', serif;
-      font-size: 2rem;
+      font-family: 'Ma Shan Zheng', 'Playfair Display', serif;
+      font-size: 2.2rem;
       background: var(--royal-gold);
       -webkit-background-clip: text;
       -webkit-text-fill-color: transparent;
@@ -513,21 +508,21 @@
     .ig-link:hover { color: var(--gold-light); }
  
     .and-sym {
-      font-family: 'Cinzel Decorative', serif;
-      font-size: 2.5rem;
+      font-family: 'Ma Shan Zheng', serif;
+      font-size: 3.5rem;
       color: var(--gold-solid);
       margin: 25px 0;
       opacity: 0.9;
       animation: floating 3s ease-in-out infinite;
+      line-height: 1;
     }
  
     .event-bg {
-  background: linear-gradient(180deg, rgba(5,8,12,0.4) 0%, rgba(10,31,28,0.3) 50%, rgba(5,8,12,0.4) 100%);
-  border-top: none;
-  border-bottom: none;
-}
+      background: linear-gradient(180deg, rgba(40,0,0,0.6) 0%, rgba(80,0,0,0.4) 50%, rgba(40,0,0,0.6) 100%);
+      border-top: none;
+      border-bottom: none;
+    }
  
-    /* BORDER FIX: Event Card */
     .event-card {
       background: var(--glass-bg);
       border: 1px solid var(--gold-solid);
@@ -547,11 +542,11 @@
       pointer-events: none;
     }
  
-   .section-alt {
-  background: rgba(5, 8, 12, 0.3);
-  padding: 50px 20px;
-  margin: 0; /* Ubah dari 20px 0 jadi 0 */
-}
+    .section-alt {
+      background: rgba(30, 0, 0, 0.4);
+      padding: 50px 20px;
+      margin: 0;
+    }
     
     .event-type {
       font-family: 'Cinzel', serif;
@@ -572,7 +567,7 @@
       margin-top: 15px;
       padding: 12px 28px;
       background: var(--royal-gold);
-      color: #0A1118;
+      color: #4A0000;
       font-weight: 600;
       text-decoration: none;
       border-radius: 6px;
@@ -588,7 +583,6 @@
       box-shadow: 0 0 25px rgba(212, 175, 55, 0.8);
     }
  
-    /* SLIDESHOW STYLES & BORDER FIX */
     .slider-container {
       position: relative;
       max-width: 100%;
@@ -612,7 +606,6 @@
       cursor: pointer;
     }
 
-    /* FIX: display block ditambahkan untuk menghilangkan garis/spasi transparan di bawah gambar */
     .slide img {
       width: 100%;
       height: 380px;
@@ -628,7 +621,7 @@
       position: absolute;
       top: 50%;
       transform: translateY(-50%);
-      background: rgba(5, 8, 12, 0.8);
+      background: rgba(40, 0, 0, 0.8);
       color: var(--gold-solid);
       border: 1px solid var(--gold-solid);
       border-radius: 4px;
@@ -641,7 +634,7 @@
 
     .prev-btn:hover, .next-btn:hover {
       background: var(--gold-solid);
-      color: #0A1118;
+      color: #4A0000;
     }
 
     .prev-btn { left: 10px; }
@@ -669,7 +662,6 @@
       border-radius: 10px;
     }
 
-    /* LIGHTBOX */
     .lightbox {
       display: none;
       position: fixed;
@@ -700,7 +692,6 @@
       cursor: pointer;
     }
  
-    /* BORDER FIX: Gift Card */
     .gift-card {
       background: var(--glass-bg);
       border: 1px solid var(--gold-solid);
@@ -742,10 +733,9 @@
 
     .btn-copy:hover {
       background: var(--gold-solid);
-      color: #0A1118;
+      color: #4A0000;
     }
  
-    /* BORDER FIX: Form RSVP & Wishes */
     .form-box {
       text-align: left;
       background: var(--glass-bg);
@@ -786,7 +776,7 @@
       border: 1px solid var(--gold-border);
       border-radius: 4px;
       font-family: 'Montserrat', sans-serif;
-      background: rgba(5, 8, 12, 0.85);
+      background: rgba(30, 0, 0, 0.85);
       color: #FFF;
       outline: none;
       transition: border 0.3s, box-shadow 0.3s;
@@ -800,7 +790,7 @@
     .btn-submit {
       width: 100%;
       background: var(--royal-gold);
-      color: #0A1118;
+      color: #4A0000;
       border: 1px solid var(--gold-solid);
       padding: 12px;
       border-radius: 4px;
@@ -823,7 +813,7 @@
       width: 48px;
       height: 48px;
       background: var(--royal-gold);
-      color: #0A1118;
+      color: #4A0000;
       border: 1px solid var(--gold-solid);
       border-radius: 50%;
       display: flex;
@@ -837,9 +827,8 @@
 
     #music-btn:hover { transform: scale(1.1); }
 
-    /* BORDER FIX: Wish Card */
     .wish-card {
-      background: rgba(5, 8, 12, 0.85);
+      background: rgba(40, 0, 0, 0.85);
       border: 1px solid var(--gold-border);
       border-left: 4px solid var(--gold-solid);
       border-radius: 6px;
@@ -870,7 +859,7 @@
     }
 
     footer {
-      background: rgba(5, 8, 12, 0.92);
+      background: rgba(30, 0, 0, 0.95);
       border-top: 1px solid var(--gold-solid);
       padding: 40px 20px 30px 20px;
       text-align: center;
@@ -879,8 +868,8 @@
     }
 
     .footer-title {
-      font-family: 'Cinzel Decorative', serif;
-      font-size: 1.5rem;
+      font-family: 'Ma Shan Zheng', 'Cinzel Decorative', serif;
+      font-size: 1.8rem;
       background: var(--royal-gold);
       -webkit-background-clip: text;
       -webkit-text-fill-color: transparent;
@@ -945,10 +934,10 @@
  
   <!-- COVER / LOCK SCREEN -->
   <div id="cover">
-    <div class="royal-crest cover-animate">👑</div>
-    <div class="cover-sub cover-animate">THE ROYAL WEDDING OF</div>
-    <div class="cover-title cover-animate">ROMEO & JULIET</div>
-    <div class="cover-date cover-animate">13 . 10 . 2021</div>
+    <div class="chinese-symbol cover-animate">囍</div>
+    <div class="cover-sub cover-animate">THE WEDDING OF</div>
+    <div class="cover-title cover-animate">Sen-Sen & Christie</div>
+    <div class="cover-date cover-animate">10 . 10 . 2026</div>
  
     <!-- KOTAK DEAR (NAMA TAMU) -->
     <div class="guest-box cover-animate">
@@ -965,26 +954,27 @@
     <!-- YOU'RE INVITED SECTION -->
     <section>
       <div class="reveal">
-        <h2 class="section-title">Royal Invitation</h2>
+        <div class="chinese-symbol" style="font-size: 3rem; margin-bottom: 10px;">囍</div>
+        <h2 class="section-title">Wedding Invitation</h2>
         <div class="section-subtitle">The Beginning of Forever</div>
       </div>
  
       <!-- Karikatur Couple -->
       <div class="reveal-zoom">
-        <img src="images/caricature-ktlg.png" alt="Caricature of Romeo & Juliet" class="caricature-img" onerror="this.src='https://via.placeholder.com/380x300/0A1118/D4AF37?text=Romeo+%26+Juliet'">
+        <img src="images/caricature-ktlg.png" alt="Caricature of Sen-Sen & Christie" class="caricature-img" onerror="this.src='https://via.placeholder.com/380x300/4A0000/D4AF37?text=Sen-Sen+%26+Christie'">
       </div>
  
-      <!-- Kutipan Dhammapada -->
+      <!-- Kutipan -->
       <div class="quote-box reveal">
         <p>
-          "If in the journey of life, you find a wise and suitable companion who leads a good life, walk with them, joyful and mindful, overcoming all dangers."
+          "Two souls, one heart. Joined together in eternal harmony and blessings."
         </p>
-        <p style="margin-top: 10px; font-size: 0.8rem; color: var(--gold-solid); font-style: normal; font-family: 'Cinzel', serif;">(Dhammapada XXIII - 328)</p>
+        <p style="margin-top: 10px; font-size: 0.8rem; color: var(--gold-solid); font-style: normal; font-family: 'Cinzel', serif;">(Chinese Proverb)</p>
       </div>
  
       <!-- Countdown Timer -->
       <div class="reveal" style="margin: 40px 0 20px 0;">
-        <h3 style="font-family: 'Cinzel', serif; font-size: 1rem; color: var(--gold-light); letter-spacing: 2px; margin-bottom: 20px;">COUNTDOWN TO THE ROYAL DAY</h3>
+        <h3 style="font-family: 'Cinzel', serif; font-size: 1rem; color: var(--gold-light); letter-spacing: 2px; margin-bottom: 20px;">COUNTDOWN TO THE CELEBRATION</h3>
         <div class="countdown-grid">
           <div class="countdown-box">
             <div class="countdown-number" id="days">00</div>
@@ -1007,7 +997,7 @@
  
       <!-- Save The Date Button -->
       <div class="reveal">
-        <a href="https://calendar.google.com/calendar/render?action=TEMPLATE&text=The+Wedding+of+Romeo+%26+Juliet&dates=20261010T110000Z/20261010T150000Z&details=The+Wedding+Reception+of+Romeo+and+Juliet+at+Ballroom+Aston+Palembang&location=Aston+Palembang+Hotel" target="_blank" class="btn-save-date">
+        <a href="https://calendar.google.com/calendar/render?action=TEMPLATE&text=The+Wedding+of+Sen-Sen+%26+Christie&dates=20261010T110000Z/20261010T150000Z&details=The+Wedding+Reception+of+Sen-Sen+and+Christie&location=Ballroom" target="_blank" class="btn-save-date">
           <i class="far fa-calendar-alt"></i> SAVE THE DATE
         </a>
       </div>
@@ -1016,35 +1006,35 @@
     <!-- BRIDE & GROOM SECTION -->
     <section class="section-alt">
       <div class="reveal">
-        <h2 class="section-title">Bride & Groom</h2>
+        <h2 class="section-title">Groom & Bride</h2>
         <div class="section-subtitle">We are getting married</div>
       </div>
  
       <!-- Groom -->
       <div class="couple-card reveal">
-        <img src="images/groom-ktlg.png" alt="Romeo" class="couple-img" onerror="this.src='https://via.placeholder.com/170/0A1118/D4AF37?text=Groom'">
-        <div class="couple-name">Romeo</div>
+        <img src="images/groom-ktlg.png" alt="Sen-Sen" class="couple-img" onerror="this.src='https://via.placeholder.com/170/4A0000/D4AF37?text=Sen-Sen'">
+        <div class="couple-name">Sen-Sen</div>
         <div class="parents">
           Son of <br>
           <b style="color: #FFF;">Mr. Anton & Mrs. Yuni</b>
         </div>
-        <a href="https://instagram.com/romeo" target="_blank" class="ig-link">
-          <i class="fab fa-instagram"></i> @romeo
+        <a href="https://instagram.com" target="_blank" class="ig-link">
+          <i class="fab fa-instagram"></i> @sensen
         </a>
       </div>
  
-      <div class="and-sym reveal">&</div>
+      <div class="and-sym reveal">囍</div>
  
       <!-- Bride -->
       <div class="couple-card reveal">
-        <img src="images/bride-ktlg.png" alt="Juliet" class="couple-img" onerror="this.src='https://via.placeholder.com/170/0A1118/D4AF37?text=Bride'">
-        <div class="couple-name">Juliet</div>
+        <img src="images/bride-ktlg.png" alt="Christie" class="couple-img" onerror="this.src='https://via.placeholder.com/170/4A0000/D4AF37?text=Christie'">
+        <div class="couple-name">Christie</div>
         <div class="parents">
           Daughter of <br>
           <b style="color: #FFF;">Mr. Priyanto & Late Mrs. Silvia</b>
         </div>
-        <a href="https://instagram.com/juliet" target="_blank" class="ig-link">
-          <i class="fab fa-instagram"></i> @juliet
+        <a href="https://instagram.com" target="_blank" class="ig-link">
+          <i class="fab fa-instagram"></i> @christie
         </a>
       </div>
     </section>
@@ -1052,18 +1042,18 @@
     <!-- WEDDING EVENTS SECTION -->
     <section class="event-bg">
       <div class="reveal">
-        <h2 class="section-title">Royal Celebrations</h2>
+        <h2 class="section-title">Celebrations</h2>
         <div class="section-subtitle">Wedding Events</div>
       </div>
  
       <!-- Holy Matrimony -->
       <div class="event-card reveal">
         <div class="event-type">Holy Matrimony</div>
-        <div class="event-detail"><b>Date:</b> Friday, October 12th, 2021</div>
+        <div class="event-detail"><b>Date:</b> Saturday, October 10th, 2026</div>
         <div class="event-detail"><b>Time:</b> 10:00 WIB</div>
         <div class="event-detail" style="margin-top: 15px; border-top: 1px dashed var(--gold-border); padding-top: 12px;">
           <b style="color: var(--gold-light);">Location:</b><br>
-          Golden Sand 5–6 Lt. 3, Aston Palembang<br>
+          Golden Sand Ballroom<br>
           <small style="color: #AAA;">Jl. Jendral Basuki Rahmat No. 189, Palembang</small>
         </div>
       </div>
@@ -1071,11 +1061,11 @@
       <!-- Wedding Reception -->
       <div class="event-card reveal">
         <div class="event-type">Wedding Reception</div>
-        <div class="event-detail"><b>Date:</b> Saturday, October 13th, 2021</div>
+        <div class="event-detail"><b>Date:</b> Saturday, October 10th, 2026</div>
         <div class="event-detail"><b>Time:</b> 18:00 WIB</div>
         <div class="event-detail" style="margin-top: 15px; border-top: 1px dashed var(--gold-border); padding-top: 12px;">
           <b style="color: var(--gold-light);">Location:</b><br>
-          Ballroom Aston Palembang<br>
+          Grand Ballroom<br>
           <small style="color: #AAA;">Jl. Jendral Basuki Rahmat No. 189, Palembang</small>
         </div>
       </div>
@@ -1096,11 +1086,11 @@
  
       <div class="slider-container reveal-zoom">
         <div class="slider-wrapper" id="slider-wrapper">
-          <div class="slide" onclick="openLightbox(this)"><img src="images/prewed1-ktlg.png" alt="Gallery 1" onerror="this.src='https://via.placeholder.com/600x380/0A1118/D4AF37?text=Photo+1'"></div>
-          <div class="slide" onclick="openLightbox(this)"><img src="images/prewed2-ktlg.png" alt="Gallery 2" onerror="this.src='https://via.placeholder.com/600x380/0A1118/D4AF37?text=Photo+2'"></div>
-          <div class="slide" onclick="openLightbox(this)"><img src="images/prewed3-ktlg.png" alt="Gallery 3" onerror="this.src='https://via.placeholder.com/600x380/0A1118/D4AF37?text=Photo+3'"></div>
-          <div class="slide" onclick="openLightbox(this)"><img src="images/groom-ktlg.png" alt="Gallery 4" onerror="this.src='https://via.placeholder.com/600x380/0A1118/D4AF37?text=Photo+4'"></div>
-          <div class="slide" onclick="openLightbox(this)"><img src="images/bride-ktlg.png" alt="Gallery 5" onerror="this.src='https://via.placeholder.com/600x380/0A1118/D4AF37?text=Photo+5'"></div>
+          <div class="slide" onclick="openLightbox(this)"><img src="images/prewed1-ktlg.png" alt="Gallery 1" onerror="this.src='https://via.placeholder.com/600x380/4A0000/D4AF37?text=Photo+1'"></div>
+          <div class="slide" onclick="openLightbox(this)"><img src="images/prewed2-ktlg.png" alt="Gallery 2" onerror="this.src='https://via.placeholder.com/600x380/4A0000/D4AF37?text=Photo+2'"></div>
+          <div class="slide" onclick="openLightbox(this)"><img src="images/prewed3-ktlg.png" alt="Gallery 3" onerror="this.src='https://via.placeholder.com/600x380/4A0000/D4AF37?text=Photo+3'"></div>
+          <div class="slide" onclick="openLightbox(this)"><img src="images/groom-ktlg.png" alt="Gallery 4" onerror="this.src='https://via.placeholder.com/600x380/4A0000/D4AF37?text=Photo+4'"></div>
+          <div class="slide" onclick="openLightbox(this)"><img src="images/bride-ktlg.png" alt="Gallery 5" onerror="this.src='https://via.placeholder.com/600x380/4A0000/D4AF37?text=Photo+5'"></div>
         </div>
         <button class="prev-btn" onclick="moveSlide(-1)">&#10094;</button>
         <button class="next-btn" onclick="moveSlide(1)">&#10095;</button>
@@ -1120,16 +1110,16 @@
     <section class="event-bg">
       <div class="reveal">
         <h2 class="section-title">Wedding Gift</h2>
-        <div class="section-subtitle">Digital Envelope</div>
+        <div class="section-subtitle">Angpao / Digital Envelope</div>
         <p style="font-size: 0.85rem; color: #BBB; line-height: 1.6; max-width: 450px; margin: 0 auto;">
-          Your presence and blessings on our wedding day are the greatest gift of all. However, if you wish to give a gift, we provide a digital envelope below:
+          Your presence and blessings on our wedding day are the greatest gift of all. However, if you wish to give an angpao/gift, you may use the digital envelope below:
         </p>
       </div>
  
       <div class="gift-card reveal">
         <div class="bank-name">BANK BCA</div>
         <div class="account-num" id="acc-num">123456789</div>
-        <div style="font-size: 0.85rem; color: #AAA; margin-bottom: 15px;">a.n. Juliet</div>
+        <div style="font-size: 0.85rem; color: #AAA; margin-bottom: 15px;">a.n. Christie</div>
         <button class="btn-copy" onclick="copyAccount()"><i class="far fa-copy"></i> Copy Account Number</button>
       </div>
     </section>
@@ -1191,15 +1181,15 @@
             <div class="wish-header">
               <span class="wish-name">Keluarga Big Uncle</span>
             </div>
-            <div class="wish-text">Selamat atas pernikahan Romeo & Juliet! Semoga berbahagia selalu sampai kakek nenek.</div>
+            <div class="wish-text">Selamat atas pernikahan Sen-Sen & Christie! Semoga berbahagia selalu sampai kakek nenek.</div>
           </div>
         </div>
       </div>
     </section>
 
     <footer>
-      <div class="royal-crest" style="font-size: 1.8rem; margin-bottom: 5px;">👑</div>
-      <div class="footer-title">Romeo & Juliet</div>
+      <div class="chinese-symbol" style="font-size: 2.2rem; margin-bottom: 5px;">囍</div>
+      <div class="footer-title">Sen-Sen & Christie</div>
       <div class="footer-text">Thank You For Your Blessings</div>
       <p style="font-size: 0.75rem; color: #AAA; font-style: italic;">"Two souls, one heart, forever in love."</p>
       
@@ -1333,7 +1323,6 @@
       alert("Account number copied to clipboard!");
     }
 
-    // SIMPAN RSVP KE LOCALSTORAGE
     function submitRSVP(event) {
       event.preventDefault();
       const name = document.getElementById('rsvp-name').value;
@@ -1355,7 +1344,6 @@
       document.getElementById('rsvp-form').reset();
     }
 
-    // SIMPAN & TAMPILKAN WISHES DARI LOCALSTORAGE
     function loadWishes() {
       const currentWishes = JSON.parse(localStorage.getItem('wishesList')) || [];
       const wishesList = document.getElementById('wishes-list');
@@ -1411,4 +1399,3 @@
   </script>
 </body>
 </html>
-
