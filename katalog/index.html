@@ -43,14 +43,14 @@
       height: 100vh;
     }
 
-    /* BACKGROUND UTAMA DENGAN bg-main-kltg.png */
+    /* BACKGROUND UTAMA DENGAN bg-main-ktlg.png */
     .bg-overlay {
       position: fixed;
       top: 0;
       left: 0;
       width: 100vw;
       height: 100vh;
-      background-image: url('images/bg-main-kltg.png');
+      background-image: url('images/bg-main-ktlg.png');
       background-size: cover;
       background-position: center;
       background-repeat: no-repeat;
@@ -232,11 +232,21 @@
     }
     .guest-box::before { top: 5px; left: 8px; }
     .guest-box::after { bottom: 5px; right: 8px; }
+
+    .dear-label {
+      font-family: 'Cinzel', serif;
+      font-size: 0.85rem;
+      color: var(--gold-light);
+      letter-spacing: 3px;
+      text-transform: uppercase;
+      margin-bottom: 4px;
+      font-weight: 600;
+    }
  
     .guest-box p {
-      font-size: 0.8rem;
-      color: var(--gold-light);
-      letter-spacing: 2px;
+      font-size: 0.75rem;
+      color: var(--text-muted);
+      letter-spacing: 1px;
       text-transform: uppercase;
       margin-bottom: 8px;
     }
@@ -880,7 +890,7 @@
 </head>
 <body class="no-scroll">
  
-  <!-- BACKGROUND UTAMA BANYAK DILIHAT SETELAH OPEN INVITATION -->
+  <!-- BACKGROUND UTAMA DENGAN bg-main-ktlg.png -->
   <div class="bg-overlay"></div>
   <div class="bg-dark-layer"></div>
 
@@ -911,7 +921,7 @@
     <div class="cover-date cover-animate">13 . 10 . 2021</div>
  
     <div class="guest-box cover-animate">
-      <p style="font-size: 0.75rem; letter-spacing: 1px; color: var(--gold-solid); margin-bottom: 2px;">DEAR,</p>
+      <div class="dear-label">DEAR</div>
       <p>Honorably Invited</p>
       <div class="guest-name" id="guest-name-display">Guest Name</div>
     </div>
