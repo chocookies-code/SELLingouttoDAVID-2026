@@ -612,11 +612,12 @@
       cursor: pointer;
     }
 
+    /* FIX: display block ditambahkan untuk menghilangkan garis/spasi transparan di bawah gambar */
     .slide img {
       width: 100%;
       height: 380px;
-      object-fit: cover;
       display: block;
+      object-fit: cover;
       filter: brightness(0.95);
       transition: filter 0.3s;
     }
