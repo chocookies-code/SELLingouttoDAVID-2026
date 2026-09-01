@@ -2,11 +2,19 @@
   "rewrites": [
     { 
       "source": "/sellingouttodavid-2026", 
-      "destination": "/SELLINGouttoDAVID-2026/index.html" 
+      "destination": "/SELlingouttoDAVID-2026/index.html" 
     },
     { 
       "source": "/sellingouttodavid-2026/", 
-      "destination": "/SELLINGouttoDAVID-2026/index.html" 
+      "destination": "/SELlingouttoDAVID-2026/index.html" 
+    },
+    { 
+      "source": "/sentforchristie-2026", 
+      "destination": "/SENTforCHRISTIE-2026/index.html" 
+    },
+    { 
+      "source": "/sentforchristie-2026/", 
+      "destination": "/SENTforCHRISTIE-2026/index.html" 
     },
     { 
       "source": "/katalog", 
