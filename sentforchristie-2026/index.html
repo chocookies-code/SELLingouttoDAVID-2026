@@ -8,7 +8,8 @@
   <!-- Google Fonts & FontAwesome -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Cinzel+Decorative:wght@700&family=Cinzel:wght@400;600;700&family=Playfair+Display:ital,wght@0,400;0,600;1,400&family=Montserrat:wght@300;400;500;600&display=swap" rel="stylesheet">
+  <!-- 1. Script: Great Vibes | 2. Serif: Cinzel & Playfair Display | 3. Sans-Serif: Montserrat -->
+  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@500;700&family=Great+Vibes&family=Montserrat:wght@300;400;500;600&family=Playfair+Display:ital,wght@0,600;1,400&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
  
   <style>
@@ -23,6 +24,12 @@
       --glass-bg: rgba(60, 0, 0, 0.85);
       --text-light: #FFF8E7;
       --text-muted: #E2C075;
+
+      /* DEKLARASI FONT */
+      --font-script: 'Great Vibes', cursive;
+      --font-serif: 'Cinzel', serif;
+      --font-sans: 'Montserrat', sans-serif;
+      --font-quote: 'Playfair Display', serif;
     }
  
     * {
@@ -32,7 +39,7 @@
     }
  
     body {
-      font-family: 'Montserrat', sans-serif;
+      font-family: var(--font-sans);
       background-color: var(--chinese-red-dark);
       color: var(--text-light);
       overflow-x: hidden;
@@ -119,7 +126,7 @@
       align-items: center !important;
       text-align: center;
       padding: 30px 20px;
-      gap: 16px;
+      gap: 12px;
       transition: transform 1s cubic-bezier(0.77, 0, 0.175, 1), opacity 1s ease-in-out;
       border: 12px solid var(--gold-solid);
     }
@@ -157,8 +164,8 @@
     }
 
     .chinese-symbol {
-      font-family: 'Cinzel Decorative', serif;
-      font-size: 3.5rem;
+      font-family: var(--font-serif);
+      font-size: 3.2rem;
       background: var(--royal-gold);
       -webkit-background-clip: text;
       -webkit-text-fill-color: transparent;
@@ -169,31 +176,30 @@
     }
 
     .cover-sub {
-      font-family: 'Cinzel', serif;
-      letter-spacing: 5px;
+      font-family: var(--font-serif);
+      letter-spacing: 4px;
       font-size: 0.85rem;
       color: #FCF6BA;
-      margin-bottom: 0px;
       text-transform: uppercase;
       text-shadow: 0 2px 4px rgba(0,0,0,0.8);
     }
  
     .cover-title {
-      font-family: 'Cinzel Decorative', serif;
-      font-size: 2.4rem;
+      font-family: var(--font-script);
+      font-size: 3.5rem;
       background: var(--royal-gold);
       -webkit-background-clip: text;
       -webkit-text-fill-color: transparent;
-      margin-bottom: 0px;
-      letter-spacing: 2px;
       padding: 0 10px;
       filter: drop-shadow(0 4px 10px rgba(0,0,0,0.8));
+      line-height: 1.2;
     }
  
     .cover-date {
-      font-family: 'Cinzel', serif;
-      letter-spacing: 6px;
-      font-size: 0.95rem;
+      font-family: var(--font-sans);
+      letter-spacing: 4px;
+      font-size: 0.85rem;
+      font-weight: 500;
       color: #FCF6BA;
       margin-bottom: 8px;
       border-top: 1px solid var(--gold-border);
@@ -213,9 +219,9 @@
       border: 1px solid var(--gold-solid) !important;
       box-shadow: 0 10px 25px rgba(0,0,0,0.8), inset 0 0 10px rgba(212, 175, 55, 0.2) !important;
       border-radius: 8px;
-      padding: 18px 28px !important;
-      margin-top: 15px !important;
-      margin-bottom: 28px !important;
+      padding: 16px 24px !important;
+      margin-top: 10px !important;
+      margin-bottom: 20px !important;
       max-width: 320px;
       width: 88%;
       position: relative;
@@ -227,16 +233,16 @@
       position: absolute;
       color: #D4AF37;
       font-size: 0.9rem;
-      font-family: 'Cinzel Decorative', serif;
+      font-family: var(--font-serif);
     }
     .guest-box::before { top: 6px; left: 10px; }
     .guest-box::after { bottom: 6px; right: 10px; }
 
     .dear-label {
-      font-family: 'Cinzel', serif !important;
-      font-size: 1rem !important;
+      font-family: var(--font-serif) !important;
+      font-size: 0.9rem !important;
       color: #FCF6BA !important;
-      letter-spacing: 4px;
+      letter-spacing: 3px;
       text-transform: uppercase;
       margin-bottom: 4px;
       font-weight: 700 !important;
@@ -254,8 +260,8 @@
     }
  
     .guest-name {
-      font-family: 'Playfair Display', serif !important;
-      font-size: 1.35rem !important;
+      font-family: var(--font-quote) !important;
+      font-size: 1.4rem !important;
       font-weight: 600 !important;
       color: #FFFFFF !important;
       letter-spacing: 1px;
@@ -263,16 +269,16 @@
       text-shadow: 0 2px 4px rgba(0,0,0,0.9);
     }
  
-    /* TOMBOL OPEN INVITATION FIX */
+    /* TOMBOL OPEN INVITATION */
     .btn-open {
       background: var(--royal-gold);
       color: #4A0000;
       border: 1px solid var(--gold-solid);
-      padding: 14px 38px;
-      font-size: 0.85rem;
-      font-family: 'Cinzel', serif;
+      padding: 12px 34px;
+      font-size: 0.8rem;
+      font-family: var(--font-serif);
       font-weight: 700;
-      letter-spacing: 3px;
+      letter-spacing: 2px;
       border-radius: 6px;
       cursor: pointer;
       box-shadow: 0 6px 20px rgba(212, 175, 55, 0.5);
@@ -280,7 +286,6 @@
       position: relative;
       overflow: hidden;
       z-index: 1001;
-      margin-top: 10px !important;
     }
 
     .btn-open::after {
@@ -340,28 +345,28 @@
     }
  
     section {
-      padding: 70px 25px;
+      padding: 60px 25px;
       text-align: center;
       position: relative;
     }
  
     .section-title {
-      font-family: 'Cinzel Decorative', serif;
+      font-family: var(--font-script);
       background: var(--royal-gold);
       -webkit-background-clip: text;
       -webkit-text-fill-color: transparent;
-      font-size: 2rem;
-      margin-bottom: 8px;
-      letter-spacing: 2px;
+      font-size: 3rem;
+      margin-bottom: 0px;
+      line-height: 1.1;
     }
  
     .section-subtitle {
-      font-family: 'Cinzel', serif;
-      font-size: 0.85rem;
+      font-family: var(--font-serif);
+      font-size: 0.8rem;
       color: var(--text-muted);
       text-transform: uppercase;
       letter-spacing: 3px;
-      margin-bottom: 40px;
+      margin-bottom: 35px;
     }
 
     .caricature-img {
@@ -386,7 +391,7 @@
       border-radius: 8px;
       padding: 20px 25px;
       margin: 20px 0;
-      font-family: 'Playfair Display', serif;
+      font-family: var(--font-quote);
       font-style: italic;
       color: var(--gold-light);
       box-shadow: 0 5px 15px rgba(0,0,0,0.3);
@@ -421,7 +426,7 @@
       background: var(--royal-gold);
       -webkit-background-clip: text;
       -webkit-text-fill-color: transparent;
-      font-family: 'Cinzel', serif;
+      font-family: var(--font-sans);
     }
  
     .countdown-label {
@@ -430,6 +435,7 @@
       color: var(--text-muted);
       letter-spacing: 1px;
       margin-top: 4px;
+      font-family: var(--font-sans);
     }
  
     .btn-save-date {
@@ -439,11 +445,11 @@
       gap: 10px;
       background: rgba(40, 0, 0, 0.9);
       color: var(--gold-light) !important;
-      font-family: 'Cinzel', serif;
-      font-size: 0.8rem;
-      font-weight: 600;
+      font-family: var(--font-serif);
+      font-size: 0.75rem;
+      font-weight: 700;
       letter-spacing: 2px;
-      padding: 14px 28px;
+      padding: 12px 24px;
       border-radius: 6px;
       border: 1px solid var(--gold-solid);
       text-decoration: none !important;
@@ -459,7 +465,7 @@
     }
  
     .couple-card {
-      margin-bottom: 40px;
+      margin-bottom: 35px;
       position: relative;
     }
  
@@ -470,7 +476,7 @@
       object-fit: cover;
       border: 2px solid var(--gold-solid);
       padding: 6px;
-      margin-bottom: 20px;
+      margin-bottom: 15px;
       box-shadow: 0 0 25px rgba(212, 175, 55, 0.3);
       background: rgba(40, 0, 0, 0.5);
       transition: transform 0.5s ease;
@@ -481,25 +487,28 @@
     }
  
     .couple-name {
-      font-family: 'Cinzel Decorative', 'Playfair Display', serif;
-      font-size: 2rem;
+      font-family: var(--font-script);
+      font-size: 2.8rem;
       background: var(--royal-gold);
       -webkit-background-clip: text;
       -webkit-text-fill-color: transparent;
-      margin-bottom: 8px;
+      margin-bottom: 4px;
+      line-height: 1.1;
     }
  
     .parents {
+      font-family: var(--font-serif);
       font-size: 0.85rem;
       color: #DDD;
       line-height: 1.6;
-      margin-bottom: 12px;
+      margin-bottom: 10px;
     }
  
     .ig-link {
       display: inline-block;
       color: var(--gold-solid);
-      font-size: 0.85rem;
+      font-size: 0.8rem;
+      font-family: var(--font-sans);
       text-decoration: none;
       letter-spacing: 1px;
       transition: color 0.3s;
@@ -508,10 +517,10 @@
     .ig-link:hover { color: var(--gold-light); }
  
     .and-sym {
-      font-family: 'Cinzel Decorative', serif;
-      font-size: 2.8rem;
+      font-family: var(--font-serif);
+      font-size: 2.5rem;
       color: var(--gold-solid);
-      margin: 25px 0;
+      margin: 20px 0;
       opacity: 0.9;
       animation: floating 3s ease-in-out infinite;
       line-height: 1;
@@ -519,16 +528,14 @@
  
     .event-bg {
       background: linear-gradient(180deg, rgba(40,0,0,0.6) 0%, rgba(80,0,0,0.4) 50%, rgba(40,0,0,0.6) 100%);
-      border-top: none;
-      border-bottom: none;
     }
  
     .event-card {
       background: var(--glass-bg);
       border: 1px solid var(--gold-solid);
       border-radius: 8px;
-      padding: 35px 20px;
-      margin-bottom: 30px;
+      padding: 30px 20px;
+      margin-bottom: 25px;
       box-shadow: 0 10px 30px rgba(0,0,0,0.5);
       position: relative;
     }
@@ -545,34 +552,36 @@
     .section-alt {
       background: rgba(30, 0, 0, 0.4);
       padding: 50px 20px;
-      margin: 0;
     }
     
     .event-type {
-      font-family: 'Cinzel Decorative', serif;
-      font-size: 1.3rem;
+      font-family: var(--font-serif);
+      font-size: 1.2rem;
       color: var(--gold-light);
       margin-bottom: 15px;
       letter-spacing: 2px;
+      text-transform: uppercase;
     }
  
     .event-detail {
+      font-family: var(--font-sans);
       font-size: 0.9rem;
       color: #DDD;
       margin-bottom: 10px;
+      line-height: 1.5;
     }
  
     .btn-map {
       display: inline-block;
-      margin-top: 15px;
-      padding: 12px 28px;
+      margin-top: 10px;
+      padding: 12px 26px;
       background: var(--royal-gold);
       color: #4A0000;
-      font-weight: 600;
+      font-weight: 700;
       text-decoration: none;
       border-radius: 6px;
-      font-size: 0.8rem;
-      font-family: 'Cinzel', serif;
+      font-size: 0.75rem;
+      font-family: var(--font-serif);
       letter-spacing: 2px;
       box-shadow: 0 0 15px rgba(212, 175, 55, 0.4);
       transition: all 0.3s ease;
@@ -696,13 +705,13 @@
       background: var(--glass-bg);
       border: 1px solid var(--gold-solid);
       border-radius: 8px;
-      padding: 30px 20px;
-      margin-top: 25px;
+      padding: 25px 20px;
+      margin-top: 20px;
       box-shadow: 0 8px 25px rgba(0,0,0,0.4);
     }
  
     .bank-name {
-      font-family: 'Cinzel', serif;
+      font-family: var(--font-serif);
       font-weight: bold;
       color: var(--gold-light);
       font-size: 1.1rem;
@@ -715,7 +724,7 @@
       letter-spacing: 3px;
       margin: 12px 0;
       color: #FFF;
-      font-family: monospace;
+      font-family: var(--font-sans);
     }
  
     .btn-copy {
@@ -726,7 +735,7 @@
       border-radius: 4px;
       cursor: pointer;
       font-size: 0.75rem;
-      font-family: 'Cinzel', serif;
+      font-family: var(--font-serif);
       letter-spacing: 1px;
       transition: all 0.3s;
     }
@@ -747,8 +756,8 @@
     }
 
     .form-box-title {
-      font-family: 'Cinzel', serif;
-      font-size: 1rem;
+      font-family: var(--font-serif);
+      font-size: 0.95rem;
       color: var(--gold-light);
       margin-bottom: 15px;
       letter-spacing: 1.5px;
@@ -762,11 +771,11 @@
     }
  
     .form-group label {
-      font-size: 0.8rem;
-      font-family: 'Cinzel', serif;
+      font-size: 0.75rem;
+      font-family: var(--font-serif);
       color: var(--gold-light);
       display: block;
-      margin-bottom: 8px;
+      margin-bottom: 6px;
       letter-spacing: 1px;
     }
  
@@ -775,7 +784,8 @@
       padding: 12px;
       border: 1px solid var(--gold-border);
       border-radius: 4px;
-      font-family: 'Montserrat', sans-serif;
+      font-family: var(--font-sans);
+      font-size: 0.85rem;
       background: rgba(30, 0, 0, 0.85);
       color: #FFF;
       outline: none;
@@ -794,12 +804,13 @@
       border: 1px solid var(--gold-solid);
       padding: 12px;
       border-radius: 4px;
-      font-family: 'Cinzel', serif;
+      font-family: var(--font-serif);
       font-weight: 700;
       letter-spacing: 2px;
       cursor: pointer;
       transition: all 0.3s;
       margin-top: 5px;
+      font-size: 0.8rem;
     }
 
     .btn-submit:hover {
@@ -833,7 +844,7 @@
       border-left: 4px solid var(--gold-solid);
       border-radius: 6px;
       padding: 15px;
-      margin-bottom: 15px;
+      margin-bottom: 12px;
       box-shadow: 0 4px 10px rgba(0,0,0,0.3);
     }
 
@@ -841,17 +852,18 @@
       display: flex;
       justify-content: space-between;
       align-items: center;
-      margin-bottom: 8px;
+      margin-bottom: 6px;
     }
 
     .wish-name {
-      font-family: 'Playfair Display', serif;
-      font-weight: 600;
-      font-size: 0.95rem;
+      font-family: var(--font-serif);
+      font-weight: 700;
+      font-size: 0.9rem;
       color: var(--gold-light);
     }
 
     .wish-text {
+      font-family: var(--font-sans);
       font-size: 0.85rem;
       color: #DDD;
       line-height: 1.5;
@@ -868,23 +880,26 @@
     }
 
     .footer-title {
-      font-family: 'Cinzel Decorative', serif;
-      font-size: 1.8rem;
+      font-family: var(--font-script);
+      font-size: 2.8rem;
       background: var(--royal-gold);
       -webkit-background-clip: text;
       -webkit-text-fill-color: transparent;
-      margin-bottom: 10px;
+      line-height: 1;
+      margin-bottom: 8px;
     }
 
     .footer-text {
+      font-family: var(--font-serif);
       font-size: 0.8rem;
       color: var(--gold-light);
       letter-spacing: 2px;
       text-transform: uppercase;
-      margin-bottom: 15px;
+      margin-bottom: 12px;
     }
 
     .footer-copyright {
+      font-family: var(--font-sans);
       font-size: 0.75rem;
       color: #888;
       margin-top: 20px;
@@ -956,24 +971,25 @@
       <div class="reveal">
         <div class="chinese-symbol" style="font-size: 2.5rem; margin-bottom: 10px;">囍</div>
         <h2 class="section-title">Sangjit Ceremony</h2>
+        <div class="section-subtitle">The Engagement Celebration</div>
       </div>
  
       <!-- Karikatur Couple -->
       <div class="reveal-zoom">
-        <img src="images/caricature.png" alt="Caricature of Sen-Sen & Christie" class="caricature-img" onerror="this.src='https://via.placeholder.com/380x300/4A0000/D4AF37?text=Sen-Sen+%26+Christie'">
+        <img src="images/caricature-ktlg.png" alt="Caricature of Sen-Sen & Christie" class="caricature-img" onerror="this.src='https://via.placeholder.com/380x300/4A0000/D4AF37?text=Sen-Sen+%26+Christie'">
       </div>
  
       <!-- Kutipan -->
       <div class="quote-box reveal">
         <p>
-          "Kebahagiaan duniawi terbesar yang dapat dialami manusia adalah perpaduan dari pernikahan yang mengikat dua hati yang saling mencintai menjadi satu."
+          "Two souls, one heart. Joined together in eternal harmony and blessings."
         </p>
-        <p style="margin-top: 10px; font-size: 0.8rem; color: var(--gold-solid); font-style: normal; font-family: 'Cinzel', serif;">(Sutta Pitaka - Digha Nikaya)</p>
+        <p style="margin-top: 10px; font-size: 0.8rem; color: var(--gold-solid); font-style: normal; font-family: var(--font-serif);">— Chinese Proverb —</p>
       </div>
  
       <!-- Countdown Timer -->
       <div class="reveal" style="margin: 40px 0 20px 0;">
-        <h3 style="font-family: 'Cinzel', serif; font-size: 1rem; color: var(--gold-light); letter-spacing: 2px; margin-bottom: 20px;">COUNTDOWN TO THE CELEBRATION</h3>
+        <h3 style="font-family: var(--font-serif); font-size: 0.9rem; color: var(--gold-light); letter-spacing: 2px; margin-bottom: 20px;">COUNTDOWN TO THE CELEBRATION</h3>
         <div class="countdown-grid">
           <div class="countdown-box">
             <div class="countdown-number" id="days">00</div>
@@ -1011,14 +1027,14 @@
  
       <!-- Groom -->
       <div class="couple-card reveal">
-        <img src="images/groom.jpeg" alt="Sen-Sen" class="couple-img" onerror="this.src='https://via.placeholder.com/170/4A0000/D4AF37?text=Sen-Sen'">
-        <div class="couple-name">Budiyanto S.Kom</div>
+        <img src="images/groom-ktlg.png" alt="Sen-Sen" class="couple-img" onerror="this.src='https://via.placeholder.com/170/4A0000/D4AF37?text=Sen-Sen'">
+        <div class="couple-name">Sen-Sen</div>
         <div class="parents">
           Son of <br>
-          <b style="color: #FFF;">Mr. Heryanto & Mrs. Lioe Ngiat Djin</b>
+          <b style="color: #FFF;">Mr. Anton & Mrs. Yuni</b>
         </div>
-        <a href="https://instagram.com/senijaya_boed" target="_blank" class="ig-link">
-          <i class="fab fa-instagram"></i> @senijaya_boed
+        <a href="https://instagram.com" target="_blank" class="ig-link">
+          <i class="fab fa-instagram"></i> @sensen
         </a>
       </div>
  
@@ -1026,14 +1042,14 @@
  
       <!-- Bride -->
       <div class="couple-card reveal">
-        <img src="images/bride.jpeg" alt="Christie" class="couple-img" onerror="this.src='https://via.placeholder.com/170/4A0000/D4AF37?text=Christie'">
-        <div class="couple-name">Christiana Surya Putri S.Kom</div>
+        <img src="images/bride-ktlg.png" alt="Christie" class="couple-img" onerror="this.src='https://via.placeholder.com/170/4A0000/D4AF37?text=Christie'">
+        <div class="couple-name">Christie</div>
         <div class="parents">
           Daughter of <br>
-          <b style="color: #FFF;">Mr. Suryawan & Mrs. Mardiana</b>
+          <b style="color: #FFF;">Mr. Priyanto & Late Mrs. Silvia</b>
         </div>
-        <a href="https://instagram.com/christie_queen" target="_blank" class="ig-link">
-          <i class="fab fa-instagram"></i> @christie_queen
+        <a href="https://instagram.com" target="_blank" class="ig-link">
+          <i class="fab fa-instagram"></i> @christie
         </a>
       </div>
     </section>
@@ -1051,7 +1067,7 @@
         <div class="event-detail"><b>Date:</b> Saturday, October 10th, 2026</div>
         <div class="event-detail"><b>Time:</b> 10:00 WIB</div>
         <div class="event-detail" style="margin-top: 15px; border-top: 1px dashed var(--gold-border); padding-top: 12px;">
-          <b style="color: var(--gold-light);">Location:</b><br>
+          <b style="color: var(--gold-light); font-family: var(--font-serif);">Location:</b><br>
           Grand Ballroom<br>
           <small style="color: #AAA;">Jl. Jendral Basuki Rahmat No. 189, Palembang</small>
         </div>
@@ -1073,11 +1089,11 @@
  
       <div class="slider-container reveal-zoom">
         <div class="slider-wrapper" id="slider-wrapper">
-          <div class="slide" onclick="openLightbox(this)"><img src="images/prewed1.jpeg" alt="Gallery 1" onerror="this.src='https://via.placeholder.com/600x380/4A0000/D4AF37?text=Photo+1'"></div>
-          <div class="slide" onclick="openLightbox(this)"><img src="images/prewed2.jpeg" alt="Gallery 2" onerror="this.src='https://via.placeholder.com/600x380/4A0000/D4AF37?text=Photo+2'"></div>
-          <div class="slide" onclick="openLightbox(this)"><img src="images/prewed3.jpeg" alt="Gallery 3" onerror="this.src='https://via.placeholder.com/600x380/4A0000/D4AF37?text=Photo+3'"></div>
-          <div class="slide" onclick="openLightbox(this)"><img src="images/prewed4.jpeg" alt="Gallery 4" onerror="this.src='https://via.placeholder.com/600x380/4A0000/D4AF37?text=Photo+4'"></div>
-          <div class="slide" onclick="openLightbox(this)"><img src="images/prewed5.jpeg" alt="Gallery 5" onerror="this.src='https://via.placeholder.com/600x380/4A0000/D4AF37?text=Photo+5'"></div>
+          <div class="slide" onclick="openLightbox(this)"><img src="images/prewed1-ktlg.png" alt="Gallery 1" onerror="this.src='https://via.placeholder.com/600x380/4A0000/D4AF37?text=Photo+1'"></div>
+          <div class="slide" onclick="openLightbox(this)"><img src="images/prewed2-ktlg.png" alt="Gallery 2" onerror="this.src='https://via.placeholder.com/600x380/4A0000/D4AF37?text=Photo+2'"></div>
+          <div class="slide" onclick="openLightbox(this)"><img src="images/prewed3-ktlg.png" alt="Gallery 3" onerror="this.src='https://via.placeholder.com/600x380/4A0000/D4AF37?text=Photo+3'"></div>
+          <div class="slide" onclick="openLightbox(this)"><img src="images/groom-ktlg.png" alt="Gallery 4" onerror="this.src='https://via.placeholder.com/600x380/4A0000/D4AF37?text=Photo+4'"></div>
+          <div class="slide" onclick="openLightbox(this)"><img src="images/bride-ktlg.png" alt="Gallery 5" onerror="this.src='https://via.placeholder.com/600x380/4A0000/D4AF37?text=Photo+5'"></div>
         </div>
         <button class="prev-btn" onclick="moveSlide(-1)">&#10094;</button>
         <button class="next-btn" onclick="moveSlide(1)">&#10095;</button>
@@ -1098,15 +1114,15 @@
       <div class="reveal">
         <h2 class="section-title">Sangjit Gift</h2>
         <div class="section-subtitle">Angpao / Digital Envelope</div>
-        <p style="font-size: 0.85rem; color: #BBB; line-height: 1.6; max-width: 450px; margin: 0 auto;">
+        <p style="font-size: 0.85rem; color: #BBB; line-height: 1.6; max-width: 450px; margin: 0 auto; font-family: var(--font-sans);">
           Your presence and blessings on our sangjit ceremony are the greatest gift of all. However, if you wish to give an angpao/gift, you may use the digital envelope below:
         </p>
       </div>
  
       <div class="gift-card reveal">
         <div class="bank-name">BANK BCA</div>
-        <div class="account-num" id="acc-num">8055304242</div>
-        <div style="font-size: 0.85rem; color: #AAA; margin-bottom: 15px;">a.n. Christiana Surya Putri</div>
+        <div class="account-num" id="acc-num">123456789</div>
+        <div style="font-size: 0.85rem; color: #AAA; margin-bottom: 15px; font-family: var(--font-sans);">a.n. Christie</div>
         <button class="btn-copy" onclick="copyAccount()"><i class="far fa-copy"></i> Copy Account Number</button>
       </div>
     </section>
@@ -1162,7 +1178,7 @@
       
       <!-- DAFTAR UCAPAN -->
       <div class="wishes-container reveal" id="wishes-container" style="margin-top: 30px; text-align: left;">
-        <h3 style="font-family: 'Cinzel', serif; font-size: 0.95rem; color: var(--gold-light); margin-bottom: 15px; text-align: center; letter-spacing: 2px;">WARM WISHES FROM GUESTS</h3>
+        <h3 style="font-family: var(--font-serif); font-size: 0.9rem; color: var(--gold-light); margin-bottom: 15px; text-align: center; letter-spacing: 2px;">WARM WISHES FROM GUESTS</h3>
         <div id="wishes-list" style="max-height: 350px; overflow-y: auto; padding-right: 5px;">
           <!-- Ucapan tamu akan muncul di sini secara otomatis -->
         </div>
@@ -1173,10 +1189,10 @@
       <div class="chinese-symbol" style="font-size: 2rem; margin-bottom: 5px;">囍</div>
       <div class="footer-title">Sen-Sen & Christie</div>
       <div class="footer-text">Thank You For Your Blessings</div>
-      <p style="font-size: 0.75rem; color: #AAA; font-style: italic;">"Two souls, one heart, forever in love."</p>
+      <p style="font-size: 0.75rem; color: #AAA; font-style: italic; font-family: var(--font-quote);">"Two souls, one heart, forever in love."</p>
       
       <div class="footer-copyright">
-        Created by 
+        Created with ❤️ by 
         <a href="https://instagram.com/chocookies.studio" target="_blank" class="studio-link">
           <i class="fab fa-instagram"></i> @chocookies.studio
         </a>
