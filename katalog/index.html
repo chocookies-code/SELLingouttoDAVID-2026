@@ -212,24 +212,22 @@
  
     /* GUEST BOX FIX - JARAK PADDING & MARGIN TERATUR */
     .guest-box {
-      display: flex !important;
-      flex-direction: column !important;
-      align-items: center !important;
-      justify-content: center !important;
-      background: rgba(5, 8, 12, 0.88) !important;
-      border: 1px solid #D4AF37 !important;
-      box-shadow: 0 10px 25px rgba(0,0,0,0.8) !important;
-      border-radius: 8px;
-      padding: 16px 28px !important;
-      margin: 6px 0 12px 0 !important;
-      max-width: 320px;
-      width: 88%;
-      position: relative;
-      z-index: 1005 !important;
-      visibility: visible !important;
-      opacity: 1 !important;
-      animation: borderGlow 3s infinite alternate;
-    }
+  display: flex !important;
+  flex-direction: column !important;
+  align-items: center !important;
+  justify-content: center !important;
+  background: rgba(5, 8, 12, 0.88) !important;
+  border: 1px solid #D4AF37 !important;
+  box-shadow: 0 10px 25px rgba(0,0,0,0.8) !important;
+  border-radius: 8px;
+  padding: 18px 28px !important;
+  margin-top: 15px !important;    /* Kasih jarak dari tanggal */
+  margin-bottom: 28px !important; /* KUNCI: Memberi jarak jauh ke tombol bawah */
+  max-width: 320px;
+  width: 88%;
+  position: relative;
+  z-index: 1005 !important;
+}
 
     .guest-box::before, .guest-box::after {
       content: '❖';
@@ -272,24 +270,24 @@
     }
  
     /* TOMBOL OPEN INVITATION FIX */
-    .btn-open {
-      background: var(--royal-gold);
-      color: #0A1118;
-      border: none;
-      padding: 14px 38px;
-      font-size: 0.85rem;
-      font-family: 'Cinzel', serif;
-      font-weight: 700;
-      letter-spacing: 3px;
-      border-radius: 4px;
-      cursor: pointer;
-      box-shadow: 0 6px 20px rgba(212, 175, 55, 0.5);
-      transition: all 0.3s ease;
-      position: relative;
-      overflow: hidden;
-      z-index: 1001;
-      margin-top: 4px;
-    }
+.btn-open {
+  background: var(--royal-gold);
+  color: #0A1118;
+  border: none;
+  padding: 14px 38px;
+  font-size: 0.85rem;
+  font-family: 'Cinzel', serif;
+  font-weight: 700;
+  letter-spacing: 3px;
+  border-radius: 4px;
+  cursor: pointer;
+  box-shadow: 0 6px 20px rgba(212, 175, 55, 0.5);
+  transition: all 0.3s ease;
+  position: relative;
+  overflow: hidden;
+  z-index: 1001;
+  margin-top: 10px !important; /* Tambahan jarak ekstra atas tombol */
+}
 
     .btn-open::after {
       content: '';
