@@ -43,7 +43,7 @@
       height: 100vh;
     }
 
-    /* BACKGROUND UTAMA DENGAN bg-main-ktlg.png */
+    /* BACKGROUND UTAMA */
     .bg-overlay {
       position: fixed;
       top: 0;
@@ -106,7 +106,7 @@
       100% { filter: drop-shadow(0 0 12px #FCF6BA) brightness(1.5); }
     }
 
-    /* COVER STYLING DENGAN BACKGROUND cover-ktlg.png */
+    /* COVER STYLING */
     #cover {
       position: fixed;
       top: 0;
@@ -204,7 +204,7 @@
       letter-spacing: 6px;
       font-size: 1rem;
       color: var(--gold-light);
-      margin-bottom: 30px;
+      margin-bottom: 25px;
       border-top: 1px solid var(--gold-border);
       border-bottom: 1px solid var(--gold-border);
       padding: 6px 20px;
@@ -212,14 +212,14 @@
     }
  
     .guest-box {
-      background: var(--glass-bg);
+      background: rgba(10, 17, 24, 0.75);
       border: 1px solid var(--gold-solid);
       box-shadow: inset 0 0 15px rgba(212, 175, 55, 0.2), 0 10px 25px rgba(0,0,0,0.6);
       border-radius: 4px;
-      padding: 20px 30px;
-      margin-bottom: 30px;
-      max-width: 340px;
-      width: 100%;
+      padding: 15px 25px;
+      margin-bottom: 25px;
+      max-width: 320px;
+      width: 90%;
       position: relative;
       animation: borderGlow 4s infinite alternate;
     }
@@ -235,12 +235,12 @@
 
     .dear-label {
       font-family: 'Cinzel', serif;
-      font-size: 0.85rem;
+      font-size: 0.9rem;
       color: var(--gold-light);
-      letter-spacing: 3px;
+      letter-spacing: 4px;
       text-transform: uppercase;
       margin-bottom: 4px;
-      font-weight: 600;
+      font-weight: 700;
     }
  
     .guest-box p {
@@ -248,12 +248,12 @@
       color: var(--text-muted);
       letter-spacing: 1px;
       text-transform: uppercase;
-      margin-bottom: 8px;
+      margin-bottom: 6px;
     }
  
     .guest-name {
       font-family: 'Playfair Display', serif;
-      font-size: 1.3rem;
+      font-size: 1.25rem;
       font-weight: 600;
       color: #FFF;
       letter-spacing: 1px;
@@ -890,7 +890,7 @@
 </head>
 <body class="no-scroll">
  
-  <!-- BACKGROUND UTAMA DENGAN bg-main-ktlg.png -->
+  <!-- BACKGROUND UTAMA -->
   <div class="bg-overlay"></div>
   <div class="bg-dark-layer"></div>
 
@@ -913,13 +913,14 @@
     <img class="lightbox-img" id="lightbox-img" src="" alt="Fullscreen Image">
   </div>
  
-  <!-- COVER / LOCK SCREEN DENGAN BACKGROUND cover-ktlg.png -->
+  <!-- COVER / LOCK SCREEN -->
   <div id="cover">
     <div class="royal-crest cover-animate">👑</div>
     <div class="cover-sub cover-animate">The Royal Wedding Of</div>
     <div class="cover-title cover-animate">Romeo & Juliet</div>
     <div class="cover-date cover-animate">13 . 10 . 2021</div>
  
+    <!-- AREA KOTAK "DEAR" DAN NAMA TAMU -->
     <div class="guest-box cover-animate">
       <div class="dear-label">DEAR</div>
       <p>Honorably Invited</p>
