@@ -68,7 +68,7 @@
       pointer-events: none;
     }
 
-    /* GLITTER / SPARKLES PARTICLES */
+    /* PARTICLES */
     #glitter-container {
       position: fixed;
       top: 0;
@@ -106,7 +106,7 @@
       100% { filter: drop-shadow(0 0 12px #FCF6BA) brightness(1.5); }
     }
 
-    /* COVER STYLING */
+    /* COVER STYLING FIX */
     #cover {
       position: fixed;
       top: 0;
@@ -162,9 +162,8 @@
     }
 
     @keyframes borderGlow {
-      0% { box-shadow: 0 0 10px rgba(212, 175, 55, 0.3); }
-      50% { box-shadow: 0 0 25px rgba(212, 175, 55, 0.7); }
-      100% { box-shadow: 0 0 10px rgba(212, 175, 55, 0.3); }
+      0% { box-shadow: 0 0 10px rgba(212, 175, 55, 0.5); }
+      100% { box-shadow: 0 0 25px rgba(212, 175, 55, 0.9); }
     }
  
     .royal-crest {
@@ -181,7 +180,7 @@
       font-family: 'Cinzel', serif;
       letter-spacing: 5px;
       font-size: 0.8rem;
-      color: var(--gold-light);
+      color: #FCF6BA;
       margin-bottom: 20px;
       text-transform: uppercase;
       text-shadow: 0 2px 4px rgba(0,0,0,0.8);
@@ -203,60 +202,69 @@
       font-family: 'Cinzel', serif;
       letter-spacing: 6px;
       font-size: 1rem;
-      color: var(--gold-light);
+      color: #FCF6BA;
       margin-bottom: 25px;
       border-top: 1px solid var(--gold-border);
       border-bottom: 1px solid var(--gold-border);
       padding: 6px 20px;
-      background: rgba(5, 8, 12, 0.3);
+      background: rgba(5, 8, 12, 0.5);
     }
  
+    /* FIXED GUEST BOX STYLE */
     .guest-box {
-      background: rgba(10, 17, 24, 0.75);
-      border: 1px solid var(--gold-solid);
-      box-shadow: inset 0 0 15px rgba(212, 175, 55, 0.2), 0 10px 25px rgba(0,0,0,0.6);
-      border-radius: 4px;
+      background: rgba(5, 8, 12, 0.85) !important;
+      border: 1px solid #D4AF37 !important;
+      box-shadow: 0 10px 25px rgba(0,0,0,0.8) !important;
+      border-radius: 6px;
       padding: 15px 25px;
       margin-bottom: 25px;
       max-width: 320px;
       width: 90%;
       position: relative;
-      animation: borderGlow 4s infinite alternate;
+      z-index: 1001;
+      display: block !important;
+      visibility: visible !important;
+      animation: borderGlow 3s infinite alternate;
     }
 
     .guest-box::before, .guest-box::after {
       content: '❖';
       position: absolute;
-      color: var(--gold-solid);
+      color: #D4AF37;
       font-size: 0.8rem;
     }
     .guest-box::before { top: 5px; left: 8px; }
     .guest-box::after { bottom: 5px; right: 8px; }
 
     .dear-label {
-      font-family: 'Cinzel', serif;
-      font-size: 0.9rem;
-      color: var(--gold-light);
+      font-family: 'Cinzel', serif !important;
+      font-size: 1.1rem !important;
+      color: #FCF6BA !important;
       letter-spacing: 4px;
       text-transform: uppercase;
       margin-bottom: 4px;
-      font-weight: 700;
+      font-weight: 700 !important;
+      display: block !important;
+      text-shadow: 0 2px 4px rgba(0,0,0,0.8);
     }
  
     .guest-box p {
-      font-size: 0.75rem;
-      color: var(--text-muted);
+      font-size: 0.75rem !important;
+      color: #E2C075 !important;
       letter-spacing: 1px;
       text-transform: uppercase;
       margin-bottom: 6px;
+      display: block !important;
     }
  
     .guest-name {
-      font-family: 'Playfair Display', serif;
-      font-size: 1.25rem;
-      font-weight: 600;
-      color: #FFF;
+      font-family: 'Playfair Display', serif !important;
+      font-size: 1.3rem !important;
+      font-weight: 600 !important;
+      color: #FFFFFF !important;
       letter-spacing: 1px;
+      display: block !important;
+      text-shadow: 0 2px 4px rgba(0,0,0,0.9);
     }
  
     .btn-open {
@@ -274,6 +282,7 @@
       transition: all 0.4s ease;
       position: relative;
       overflow: hidden;
+      z-index: 1001;
     }
 
     .btn-open::after {
@@ -899,7 +908,7 @@
  
   <!-- Audio Element -->
   <audio id="bg-music" loop preload="auto">
-    <source src="audio/song.mp3" type="audio/mpeg">
+    <source src="audio/song.html.mp3" type="audio/mpeg">
   </audio>
  
   <!-- Audio Toggle Button -->
@@ -920,11 +929,11 @@
     <div class="cover-title cover-animate">Romeo & Juliet</div>
     <div class="cover-date cover-animate">13 . 10 . 2021</div>
  
-    <!-- AREA KOTAK "DEAR" DAN NAMA TAMU -->
+    <!-- KOTAK DEAR DENGAN STYLING DIJAMIN MUNCUL TERANG -->
     <div class="guest-box cover-animate">
-      <div class="dear-label">DEAR</div>
+      <span class="dear-label">DEAR</span>
       <p>Honorably Invited</p>
-      <div class="guest-name" id="guest-name-display">Guest Name</div>
+      <span class="guest-name" id="guest-name-display">Guest Name</span>
     </div>
  
     <button class="btn-open cover-animate" onclick="openInvitation()">OPEN INVITATION</button>
@@ -1138,7 +1147,7 @@
         </form>
       </div>
 
-      <!-- FORM UCAPAN TERPISAH -->
+      <!-- FORM UCAPAN -->
       <div class="form-box reveal">
         <div class="form-box-title"><i class="far fa-comment-dots"></i> Send Warm Wishes</div>
         <form id="wishes-form" onsubmit="submitWish(event)">
@@ -1209,7 +1218,6 @@
       }
     }
 
-    // OPEN INVITATION & MUSIC
     function openInvitation() {
       document.getElementById('cover').classList.add('opened');
       document.body.classList.remove('no-scroll');
@@ -1235,7 +1243,6 @@
       }
     }
 
-    // SCROLL REVEAL FUNCTION
     function initScrollReveal() {
       const reveals = document.querySelectorAll('.reveal, .reveal-zoom');
       
@@ -1253,7 +1260,6 @@
       checkReveal();
     }
 
-    // COUNTDOWN TIMER
     const weddingDate = new Date("October 10, 2026 18:00:00").getTime();
     setInterval(function() {
       const now = new Date().getTime();
@@ -1267,7 +1273,6 @@
       }
     }, 1000);
 
-    // SLIDESHOW CAROUSEL
     let currentSlideIndex = 0;
     const slides = document.querySelectorAll('.slide');
     const dots = document.querySelectorAll('.dot');
@@ -1292,7 +1297,6 @@
       showSlide(currentSlideIndex);
     }
 
-    // LIGHTBOX
     function openLightbox(element) {
       const imgSrc = element.querySelector('img').src;
       document.getElementById('lightbox-img').src = imgSrc;
@@ -1303,14 +1307,12 @@
       document.getElementById('lightbox').style.display = 'none';
     }
 
-    // COPY ACCOUNT NUMBER
     function copyAccount() {
       const accNum = document.getElementById('acc-num').innerText;
       navigator.clipboard.writeText(accNum);
       alert("Account number copied to clipboard!");
     }
 
-    // FORM HANDLERS
     function submitRSVP(event) {
       event.preventDefault();
       const name = document.getElementById('rsvp-name').value;
@@ -1339,7 +1341,6 @@
       document.getElementById('wishes-form').reset();
     }
 
-    // INITIALIZATION
     window.onload = function() {
       createGlitter();
       
