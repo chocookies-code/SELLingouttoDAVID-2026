@@ -106,25 +106,24 @@
       100% { filter: drop-shadow(0 0 12px #FCF6BA) brightness(1.5); }
     }
 
-    /* COVER STYLING FIX */
+    /* COVER / LOCK SCREEN FIXED */
     #cover {
       position: fixed;
       top: 0;
       left: 0;
       width: 100%;
-      height: 100%;
+      height: 100vh;
       background-image: linear-gradient(rgba(5, 8, 12, 0.45), rgba(5, 8, 12, 0.45)), url('images/cover-ktlg.png');
       background-size: cover;
       background-position: center;
       background-repeat: no-repeat;
       backdrop-filter: blur(2px);
       z-index: 1000;
-      display: flex;
-      flex-direction: column;
-      justify-content: center;
-      align-items: center;
+      display: flex !important;
+      flex-direction: column !important;
+      justify-content: center !important;
+      align-items: center !important;
       text-align: center;
-      color: #fff;
       padding: 20px;
       transition: transform 1s cubic-bezier(0.77, 0, 0.175, 1), opacity 1s ease-in-out;
     }
@@ -203,27 +202,31 @@
       letter-spacing: 6px;
       font-size: 1rem;
       color: #FCF6BA;
-      margin-bottom: 25px;
+      margin-bottom: 15px;
       border-top: 1px solid var(--gold-border);
       border-bottom: 1px solid var(--gold-border);
       padding: 6px 20px;
       background: rgba(5, 8, 12, 0.5);
     }
  
-    /* FIXED GUEST BOX STYLE */
+    /* GUEST BOX FIXED - DIJAMIN TAMPIL */
     .guest-box {
+      display: flex !important;
+      flex-direction: column !important;
+      align-items: center !important;
+      justify-content: center !important;
       background: rgba(5, 8, 12, 0.85) !important;
       border: 1px solid #D4AF37 !important;
       box-shadow: 0 10px 25px rgba(0,0,0,0.8) !important;
       border-radius: 6px;
-      padding: 15px 25px;
-      margin-bottom: 25px;
+      padding: 15px 25px !important;
+      margin-bottom: 20px !important;
       max-width: 320px;
       width: 90%;
       position: relative;
-      z-index: 1001;
-      display: block !important;
+      z-index: 1005 !important;
       visibility: visible !important;
+      opacity: 1 !important;
       animation: borderGlow 3s infinite alternate;
     }
 
@@ -908,7 +911,7 @@
  
   <!-- Audio Element -->
   <audio id="bg-music" loop preload="auto">
-    <source src="audio/song.html.mp3" type="audio/mpeg">
+    <source src="audio/song.mp3" type="audio/mpeg">
   </audio>
  
   <!-- Audio Toggle Button -->
@@ -925,11 +928,11 @@
   <!-- COVER / LOCK SCREEN -->
   <div id="cover">
     <div class="royal-crest cover-animate">👑</div>
-    <div class="cover-sub cover-animate">The Royal Wedding Of</div>
-    <div class="cover-title cover-animate">Romeo & Juliet</div>
+    <div class="cover-sub cover-animate">THE ROYAL WEDDING OF</div>
+    <div class="cover-title cover-animate">ROMEO & JULIET</div>
     <div class="cover-date cover-animate">13 . 10 . 2021</div>
  
-    <!-- KOTAK DEAR DENGAN STYLING DIJAMIN MUNCUL TERANG -->
+    <!-- KOTAK DEAR (NAMA TAMU) -->
     <div class="guest-box cover-animate">
       <span class="dear-label">DEAR</span>
       <p>Honorably Invited</p>
@@ -1341,7 +1344,7 @@
       document.getElementById('wishes-form').reset();
     }
 
-    window.onload = function() {
+    window.addEventListener('DOMContentLoaded', () => {
       createGlitter();
       
       const urlParams = new URLSearchParams(window.location.search);
@@ -1349,7 +1352,7 @@
       if (guest) {
         document.getElementById('guest-name-display').innerText = decodeURIComponent(guest);
       }
-    };
+    });
   </script>
 </body>
 </html>
