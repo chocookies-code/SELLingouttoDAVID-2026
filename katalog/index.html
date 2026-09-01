@@ -19,8 +19,8 @@
       --royal-gold: linear-gradient(135deg, #BF953F 0%, #FCF6BA 25%, #B38728 50%, #FBF5B7 75%, #AA771C 100%);
       --gold-solid: #D4AF37;
       --gold-light: #F3E5AB;
-      --gold-border: rgba(212, 175, 55, 0.5);
-      --glass-bg: rgba(10, 17, 24, 0.75);
+      --gold-border: rgba(212, 175, 55, 0.6);
+      --glass-bg: rgba(10, 17, 24, 0.85);
       --text-light: #F5F5F7;
       --text-muted: #C5A059;
     }
@@ -106,7 +106,7 @@
       100% { filter: drop-shadow(0 0 12px #FCF6BA) brightness(1.5); }
     }
 
-    /* COVER / LOCK SCREEN FIXED - PERBAIKAN TOTAL LAYOUT */
+    /* COVER / LOCK SCREEN FIXED */
     #cover {
       position: fixed;
       top: 0;
@@ -125,7 +125,7 @@
       align-items: center !important;
       text-align: center;
       padding: 30px 20px;
-      gap: 16px; /* Memberikan jarak otomatis antar setiap elemen */
+      gap: 16px;
       transition: transform 1s cubic-bezier(0.77, 0, 0.175, 1), opacity 1s ease-in-out;
     }
  
@@ -161,11 +161,6 @@
       100% { transform: translateY(0px); }
     }
 
-    @keyframes borderGlow {
-      0% { box-shadow: 0 0 10px rgba(212, 175, 55, 0.5); }
-      100% { box-shadow: 0 0 25px rgba(212, 175, 55, 0.9); }
-    }
- 
     .royal-crest {
       font-size: 2.2rem;
       background: var(--royal-gold);
@@ -208,26 +203,27 @@
       border-bottom: 1px solid var(--gold-border);
       padding: 6px 24px;
       background: rgba(5, 8, 12, 0.6);
+      border-radius: 4px;
     }
  
-    /* GUEST BOX FIX - JARAK PADDING & MARGIN TERATUR */
+    /* GUEST BOX FIX */
     .guest-box {
-  display: flex !important;
-  flex-direction: column !important;
-  align-items: center !important;
-  justify-content: center !important;
-  background: rgba(5, 8, 12, 0.88) !important;
-  border: 1px solid #D4AF37 !important;
-  box-shadow: 0 10px 25px rgba(0,0,0,0.8) !important;
-  border-radius: 8px;
-  padding: 18px 28px !important;
-  margin-top: 15px !important;    /* Kasih jarak dari tanggal */
-  margin-bottom: 28px !important; /* KUNCI: Memberi jarak jauh ke tombol bawah */
-  max-width: 320px;
-  width: 88%;
-  position: relative;
-  z-index: 1005 !important;
-}
+      display: flex !important;
+      flex-direction: column !important;
+      align-items: center !important;
+      justify-content: center !important;
+      background: rgba(5, 8, 12, 0.88) !important;
+      border: 1px solid var(--gold-solid) !important;
+      box-shadow: 0 10px 25px rgba(0,0,0,0.8), inset 0 0 10px rgba(212, 175, 55, 0.2) !important;
+      border-radius: 8px;
+      padding: 18px 28px !important;
+      margin-top: 15px !important;
+      margin-bottom: 28px !important;
+      max-width: 320px;
+      width: 88%;
+      position: relative;
+      z-index: 1005 !important;
+    }
 
     .guest-box::before, .guest-box::after {
       content: '❖';
@@ -270,24 +266,24 @@
     }
  
     /* TOMBOL OPEN INVITATION FIX */
-.btn-open {
-  background: var(--royal-gold);
-  color: #0A1118;
-  border: none;
-  padding: 14px 38px;
-  font-size: 0.85rem;
-  font-family: 'Cinzel', serif;
-  font-weight: 700;
-  letter-spacing: 3px;
-  border-radius: 4px;
-  cursor: pointer;
-  box-shadow: 0 6px 20px rgba(212, 175, 55, 0.5);
-  transition: all 0.3s ease;
-  position: relative;
-  overflow: hidden;
-  z-index: 1001;
-  margin-top: 10px !important; /* Tambahan jarak ekstra atas tombol */
-}
+    .btn-open {
+      background: var(--royal-gold);
+      color: #0A1118;
+      border: 1px solid var(--gold-solid);
+      padding: 14px 38px;
+      font-size: 0.85rem;
+      font-family: 'Cinzel', serif;
+      font-weight: 700;
+      letter-spacing: 3px;
+      border-radius: 6px;
+      cursor: pointer;
+      box-shadow: 0 6px 20px rgba(212, 175, 55, 0.5);
+      transition: all 0.3s ease;
+      position: relative;
+      overflow: hidden;
+      z-index: 1001;
+      margin-top: 10px !important;
+    }
 
     .btn-open::after {
       content: '';
@@ -337,9 +333,9 @@
     .container {
       max-width: 600px;
       margin: 0 auto;
-      background-color: rgba(10, 17, 24, 0.72);
+      background-color: rgba(10, 17, 24, 0.85);
       min-height: 100vh;
-      box-shadow: 0 0 50px rgba(0,0,0,0.8);
+      box-shadow: 0 0 50px rgba(0,0,0,0.9);
       position: relative;
       border-left: 1px solid var(--gold-border);
       border-right: 1px solid var(--gold-border);
@@ -376,7 +372,7 @@
       height: auto;
       display: block;
       margin: 0 auto 25px auto;
-      border-radius: 8px;
+      border-radius: 12px;
       border: 1px solid var(--gold-solid);
       padding: 8px;
       background: rgba(10, 17, 24, 0.6);
@@ -384,15 +380,19 @@
       animation: floating 4s ease-in-out infinite;
     }
 
+    /* BORDER FIX: Quote Box */
     .quote-box {
       background: var(--glass-bg);
-      border-left: 3px solid var(--gold-solid);
-      border-right: 3px solid var(--gold-solid);
+      border: 1px solid var(--gold-border);
+      border-left: 4px solid var(--gold-solid);
+      border-right: 4px solid var(--gold-solid);
+      border-radius: 8px;
       padding: 20px 25px;
       margin: 20px 0;
       font-family: 'Playfair Display', serif;
       font-style: italic;
       color: var(--gold-light);
+      box-shadow: 0 5px 15px rgba(0,0,0,0.3);
     }
  
     .countdown-grid {
@@ -402,19 +402,21 @@
       margin-top: 20px;
     }
  
+    /* BORDER FIX: Countdown Box */
     .countdown-box {
-      background: rgba(5, 8, 12, 0.75);
-      border: 1px solid var(--gold-solid);
-      border-radius: 4px;
+      background: rgba(5, 8, 12, 0.85);
+      border: 1px solid var(--gold-border);
+      border-radius: 8px;
       padding: 12px 8px;
       min-width: 65px;
       text-align: center;
       box-shadow: 0 4px 15px rgba(0,0,0,0.5);
-      transition: transform 0.3s;
+      transition: all 0.3s ease;
     }
 
     .countdown-box:hover {
       transform: translateY(-4px);
+      border-color: var(--gold-solid);
     }
  
     .countdown-number {
@@ -434,19 +436,20 @@
       margin-top: 4px;
     }
  
+    /* BORDER FIX: Save Date Button */
     .btn-save-date {
       display: inline-flex;
       align-items: center;
       justify-content: center;
       gap: 10px;
-      background: rgba(5, 8, 12, 0.6);
+      background: rgba(5, 8, 12, 0.8);
       color: var(--gold-light) !important;
       font-family: 'Cinzel', serif;
       font-size: 0.8rem;
       font-weight: 600;
       letter-spacing: 2px;
       padding: 14px 28px;
-      border-radius: 2px;
+      border-radius: 6px;
       border: 1px solid var(--gold-solid);
       text-decoration: none !important;
       margin-top: 25px;
@@ -524,10 +527,11 @@
       border-bottom: 1px solid var(--gold-border);
     }
  
+    /* BORDER FIX: Event Card */
     .event-card {
       background: var(--glass-bg);
-      border: 1px solid var(--gold-border);
-      border-radius: 4px;
+      border: 1px solid var(--gold-solid);
+      border-radius: 8px;
       padding: 35px 20px;
       margin-bottom: 30px;
       box-shadow: 0 10px 30px rgba(0,0,0,0.5);
@@ -537,8 +541,9 @@
     .event-card::before {
       content: '';
       position: absolute;
-      top: 5px; left: 5px; right: 5px; bottom: 5px;
-      border: 1px solid rgba(212, 175, 55, 0.2);
+      top: 6px; left: 6px; right: 6px; bottom: 6px;
+      border: 1px solid rgba(212, 175, 55, 0.3);
+      border-radius: 4px;
       pointer-events: none;
     }
  
@@ -570,24 +575,25 @@
       color: #0A1118;
       font-weight: 600;
       text-decoration: none;
-      border-radius: 2px;
+      border-radius: 6px;
       font-size: 0.8rem;
       font-family: 'Cinzel', serif;
       letter-spacing: 2px;
       box-shadow: 0 0 15px rgba(212, 175, 55, 0.4);
       transition: all 0.3s ease;
+      border: 1px solid var(--gold-solid);
     }
 
     .btn-map:hover {
       box-shadow: 0 0 25px rgba(212, 175, 55, 0.8);
     }
  
-    /* SLIDESHOW STYLES */
+    /* SLIDESHOW STYLES & BORDER FIX */
     .slider-container {
       position: relative;
       max-width: 100%;
       margin: 0 auto;
-      border-radius: 4px;
+      border-radius: 8px;
       overflow: hidden;
       box-shadow: 0 10px 30px rgba(0, 0, 0, 0.7);
       border: 1px solid var(--gold-solid);
@@ -621,9 +627,10 @@
       position: absolute;
       top: 50%;
       transform: translateY(-50%);
-      background: rgba(5, 8, 12, 0.7);
+      background: rgba(5, 8, 12, 0.8);
       color: var(--gold-solid);
       border: 1px solid var(--gold-solid);
+      border-radius: 4px;
       font-size: 1.2rem;
       padding: 12px 16px;
       cursor: pointer;
@@ -679,6 +686,7 @@
       max-width: 90%;
       max-height: 85vh;
       border: 1px solid var(--gold-solid);
+      border-radius: 6px;
       box-shadow: 0 0 30px rgba(212,175,55,0.4);
     }
 
@@ -691,10 +699,11 @@
       cursor: pointer;
     }
  
+    /* BORDER FIX: Gift Card */
     .gift-card {
       background: var(--glass-bg);
-      border: 1px solid var(--gold-border);
-      border-radius: 4px;
+      border: 1px solid var(--gold-solid);
+      border-radius: 8px;
       padding: 30px 20px;
       margin-top: 25px;
       box-shadow: 0 8px 25px rgba(0,0,0,0.4);
@@ -722,7 +731,7 @@
       color: var(--gold-solid);
       border: 1px solid var(--gold-solid);
       padding: 8px 20px;
-      border-radius: 2px;
+      border-radius: 4px;
       cursor: pointer;
       font-size: 0.75rem;
       font-family: 'Cinzel', serif;
@@ -735,13 +744,13 @@
       color: #0A1118;
     }
  
-    /* FORM RSVP & WISHES */
+    /* BORDER FIX: Form RSVP & Wishes */
     .form-box {
       text-align: left;
       background: var(--glass-bg);
       padding: 25px 20px;
-      border: 1px solid var(--gold-border);
-      border-radius: 4px;
+      border: 1px solid var(--gold-solid);
+      border-radius: 8px;
       margin-bottom: 25px;
       box-shadow: 0 8px 20px rgba(0,0,0,0.4);
     }
@@ -773,26 +782,27 @@
     .form-group input, .form-group select, .form-group textarea {
       width: 100%;
       padding: 12px;
-      border: 1px solid rgba(212, 175, 55, 0.3);
-      border-radius: 2px;
+      border: 1px solid var(--gold-border);
+      border-radius: 4px;
       font-family: 'Montserrat', sans-serif;
       background: rgba(5, 8, 12, 0.85);
       color: #FFF;
       outline: none;
-      transition: border 0.3s;
+      transition: border 0.3s, box-shadow 0.3s;
     }
 
     .form-group input:focus, .form-group select:focus, .form-group textarea:focus {
       border-color: var(--gold-solid);
+      box-shadow: 0 0 8px rgba(212, 175, 55, 0.4);
     }
  
     .btn-submit {
       width: 100%;
       background: var(--royal-gold);
       color: #0A1118;
-      border: none;
+      border: 1px solid var(--gold-solid);
       padding: 12px;
-      border-radius: 2px;
+      border-radius: 4px;
       font-family: 'Cinzel', serif;
       font-weight: 700;
       letter-spacing: 2px;
@@ -813,6 +823,7 @@
       height: 48px;
       background: var(--royal-gold);
       color: #0A1118;
+      border: 1px solid var(--gold-solid);
       border-radius: 50%;
       display: flex;
       align-items: center;
@@ -825,26 +836,31 @@
 
     #music-btn:hover { transform: scale(1.1); }
 
+    /* BORDER FIX: Wish Card */
     .wish-card {
-      background: rgba(5, 8, 12, 0.75);
-      border-left: 3px solid var(--gold-solid);
-      border-radius: 2px;
+      background: rgba(5, 8, 12, 0.85);
+      border: 1px solid var(--gold-border);
+      border-left: 4px solid var(--gold-solid);
+      border-radius: 6px;
       padding: 15px;
       margin-bottom: 15px;
       box-shadow: 0 4px 10px rgba(0,0,0,0.3);
     }
+
     .wish-header {
       display: flex;
       justify-content: space-between;
       align-items: center;
       margin-bottom: 8px;
     }
+
     .wish-name {
       font-family: 'Playfair Display', serif;
       font-weight: 600;
       font-size: 0.95rem;
       color: var(--gold-light);
     }
+
     .wish-text {
       font-size: 0.85rem;
       color: #DDD;
@@ -1316,18 +1332,55 @@
       alert("Account number copied to clipboard!");
     }
 
+    // SIMPAN RSVP KE LOCALSTORAGE
     function submitRSVP(event) {
       event.preventDefault();
       const name = document.getElementById('rsvp-name').value;
       const status = document.getElementById('rsvp-status').value;
+      const guests = document.getElementById('rsvp-guests').value;
+
+      const rsvpData = {
+        name: name,
+        status: status,
+        guests: guests,
+        date: new Date().toLocaleString()
+      };
+
+      let currentRSVP = JSON.parse(localStorage.getItem('rsvpList')) || [];
+      currentRSVP.push(rsvpData);
+      localStorage.setItem('rsvpList', JSON.stringify(currentRSVP));
+
       alert(`Thank you, ${name}! Your RSVP status (${status}) has been recorded.`);
       document.getElementById('rsvp-form').reset();
+    }
+
+    // SIMPAN & TAMPILKAN WISHES DARI LOCALSTORAGE
+    function loadWishes() {
+      const currentWishes = JSON.parse(localStorage.getItem('wishesList')) || [];
+      const wishesList = document.getElementById('wishes-list');
+      
+      currentWishes.forEach(wish => {
+        const wishCard = document.createElement('div');
+        wishCard.className = 'wish-card';
+        wishCard.innerHTML = `
+          <div class="wish-header">
+            <span class="wish-name">${wish.name}</span>
+          </div>
+          <div class="wish-text">${wish.message}</div>
+        `;
+        wishesList.appendChild(wishCard);
+      });
     }
 
     function submitWish(event) {
       event.preventDefault();
       const name = document.getElementById('wish-name').value;
       const message = document.getElementById('wish-message').value;
+
+      const wishData = { name, message };
+      let currentWishes = JSON.parse(localStorage.getItem('wishesList')) || [];
+      currentWishes.unshift(wishData);
+      localStorage.setItem('wishesList', JSON.stringify(currentWishes));
 
       const wishesList = document.getElementById('wishes-list');
       const newWish = document.createElement('div');
@@ -1346,6 +1399,7 @@
 
     window.addEventListener('DOMContentLoaded', () => {
       createGlitter();
+      loadWishes();
       
       const urlParams = new URLSearchParams(window.location.search);
       const guest = urlParams.get('to');
