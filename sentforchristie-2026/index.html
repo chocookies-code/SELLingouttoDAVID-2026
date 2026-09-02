@@ -65,7 +65,7 @@
       pointer-events: none;
     }
 
-    /* GLOBAL PARTICLES (Di atas cover & konten utama) */
+    /* GLOBAL PARTICLES (Efek Glitter) */
     #glitter-container {
       position: fixed;
       top: 0;
@@ -169,25 +169,24 @@
     }
 
     .cover-sub {
-      font-family: 'Cormorant Garamond', serif;
-      letter-spacing: 4px;
-      font-size: 1rem;
+      font-family: 'Cinzel', serif;
+      letter-spacing: 3px;
+      font-size: 0.9rem;
       color: #FCF6BA;
       margin-bottom: 0px;
       text-transform: uppercase;
-      font-style: italic;
       text-shadow: 0 2px 4px rgba(0,0,0,0.8);
     }
  
     .cover-title {
       font-family: 'Cormorant Garamond', serif;
-      font-size: 3rem;
+      font-size: 2.8rem;
       font-weight: 700;
       background: var(--royal-gold);
       -webkit-background-clip: text;
       -webkit-text-fill-color: transparent;
       margin-bottom: 0px;
-      letter-spacing: 1px;
+      letter-spacing: 2px;
       padding: 0 10px;
       filter: drop-shadow(0 4px 10px rgba(0,0,0,0.8));
     }
@@ -241,14 +240,6 @@
       margin-bottom: 4px;
       font-weight: 600;
       text-shadow: 0 2px 4px rgba(0,0,0,0.8);
-    }
- 
-    .guest-box p {
-      font-size: 0.75rem;
-      color: #E2C075;
-      letter-spacing: 1px;
-      text-transform: uppercase;
-      margin-bottom: 6px;
     }
  
     .guest-name {
@@ -523,7 +514,6 @@
       background: rgba(255, 255, 255, 0.01);
     }
  
-    /* CARD SANGJIT YANG MENIRU PERSIS GAMBAR REFERENSI */
     .sangjit-card-ref {
       background-color: #FBF7EE;
       color: #332211;
@@ -1008,7 +998,7 @@
   <div class="bg-overlay"></div>
   <div class="bg-dark-layer"></div>
 
-  <!-- ROYAL GLITTER & SPARKLES PARTICLES (Aktif di Cover dan Halaman Utama) -->
+  <!-- ROYAL GLITTER & SPARKLES PARTICLES -->
   <div id="glitter-container"></div>
  
   <!-- Audio Element -->
@@ -1031,9 +1021,8 @@
   <div id="cover">
     <div class="chinese-symbol cover-animate">囍</div>
     
-    <!-- PERMINTAAN: Teks Opening Cover Diubah -->
-    <div class="cover-sub cover-animate" style="letter-spacing: 3px; font-style: normal; font-family: 'Cinzel', serif; font-size: 0.9rem;">THE SANGJIT CEREMONY OF</div>
-    <div class="cover-title cover-animate" style="font-family: 'Cormorant Garamond', serif; font-size: 2.8rem; letter-spacing: 2px;">SEN-SEN & CHRISTIE</div>
+    <div class="cover-sub cover-animate">THE SANGJIT CEREMONY OF</div>
+    <div class="cover-title cover-animate">SEN-SEN & CHRISTIE</div>
     
     <div class="cover-date cover-animate">18 . 09 . 2026</div>
  
@@ -1182,7 +1171,7 @@
         </div>
 
         <div class="ref-location-details">
-          <div class="ref-location-title">Grand Ballroom</div>
+          <div class="ref-location-title">Ocean Ballroom - Aston Hotel Palembang</div>
           <div class="ref-location-address">Jl. Jendral Basuki Rahmat No. 189, Palembang<br><strong style="color: #8B0000; font-size: 0.95rem; font-weight: 600;">10.00 AM</strong></div>
         </div>
       </div>
@@ -1310,6 +1299,9 @@
   </div>
 
   <script>
+    // URL Google Apps Script Anda
+    const scriptURL = 'https://script.google.com/macros/s/AKfycbytTsWJ1PSi6_jaM-2Z1Ic39bIlPbV1urzf2iFQa0yC_E3ppK06HS1Myv3veN6rcU_K/exec';
+
     function createGlitter() {
       const container = document.getElementById('glitter-container');
       const glitterCount = 45;
@@ -1441,9 +1433,12 @@
       const status = document.getElementById('rsvp-status').value;
       const guests = document.getElementById('rsvp-guests').value;
 
-      const scriptURL = 'MASUKKAN_URL_WEB_APP_GOOGLE_SCRIPT_ANDA_DI_SINI';
-
-      const formData = { name, status, guests };
+      const formData = { 
+        type: 'rsvp', 
+        name, 
+        status, 
+        guests 
+      };
 
       fetch(scriptURL, {
         method: 'POST',
@@ -1484,14 +1479,31 @@
       const name = document.getElementById('wish-name').value;
       const message = document.getElementById('wish-message').value;
 
-      const wishData = { name, message };
-      let currentWishes = JSON.parse(localStorage.getItem('wishesList')) || [];
-      currentWishes.unshift(wishData);
-      localStorage.setItem('wishesList', JSON.stringify(currentWishes));
+      const wishData = { 
+        type: 'wish', 
+        name, 
+        message 
+      };
 
-      loadWishes();
-      alert("Thank you for your warm wishes!");
-      document.getElementById('wishes-form').reset();
+      fetch(scriptURL, {
+        method: 'POST',
+        mode: 'no-cors',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(wishData)
+      })
+      .then(() => {
+        let currentWishes = JSON.parse(localStorage.getItem('wishesList')) || [];
+        currentWishes.unshift({ name, message });
+        localStorage.setItem('wishesList', JSON.stringify(currentWishes));
+
+        loadWishes();
+        alert("Thank you for your warm wishes!");
+        document.getElementById('wishes-form').reset();
+      })
+      .catch(error => {
+        console.log('Error!', error.message);
+        alert('Failed to send wish.');
+      });
     }
 
     window.addEventListener('DOMContentLoaded', () => {
