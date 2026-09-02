@@ -330,7 +330,8 @@
     .container {
       max-width: 600px;
       margin: 0 auto;
-      background: linear-gradient(rgba(40, 0, 0, 0.25), rgba(20, 0, 0, 0.30)), url('images/main-bg.png') center/cover fixed no-repeat;
+      /* Background foto bg-main.png ditumpuk dengan warna merah transparan tipis agar menyatu tapi fotonya kelihatan jelas */
+      background: linear-gradient(rgba(74, 0, 0, 0.6), rgba(40, 0, 0, 0.65)), url('images/bg-main.png') center/cover fixed no-repeat;
       min-height: 100vh;
       box-shadow: 0 0 50px rgba(0,0,0,0.9);
       position: relative;
@@ -1314,8 +1315,7 @@
       document.getElementById('lightbox').style.display = 'none';
     }
 
-    function copyAccount() {
-      const accNum = document.getElementById('acc-num').innerText;
+    text = document.getElementById('acc-num').innerText;
       navigator.clipboard.writeText(accNum);
       alert("Account number copied to clipboard!");
     }
@@ -1370,7 +1370,7 @@
 
       const wishesList = document.getElementById('wishes-list');
       const newWish = document.createElement('div');
-      newWish.className = 'wish-card';
+      newWish.className5 = 'wish-card';
       newWish.innerHTML = `
         <div class="wish-header">
           <span class="wish-name">${name}</span>
