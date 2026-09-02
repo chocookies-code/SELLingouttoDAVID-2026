@@ -8,7 +8,7 @@
   <!-- Google Fonts & FontAwesome -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Cinzel+Decorative:wght@700&family=Cinzel:wght@400;600;700&family=Playfair+Display:ital,wght@0,400;0,600;1,400&family=Montserrat:wght@300;400;500;600&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Cinzel+Decorative:wght@700&family=Cinzel:wght@400;500;600;700&family=Cormorant+Garamond:ital,wght@0,400;0,600;0,700;1,400&family=Great+Vibes&family=Montserrat:wght@300;400;500;600&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
  
   <style>
@@ -32,7 +32,7 @@
     }
  
     body {
-      font-family: 'Montserrat', sans-serif;
+      font-family: 'Cormorant Garamond', serif;
       background-color: var(--chinese-red-dark);
       color: var(--text-light);
       overflow-x: hidden;
@@ -169,31 +169,33 @@
     }
 
     .cover-sub {
-      font-family: 'Cinzel', serif;
-      letter-spacing: 5px;
-      font-size: 0.85rem;
+      font-family: 'Cormorant Garamond', serif;
+      letter-spacing: 4px;
+      font-size: 1rem;
       color: #FCF6BA;
       margin-bottom: 0px;
       text-transform: uppercase;
+      font-style: italic;
       text-shadow: 0 2px 4px rgba(0,0,0,0.8);
     }
  
     .cover-title {
-      font-family: 'Cinzel Decorative', serif;
-      font-size: 2.4rem;
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 3rem;
+      font-weight: 700;
       background: var(--royal-gold);
       -webkit-background-clip: text;
       -webkit-text-fill-color: transparent;
       margin-bottom: 0px;
-      letter-spacing: 2px;
+      letter-spacing: 1px;
       padding: 0 10px;
       filter: drop-shadow(0 4px 10px rgba(0,0,0,0.8));
     }
  
     .cover-date {
-      font-family: 'Cinzel', serif;
-      letter-spacing: 6px;
-      font-size: 0.95rem;
+      font-family: 'Cormorant Garamond', serif;
+      letter-spacing: 4px;
+      font-size: 1.1rem;
       color: #FCF6BA;
       margin-bottom: 8px;
       border-top: 1px solid var(--gold-border);
@@ -233,19 +235,19 @@
     .guest-box::after { bottom: 6px; right: 10px; }
 
     .dear-label {
-      font-family: 'Cinzel', serif !important;
-      font-size: 1rem !important;
+      font-family: 'Cormorant Garamond', serif !important;
+      font-size: 1.1rem !important;
       color: #FCF6BA !important;
-      letter-spacing: 4px;
+      letter-spacing: 3px;
       text-transform: uppercase;
       margin-bottom: 4px;
-      font-weight: 700 !important;
+      font-weight: 600 !important;
       display: block !important;
       text-shadow: 0 2px 4px rgba(0,0,0,0.8);
     }
  
     .guest-box p {
-      font-size: 0.7rem !important;
+      font-size: 0.75rem !important;
       color: #E2C075 !important;
       letter-spacing: 1px;
       text-transform: uppercase;
@@ -254,9 +256,9 @@
     }
  
     .guest-name {
-      font-family: 'Playfair Display', serif !important;
-      font-size: 1.35rem !important;
-      font-weight: 600 !important;
+      font-family: 'Cormorant Garamond', serif !important;
+      font-size: 1.5rem !important;
+      font-weight: 700 !important;
       color: #FFFFFF !important;
       letter-spacing: 1px;
       display: block !important;
@@ -269,8 +271,8 @@
       color: #4A0000;
       border: 1px solid var(--gold-solid);
       padding: 14px 38px;
-      font-size: 0.85rem;
-      font-family: 'Cinzel', serif;
+      font-size: 0.9rem;
+      font-family: 'Cormorant Garamond', serif;
       font-weight: 700;
       letter-spacing: 3px;
       border-radius: 6px;
@@ -347,21 +349,23 @@
     }
  
     .section-title {
-      font-family: 'Cinzel Decorative', serif;
+      font-family: 'Cormorant Garamond', serif;
       background: var(--royal-gold);
       -webkit-background-clip: text;
       -webkit-text-fill-color: transparent;
-      font-size: 2rem;
+      font-size: 2.6rem;
+      font-weight: 700;
       margin-bottom: 8px;
       letter-spacing: 2px;
     }
  
     .section-subtitle {
-      font-family: 'Cinzel', serif;
-      font-size: 0.85rem;
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.1rem;
       color: var(--text-muted);
       text-transform: uppercase;
       letter-spacing: 3px;
+      font-style: italic;
       margin-bottom: 40px;
     }
 
@@ -387,8 +391,9 @@
       border-radius: 8px;
       padding: 20px 25px;
       margin: 20px 0;
-      font-family: 'Playfair Display', serif;
+      font-family: 'Cormorant Garamond', serif;
       font-style: italic;
+      font-size: 1.15rem;
       color: var(--gold-light);
       box-shadow: 0 5px 15px rgba(0,0,0,0.3);
     }
@@ -417,20 +422,21 @@
     }
  
     .countdown-number {
-      font-size: 1.4rem;
+      font-size: 1.5rem;
       font-weight: bold;
       background: var(--royal-gold);
       -webkit-background-clip: text;
       -webkit-text-fill-color: transparent;
-      font-family: 'Cinzel', serif;
+      font-family: 'Cormorant Garamond', serif;
     }
  
     .countdown-label {
-      font-size: 0.65rem;
+      font-size: 0.7rem;
       text-transform: uppercase;
       color: var(--text-muted);
       letter-spacing: 1px;
       margin-top: 4px;
+      font-family: 'Cormorant Garamond', serif;
     }
  
     .btn-save-date {
@@ -440,8 +446,8 @@
       gap: 10px;
       background: rgba(40, 0, 0, 0.9);
       color: var(--gold-light) !important;
-      font-family: 'Cinzel', serif;
-      font-size: 0.8rem;
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 0.95rem;
       font-weight: 600;
       letter-spacing: 2px;
       padding: 14px 28px;
@@ -482,8 +488,9 @@
     }
  
     .couple-name {
-      font-family: 'Cinzel Decorative', 'Playfair Display', serif;
-      font-size: 2rem;
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 2.3rem;
+      font-weight: 700;
       background: var(--royal-gold);
       -webkit-background-clip: text;
       -webkit-text-fill-color: transparent;
@@ -491,26 +498,29 @@
     }
  
     .parents {
-      font-size: 0.85rem;
+      font-size: 1rem;
       color: #DDD;
       line-height: 1.6;
       margin-bottom: 12px;
+      font-family: 'Cormorant Garamond', serif;
     }
  
     .ig-link {
       display: inline-block;
       color: var(--gold-solid);
-      font-size: 0.85rem;
+      font-size: 0.9rem;
       text-decoration: none;
       letter-spacing: 1px;
       transition: color 0.3s;
+      font-family: 'Cormorant Garamond', serif;
     }
 
     .ig-link:hover { color: var(--gold-light); }
  
     .and-sym {
-      font-family: 'Cinzel Decorative', serif;
-      font-size: 2.8rem;
+      font-family: 'Cormorant Garamond', serif;
+      font-style: italic;
+      font-size: 3rem;
       color: var(--gold-solid);
       margin: 25px 0;
       opacity: 0.9;
@@ -550,17 +560,19 @@
     }
     
     .event-type {
-      font-family: 'Cinzel Decorative', serif;
-      font-size: 1.3rem;
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.6rem;
+      font-weight: 700;
       color: var(--gold-light);
       margin-bottom: 15px;
       letter-spacing: 2px;
     }
  
     .event-detail {
-      font-size: 0.9rem;
+      font-size: 1.05rem;
       color: #DDD;
       margin-bottom: 10px;
+      font-family: 'Cormorant Garamond', serif;
     }
  
     .btn-map {
@@ -572,8 +584,8 @@
       font-weight: 600;
       text-decoration: none;
       border-radius: 6px;
-      font-size: 0.8rem;
-      font-family: 'Cinzel', serif;
+      font-size: 0.9rem;
+      font-family: 'Cormorant Garamond', serif;
       letter-spacing: 2px;
       box-shadow: 0 0 15px rgba(212, 175, 55, 0.4);
       transition: all 0.3s ease;
@@ -703,15 +715,15 @@
     }
  
     .bank-name {
-      font-family: 'Cinzel', serif;
-      font-weight: bold;
+      font-family: 'Cormorant Garamond', serif;
+      font-weight: 700;
       color: var(--gold-light);
-      font-size: 1.1rem;
+      font-size: 1.3rem;
       letter-spacing: 2px;
     }
  
     .account-num {
-      font-size: 1.4rem;
+      font-size: 1.5rem;
       font-weight: bold;
       letter-spacing: 3px;
       margin: 12px 0;
@@ -726,8 +738,8 @@
       padding: 8px 20px;
       border-radius: 4px;
       cursor: pointer;
-      font-size: 0.75rem;
-      font-family: 'Cinzel', serif;
+      font-size: 0.85rem;
+      font-family: 'Cormorant Garamond', serif;
       letter-spacing: 1px;
       transition: all 0.3s;
     }
@@ -748,8 +760,9 @@
     }
 
     .form-box-title {
-      font-family: 'Cinzel', serif;
-      font-size: 1rem;
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.2rem;
+      font-weight: 700;
       color: var(--gold-light);
       margin-bottom: 15px;
       letter-spacing: 1.5px;
@@ -763,8 +776,9 @@
     }
  
     .form-group label {
-      font-size: 0.8rem;
-      font-family: 'Cinzel', serif;
+      font-size: 0.9rem;
+      font-family: 'Cormorant Garamond', serif;
+      font-weight: 600;
       color: var(--gold-light);
       display: block;
       margin-bottom: 8px;
@@ -776,7 +790,8 @@
       padding: 12px;
       border: 1px solid var(--gold-border);
       border-radius: 4px;
-      font-family: 'Montserrat', sans-serif;
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1rem;
       background: rgba(30, 0, 0, 0.85);
       color: #FFF;
       outline: none;
@@ -795,7 +810,8 @@
       border: 1px solid var(--gold-solid);
       padding: 12px;
       border-radius: 4px;
-      font-family: 'Cinzel', serif;
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1rem;
       font-weight: 700;
       letter-spacing: 2px;
       cursor: pointer;
@@ -846,16 +862,17 @@
     }
 
     .wish-name {
-      font-family: 'Playfair Display', serif;
-      font-weight: 600;
-      font-size: 0.95rem;
+      font-family: 'Cormorant Garamond', serif;
+      font-weight: 700;
+      font-size: 1.1rem;
       color: var(--gold-light);
     }
 
     .wish-text {
-      font-size: 0.85rem;
+      font-size: 0.95rem;
       color: #DDD;
       line-height: 1.5;
+      font-family: 'Cormorant Garamond', serif;
       white-space: pre-line;
     }
 
@@ -869,8 +886,9 @@
     }
 
     .footer-title {
-      font-family: 'Cinzel Decorative', serif;
-      font-size: 1.8rem;
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 2.2rem;
+      font-weight: 700;
       background: var(--royal-gold);
       -webkit-background-clip: text;
       -webkit-text-fill-color: transparent;
@@ -878,19 +896,21 @@
     }
 
     .footer-text {
-      font-size: 0.8rem;
+      font-size: 0.9rem;
       color: var(--gold-light);
       letter-spacing: 2px;
       text-transform: uppercase;
+      font-family: 'Cormorant Garamond', serif;
       margin-bottom: 15px;
     }
 
     .footer-copyright {
-      font-size: 0.75rem;
+      font-size: 0.8rem;
       color: #888;
       margin-top: 20px;
       border-top: 1px solid rgba(212, 175, 55, 0.2);
       padding-top: 18px;
+      font-family: 'Cormorant Garamond', serif;
     }
 
     .studio-link {
@@ -969,12 +989,12 @@
         <p>
           "Kebahagiaan duniawi terbesar yang dapat dialami manusia adalah perpaduan dari pernikahan yang mengikat dua hati yang saling mencintai menjadi satu."
         </p>
-        <p style="margin-top: 10px; font-size: 0.8rem; color: var(--gold-solid); font-style: normal; font-family: 'Cinzel', serif;">(Sutta Pitaka - Digha Nikaya)</p>
+        <p style="margin-top: 10px; font-size: 0.9rem; color: var(--gold-solid); font-style: normal; font-family: 'Cormorant Garamond', serif; font-weight: 600;">(Sutta Pitaka - Digha Nikaya)</p>
       </div>
  
       <!-- Countdown Timer -->
       <div class="reveal" style="margin: 40px 0 20px 0;">
-        <h3 style="font-family: 'Cinzel', serif; font-size: 1rem; color: var(--gold-light); letter-spacing: 2px; margin-bottom: 20px;">COUNTDOWN TO THE CELEBRATION</h3>
+        <h3 style="font-family: 'Cormorant Garamond', serif; font-size: 1.1rem; color: var(--gold-light); letter-spacing: 2px; margin-bottom: 20px; font-weight: 600;">COUNTDOWN TO THE CELEBRATION</h3>
         <div class="countdown-grid">
           <div class="countdown-box">
             <div class="countdown-number" id="days">00</div>
@@ -1023,7 +1043,7 @@
         </a>
       </div>
  
-      <div class="and-sym reveal">囍</div>
+      <div class="and-sym reveal">&</div>
  
       <!-- Bride -->
       <div class="couple-card reveal">
@@ -1054,7 +1074,7 @@
         <div class="event-detail" style="margin-top: 15px; border-top: 1px dashed var(--gold-border); padding-top: 12px;">
           <b style="color: var(--gold-light);">Location:</b><br>
           Grand Ballroom<br>
-          <small style="color: #AAA;">Jl. Jendral Basuki Rahmat No. 189, Palembang</small>
+          <small style="color: #AAA; font-family: 'Cormorant Garamond', serif; font-size: 0.95rem;">Jl. Jendral Basuki Rahmat No. 189, Palembang</small>
         </div>
       </div>
  
@@ -1099,7 +1119,7 @@
       <div class="reveal">
         <h2 class="section-title">Sangjit Gift</h2>
         <div class="section-subtitle">Angpao / Digital Envelope</div>
-        <p style="font-size: 0.85rem; color: #BBB; line-height: 1.6; max-width: 450px; margin: 0 auto;">
+        <p style="font-size: 0.95rem; color: #BBB; line-height: 1.6; max-width: 450px; margin: 0 auto; font-family: 'Cormorant Garamond', serif;">
           Your presence and blessings on our sangjit ceremony are the greatest gift of all. However, if you wish to give an angpao/gift, you may use the digital envelope below:
         </p>
       </div>
@@ -1107,7 +1127,7 @@
       <div class="gift-card reveal">
         <div class="bank-name">BANK BCA</div>
         <div class="account-num" id="acc-num">8055304242</div>
-        <div style="font-size: 0.85rem; color: #AAA; margin-bottom: 15px;">a.n. Christiana Surya Putri</div>
+        <div style="font-size: 0.95rem; color: #AAA; margin-bottom: 15px; font-family: 'Cormorant Garamond', serif;">a.n. Christiana Surya Putri</div>
         <button class="btn-copy" onclick="copyAccount()"><i class="far fa-copy"></i> Copy Account Number</button>
       </div>
     </section>
@@ -1163,7 +1183,7 @@
       
       <!-- DAFTAR UCAPAN -->
       <div class="wishes-container reveal" id="wishes-container" style="margin-top: 30px; text-align: left;">
-        <h3 style="font-family: 'Cinzel', serif; font-size: 0.95rem; color: var(--gold-light); margin-bottom: 15px; text-align: center; letter-spacing: 2px;">WARM WISHES FROM GUESTS</h3>
+        <h3 style="font-family: 'Cormorant Garamond', serif; font-size: 1.1rem; font-weight: 700; color: var(--gold-light); margin-bottom: 15px; text-align: center; letter-spacing: 2px;">WARM WISHES FROM GUESTS</h3>
         <div id="wishes-list" style="max-height: 350px; overflow-y: auto; padding-right: 5px;">
           <!-- Ucapan tamu akan muncul di sini secara otomatis -->
         </div>
@@ -1174,7 +1194,7 @@
       <div class="chinese-symbol" style="font-size: 2rem; margin-bottom: 5px;">囍</div>
       <div class="footer-title">Sen-Sen & Christie</div>
       <div class="footer-text">Thank You For Your Blessings</div>
-      <p style="font-size: 0.75rem; color: #AAA; font-style: italic;">"Two souls, one heart, forever in love."</p>
+      <p style="font-size: 0.9rem; color: #AAA; font-style: italic; font-family: 'Cormorant Garamond', serif;">"Two souls, one heart, forever in love."</p>
       
       <div class="footer-copyright">
         Created by 
