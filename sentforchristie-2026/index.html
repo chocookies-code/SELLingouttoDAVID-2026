@@ -442,25 +442,24 @@
       align-items: center;
       justify-content: center;
       gap: 10px;
-      background: rgba(255, 255, 255, 0.03);
-      color: var(--gold-light) !important;
+      background: var(--royal-gold);
+      color: #4A0000 !important;
       font-family: 'Cormorant Garamond', serif;
       font-size: 0.95rem;
-      font-weight: 600;
+      font-weight: 700;
       letter-spacing: 2px;
       padding: 14px 28px;
       border-radius: 6px;
-      border: 0.5px solid rgba(255, 255, 255, 0.3);
+      border: 0.5px solid var(--gold-solid);
       text-decoration: none !important;
       margin-top: 25px;
       transition: all 0.3s ease;
-      box-shadow: 0 4px 15px rgba(0,0,0,0.3);
+      box-shadow: 0 4px 15px rgba(212, 175, 55, 0.4);
     }
  
     .btn-save-date:hover {
-      background: var(--royal-gold);
-      color: #4A0000 !important;
-      box-shadow: 0 0 20px rgba(212, 175, 55, 0.6);
+      transform: translateY(-3px) scale(1.02);
+      box-shadow: 0 0 25px rgba(212, 175, 55, 0.8);
     }
  
     .couple-card {
@@ -873,12 +872,13 @@
     }
 
     footer {
-      background: rgba(255, 255, 255, 0.01);
-      border-top: 0.5px solid rgba(255, 255, 255, 0.2);
-      padding: 40px 20px 30px 20px;
+      background: rgba(40, 0, 0, 0.85);
+      border-top: 0.5px solid rgba(255, 255, 255, 0.3);
+      padding: 50px 20px 35px 20px;
       text-align: center;
       position: relative;
       margin-top: 20px;
+      box-shadow: inset 0 10px 20px rgba(0, 0, 0, 0.5);
     }
 
     .footer-title {
@@ -902,9 +902,9 @@
 
     .footer-copyright {
       font-size: 0.8rem;
-      color: #888;
+      color: #AAA;
       margin-top: 20px;
-      border-top: 0.5px solid rgba(255, 255, 255, 0.1);
+      border-top: 0.5px solid rgba(255, 255, 255, 0.15);
       padding-top: 18px;
       font-family: 'Cormorant Garamond', serif;
     }
@@ -1022,8 +1022,7 @@
     <!-- BRIDE & GROOM SECTION -->
     <section class="section-alt">
       <div class="reveal">
-        <h2 class="section-title">Groom & Bride</h2>
-        <div class="section-subtitle">The Happy Couple</div>
+        <h2 class="section-title">Groom & Bride</h2>       
       </div>
  
       <!-- Groom -->
@@ -1058,8 +1057,8 @@
     <!-- WEDDING EVENTS SECTION -->
     <section class="event-bg">
       <div class="reveal">
-        <h2 class="section-title">Celebrations</h2>
-        <div class="section-subtitle">Ceremony Event</div>
+        <h2 class="section-title">Event</h2>
+        <div class="section-subtitle">Regards the pleasure of your presence at their wonderful union</div>
       </div>
  
       <!-- Sangjit Ceremony -->
@@ -1085,8 +1084,7 @@
     <section>
       <div class="reveal">
         <h2 class="section-title">Our Gallery</h2>
-        <div class="section-subtitle">Prewedding Moments</div>
-      </div>
+           </div>
  
       <div class="slider-container reveal-zoom">
         <div class="slider-wrapper" id="slider-wrapper">
@@ -1334,19 +1332,29 @@
       const status = document.getElementById('rsvp-status').value;
       const guests = document.getElementById('rsvp-guests').value;
 
-      const rsvpData = {
+      // Ganti URL di bawah ini dengan URL Web App dari Google Apps Script Anda
+      const scriptURL = 'MASUKKAN_URL_WEB_APP_GOOGLE_SCRIPT_ANDA_DI_SINI';
+
+      const formData = {
         name: name,
         status: status,
-        guests: guests,
-        date: new Date().toLocaleString()
+        guests: guests
       };
 
-      let currentRSVP = JSON.parse(localStorage.getItem('rsvpList')) || [];
-      currentRSVP.push(rsvpData);
-      localStorage.setItem('rsvpList', JSON.stringify(currentRSVP));
-
-      alert(`Thank you, ${name}! Your RSVP status (${status}) has been recorded.`);
-      document.getElementById('rsvp-form').reset();
+      fetch(scriptURL, {
+        method: 'POST',
+        mode: 'no-cors',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(formData)
+      })
+      .then(() => {
+        alert(`Thank you, ${name}! Your RSVP status has been successfully recorded.`);
+        document.getElementById('rsvp-form').reset();
+      })
+      .catch(error => {
+        console.error('Error!', error.message);
+        alert('Failed to send RSVP. Please try again.');
+      });
     }
 
     function loadWishes() {
