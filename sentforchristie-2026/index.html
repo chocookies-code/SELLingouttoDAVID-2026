@@ -530,33 +530,26 @@
       background: rgba(255, 255, 255, 0.01);
     }
  
-    /* GAYA CARD EVENT DENGAN LAPISAN DALAM */
+    /* GAYA CARD EVENT BERGAYA SEPERTI REFERENSI */
     .event-card {
-      background: linear-gradient(135deg, rgba(255, 248, 231, 0.95), rgba(243, 229, 171, 0.92));
-      border: 3.5px solid #C5A059;
-      border-radius: 35px;
-      padding: 40px 25px;
+      background: linear-gradient(135deg, rgba(247, 243, 233, 0.96), rgba(238, 230, 211, 0.94));
+      border: 1px solid #D4AF37;
+      border-radius: 20px;
+      padding: 45px 20px;
       margin-bottom: 30px;
-      box-shadow: 0 15px 35px rgba(0,0,0,0.5), inset 0 0 20px rgba(197, 160, 89, 0.2);
+      box-shadow: 0 15px 35px rgba(0,0,0,0.4);
       position: relative;
       color: #4A0000;
+      text-align: center;
     }
 
-    .event-card::before {
-      content: '';
-      position: absolute;
-      top: 6px; left: 6px; right: 6px; bottom: 6px;
-      border: 1.5px solid #D98880;
-      border-radius: 30px;
-      pointer-events: none;
-    }
-
-    /* Lapisan dalam untuk memperjelas kontras teks */
-    .event-content-box {
-      background: rgba(255, 255, 255, 0.88);
-      border-radius: 24px;
-      padding: 35px 20px;
-      box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+    /* KIPAS EMAS DI ATAS CARD */
+    .event-card-fan {
+      width: 70px;
+      height: auto;
+      margin: 0 auto 15px auto;
+      display: block;
+      filter: drop-shadow(0 2px 4px rgba(0,0,0,0.15));
     }
  
     .section-alt {
@@ -565,76 +558,88 @@
       margin: 0;
     }
     
-    /* SANGJIT DATE BADGE */
+    /* SANGJIT DATE BADGE SEPERTI GAMBAR REFERENSI */
     .sangjit-date-badge-container {
       display: flex;
       align-items: center;
       justify-content: center;
-      gap: 12px;
-      margin: 20px 0 25px 0;
+      gap: 15px;
+      margin: 25px 0 25px 0;
     }
 
     .sangjit-date-line {
       flex: 1;
-      height: 1.5px;
-      background: #78909C;
-      opacity: 0.7;
-      max-width: 55px;
+      height: 1px;
+      background: #8C7B58;
+      opacity: 0.6;
+      max-width: 65px;
     }
 
     .sangjit-date-wrapper {
       display: flex;
       align-items: center;
       justify-content: center;
-      gap: 14px;
+      gap: 16px;
     }
 
     .date-side-text {
       font-family: 'Cormorant Garamond', serif;
-      font-size: 1.35rem;
-      font-weight: 700;
-      letter-spacing: 2px;
-      color: #4A0000;
+      font-size: 1.5rem;
+      font-weight: 500;
+      letter-spacing: 3px;
+      color: #5C4A33;
       text-transform: uppercase;
     }
 
     .date-center-badge {
-      width: 82px;
-      height: 82px;
-      border: 2px solid #C5A059;
-      border-radius: 50%;
+      width: 90px;
+      height: 90px;
+      border: 1.5px solid #8C7B58;
+      border-radius: 42%;
       display: flex;
+      flex-direction: column;
       align-items: center;
       justify-content: center;
-      background: linear-gradient(135deg, #00BCD4, #00838F);
-      box-shadow: 0 4px 12px rgba(0,0,0,0.25), inset 0 2px 5px rgba(255,255,255,0.4);
+      background: rgba(255, 255, 255, 0.6);
+      box-shadow: 0 4px 10px rgba(0,0,0,0.05);
       position: relative;
+    }
+
+    .badge-top-text {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 0.85rem;
+      font-weight: 600;
+      letter-spacing: 2px;
+      color: #5C4A33;
+      line-height: 1;
+      margin-bottom: 2px;
+      text-transform: uppercase;
     }
 
     .badge-date {
       font-family: 'Cormorant Garamond', serif;
       font-size: 2.2rem;
       font-weight: 700;
-      color: #FFF8E7;
+      color: #8B0000;
       line-height: 1;
-      text-shadow: 0 2px 4px rgba(0,0,0,0.3);
     }
 
     .event-type {
       font-family: 'Cormorant Garamond', serif;
-      font-size: 2.4rem;
-      font-weight: 700;
+      font-size: 2.2rem;
+      font-weight: 500;
       color: #8B0000;
-      margin-bottom: 12px;
-      letter-spacing: 1px;
+      margin-bottom: 8px;
+      letter-spacing: 3px;
+      text-transform: uppercase;
     }
 
     .event-time {
       font-family: 'Cormorant Garamond', serif;
-      font-size: 1.35rem;
+      font-size: 1.2rem;
       font-weight: 600;
-      color: #4A0000;
-      margin-bottom: 18px;
+      color: #5C4A33;
+      margin-bottom: 15px;
       letter-spacing: 1px;
     }
  
@@ -644,11 +649,11 @@
       margin-bottom: 8px;
       font-family: 'Cormorant Garamond', serif;
       line-height: 1.5;
-      text-transform: none; /* Tidak besar semua */
+      text-transform: none;
     }
 
     .event-detail b {
-      text-transform: none; /* Tidak besar semua */
+      text-transform: none;
     }
  
     .btn-map {
@@ -1143,31 +1148,50 @@
         <div class="section-subtitle">Regards the pleasure of your presence at their wonderful union</div>
       </div>
  
-      <!-- Sangjit Ceremony Card dengan Layer Dalam & Tulisan Standar -->
+      <!-- Sangjit Ceremony Card dengan Desain Referensi -->
       <div class="event-card reveal">
-        <div class="event-content-box">
-          <div class="chinese-symbol" style="font-size: 2.2rem; margin-bottom: 5px; filter: none; background: #C5A059; -webkit-background-clip: text; -webkit-text-fill-color: transparent;">囍</div>
-          <div class="event-type">Sangjit Ceremony</div>
-          
-          <!-- SANGJIT DATE BADGE -->
-          <div class="sangjit-date-badge-container">
-            <div class="sangjit-date-line"></div>
-            <div class="sangjit-date-wrapper">
-              <span class="date-side-text">FRIDAY</span>
-              <div class="date-center-badge">
-                <span class="badge-date">18</span>
-              </div>
-              <span class="date-side-text">SEP 2026</span>
-            </div>
-            <div class="sangjit-date-line"></div>
-          </div>
+        <!-- Kipas Emas di Atas -->
+        <svg class="event-card-fan" viewBox="0 0 100 60" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <path d="M50 55L10 15C15 8 30 2 50 2C70 2 85 8 90 15L50 55Z" fill="url(#gold_grad)" stroke="#C5A059" stroke-width="1"/>
+          <path d="M50 55L2 25C8 17 25 10 50 10C75 10 92 17 98 25L50 55Z" fill="url(#gold_grad)" opacity="0.6"/>
+          <line x1="50" y1="55" x2="10" y2="15" stroke="#8C7B58" stroke-width="0.7"/>
+          <line x1="50" y1="55" x2="30" y2="5" stroke="#8C7B58" stroke-width="0.7"/>
+          <line x1="50" y1="55" x2="50" y2="2" stroke="#8C7B58" stroke-width="0.7"/>
+          <line x1="50" y1="55" x2="70" y2="5" stroke="#8C7B58" stroke-width="0.7"/>
+          <line x1="50" y1="55" x2="90" y2="15" stroke="#8C7B58" stroke-width="0.7"/>
+          <circle cx="50" cy="55" r="3" fill="#8C7B58"/>
+          <defs>
+            <linearGradient id="gold_grad" x1="0" y1="0" x2="100" y2="60" gradientUnits="userSpaceOnUse">
+              <stop stop-color="#BF953F"/>
+              <stop offset="0.25" stop-color="#FCF6BA"/>
+              <stop offset="0.5" stop-color="#B38728"/>
+              <stop offset="0.75" stop-color="#FBF5B7"/>
+              <stop offset="1" stop-color="#AA771C"/>
+            </linearGradient>
+          </defs>
+        </svg>
 
-          <div class="event-time">10.00 AM</div>
-          
-          <div class="event-detail" style="border-top: 1px dashed rgba(197, 160, 89, 0.4); padding-top: 15px; margin-top: 10px;">
-            <b style="color: #8B0000; font-size: 1.2rem; letter-spacing: 1px;">Grand Ballroom</b><br>
-            <span style="font-size: 1rem; color: #5C3A21;">Jl. Jendral Basuki Rahmat No. 189, Palembang</span>
+        <div class="event-type">Sangjit Ceremony</div>
+        
+        <!-- SANGJIT DATE BADGE (Gaya Referensi) -->
+        <div class="sangjit-date-badge-container">
+          <div class="sangjit-date-line"></div>
+          <div class="sangjit-date-wrapper">
+            <span class="date-side-text">SEP</span>
+            <div class="date-center-badge">
+              <span class="badge-top-text">FRI</span>
+              <span class="badge-date">18</span>
+            </div>
+            <span class="date-side-text">2026</span>
           </div>
+          <div class="sangjit-date-line"></div>
+        </div>
+
+        <div class="event-time">10.00 AM</div>
+        
+        <div class="event-detail" style="border-top: 1px dashed rgba(140, 123, 88, 0.4); padding-top: 15px; margin-top: 15px;">
+          <b style="color: #8B0000; font-size: 1.2rem; letter-spacing: 1px;">Grand Ballroom</b><br>
+          <span style="font-size: 1rem; color: #5C4A33;">Jl. Jendral Basuki Rahmat No. 189, Palembang</span>
         </div>
       </div>
  
@@ -1476,7 +1500,7 @@
     function submitWish(event) {
       event.preventDefault();
       const name = document.getElementById('wish-name').value;
-      const message = document.getElementById('wish-message').value;
+      const message = document.getElementById('wish-message').svg ? '' : document.getElementById('wish-message').value;
 
       const wishData = { name, message };
       let currentWishes = JSON.parse(localStorage.getItem('wishesList')) || [];
