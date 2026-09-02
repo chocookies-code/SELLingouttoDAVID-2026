@@ -52,6 +52,7 @@
       height: 100vh;
       background: radial-gradient(circle, #8B0000 0%, #4A0000 70%, #200000 100%);
       z-index: -2;
+      pointer-events: none;
     }
 
     .bg-dark-layer {
@@ -73,7 +74,7 @@
       width: 100vw;
       height: 100vh;
       pointer-events: none;
-      z-index: 9999;
+      z-index: 10;
       overflow: hidden;
     }
  
@@ -83,6 +84,7 @@
       border-radius: 50%;
       box-shadow: 0 0 8px #FCF6BA, 0 0 15px #D4AF37;
       animation: glitterFloat linear infinite, glitterTwinkle infinite alternate;
+      pointer-events: none;
     }
 
     @keyframes glitterFloat {
@@ -112,7 +114,7 @@
       height: 100vh;
       background: linear-gradient(rgba(74, 0, 0, 0.85), rgba(40, 0, 0, 0.9)), url('images/cover.png') center/cover no-repeat;
       backdrop-filter: blur(2px);
-      z-index: 1000;
+      z-index: 9999;
       display: flex !important;
       flex-direction: column !important;
       justify-content: center !important;
@@ -220,7 +222,7 @@
       max-width: 320px;
       width: 88%;
       position: relative;
-      z-index: 1005 !important;
+      z-index: 10005 !important;
     }
 
     .guest-box::before, .guest-box::after {
@@ -279,7 +281,7 @@
       transition: all 0.3s ease;
       position: relative;
       overflow: hidden;
-      z-index: 1001;
+      z-index: 10006;
       margin-top: 10px !important;
     }
 
@@ -330,7 +332,6 @@
     .container {
       max-width: 600px;
       margin: 0 auto;
-      /* Background foto bg-main.png ditumpuk dengan warna merah transparan tipis agar menyatu tapi fotonya kelihatan jelas */
       background: linear-gradient(rgba(74, 0, 0, 0.6), rgba(40, 0, 0, 0.65)), url('images/bg-main.png') center/cover fixed no-repeat;
       min-height: 100vh;
       box-shadow: 0 0 50px rgba(0,0,0,0.9);
@@ -1204,7 +1205,7 @@
   <script>
     function createGlitter() {
       const container = document.getElementById('glitter-container');
-      const glitterCount = 50;
+      const glitterCount = 40;
       
       for (let i = 0; i < glitterCount; i++) {
         const particle = document.createElement('div');
@@ -1227,12 +1228,15 @@
     }
 
     function openInvitation() {
-      document.getElementById('cover').classList.add('opened');
+      const cover = document.getElementById('cover');
+      cover.classList.add('opened');
       document.body.classList.remove('no-scroll');
       
       const music = document.getElementById('bg-music');
       const musicBtn = document.getElementById('music-btn');
-      music.play();
+      music.play().catch(error => {
+        console.log("Autoplay prevented:", error);
+      });
       musicBtn.style.display = 'flex';
       
       initScrollReveal();
@@ -1315,9 +1319,13 @@
       document.getElementById('lightbox').style.display = 'none';
     }
 
-    text = document.getElementById('acc-num').innerText;
-      navigator.clipboard.writeText(accNum);
-      alert("Account number copied to clipboard!");
+    function copyAccount() {
+      const accNum = document.getElementById('acc-num').innerText;
+      navigator.clipboard.writeText(accNum).then(() => {
+        alert("Account number copied to clipboard!");
+      }).catch(err => {
+        console.error('Failed to copy: ', err);
+      });
     }
 
     function submitRSVP(event) {
@@ -1344,6 +1352,7 @@
     function loadWishes() {
       const currentWishes = JSON.parse(localStorage.getItem('wishesList')) || [];
       const wishesList = document.getElementById('wishes-list');
+      wishesList.innerHTML = '';
       
       currentWishes.forEach(wish => {
         const wishCard = document.createElement('div');
@@ -1368,17 +1377,7 @@
       currentWishes.unshift(wishData);
       localStorage.setItem('wishesList', JSON.stringify(currentWishes));
 
-      const wishesList = document.getElementById('wishes-list');
-      const newWish = document.createElement('div');
-      newWish.className5 = 'wish-card';
-      newWish.innerHTML = `
-        <div class="wish-header">
-          <span class="wish-name">${name}</span>
-        </div>
-        <div class="wish-text">${message}</div>
-      `;
-
-      wishesList.prepend(newWish);
+      loadWishes();
       alert("Thank you for your warm wishes!");
       document.getElementById('wishes-form').reset();
     }
