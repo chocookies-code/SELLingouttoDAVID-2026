@@ -8,7 +8,7 @@
   <!-- Google Fonts & FontAwesome -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Cinzel+Decorative:wght@700&family=Cinzel:wght@400;500;600;700&family=Cormorant+Garamond:ital,wght@0,400;0,600;0,700;1,400&family=Great+Vibes&family=Montserrat:wght@300;400;500;600&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Cinzel+Decorative:wght@700&family=Cinzel:wght@400;500;600;700&family=Cormorant+Garamond:ital,wght@0,400;0,600;0,700;1,400&family=Montserrat:wght@300;400;500;600&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
  
   <style>
@@ -43,7 +43,6 @@
       height: 100vh;
     }
 
-    /* BACKGROUND UTAMA */
     .bg-overlay {
       position: fixed;
       top: 0;
@@ -66,7 +65,7 @@
       pointer-events: none;
     }
 
-    /* PARTICLES */
+    /* GLOBAL PARTICLES (Di atas cover & konten utama) */
     #glitter-container {
       position: fixed;
       top: 0;
@@ -74,7 +73,7 @@
       width: 100vw;
       height: 100vh;
       pointer-events: none;
-      z-index: 10;
+      z-index: 10000;
       overflow: hidden;
     }
  
@@ -111,19 +110,18 @@
       top: 0;
       left: 0;
       width: 100%;
-      height: 100vh;
+      height: 100%;
       background: linear-gradient(rgba(74, 0, 0, 0.85), rgba(40, 0, 0, 0.9)), url('images/cover.png') center/cover no-repeat;
       backdrop-filter: blur(2px);
       z-index: 9999;
-      display: flex !important;
-      flex-direction: column !important;
-      justify-content: center !important;
-      align-items: center !important;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
       text-align: center;
       padding: 30px 20px;
       gap: 16px;
       transition: transform 1s cubic-bezier(0.77, 0, 0.175, 1), opacity 1s ease-in-out;
-      border: none;
     }
  
     #cover.opened {
@@ -208,21 +206,20 @@
     }
  
     .guest-box {
-      display: flex !important;
-      flex-direction: column !important;
-      align-items: center !important;
-      justify-content: center !important;
-      background: rgba(255, 255, 255, 0.03) !important;
-      border: 0.5px solid rgba(255, 255, 255, 0.25) !important;
-      box-shadow: 0 10px 25px rgba(0,0,0,0.4), inset 0 0 10px rgba(255, 255, 255, 0.02) !important;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      background: rgba(255, 255, 255, 0.03);
+      border: 0.5px solid rgba(255, 255, 255, 0.25);
+      box-shadow: 0 10px 25px rgba(0,0,0,0.4), inset 0 0 10px rgba(255, 255, 255, 0.02);
       border-radius: 6px;
-      padding: 16px 26px !important;
-      margin-top: 10px !important;
-      margin-bottom: 15px !important;
+      padding: 16px 26px;
+      margin-top: 10px;
+      margin-bottom: 15px;
       max-width: 320px;
       width: 88%;
       position: relative;
-      z-index: 1 !important;
     }
 
     .guest-box::before, .guest-box::after {
@@ -236,33 +233,30 @@
     .guest-box::after { bottom: 6px; right: 10px; }
 
     .dear-label {
-      font-family: 'Cormorant Garamond', serif !important;
-      font-size: 1.1rem !important;
-      color: #FCF6BA !important;
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.1rem;
+      color: #FCF6BA;
       letter-spacing: 3px;
       text-transform: uppercase;
       margin-bottom: 4px;
-      font-weight: 600 !important;
-      display: block !important;
+      font-weight: 600;
       text-shadow: 0 2px 4px rgba(0,0,0,0.8);
     }
  
     .guest-box p {
-      font-size: 0.75rem !important;
-      color: #E2C075 !important;
+      font-size: 0.75rem;
+      color: #E2C075;
       letter-spacing: 1px;
       text-transform: uppercase;
       margin-bottom: 6px;
-      display: block !important;
     }
  
     .guest-name {
-      font-family: 'Cormorant Garamond', serif !important;
-      font-size: 1.5rem !important;
-      font-weight: 700 !important;
-      color: #FFFFFF !important;
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.5rem;
+      font-weight: 700;
+      color: #FFFFFF;
       letter-spacing: 1px;
-      display: block !important;
       text-shadow: 0 2px 4px rgba(0,0,0,0.9);
     }
  
@@ -281,9 +275,8 @@
       transition: all 0.3s ease;
       position: relative;
       overflow: hidden;
-      z-index: 99999 !important;
-      margin-top: 10px !important;
-      pointer-events: auto !important;
+      z-index: 10;
+      margin-top: 10px;
     }
 
     .btn-open::after {
@@ -530,132 +523,130 @@
       background: rgba(255, 255, 255, 0.01);
     }
  
-    /* GAYA CARD EVENT BERGAYA SEPERTI REFERENSI */
-    .event-card {
-      background: linear-gradient(135deg, rgba(247, 243, 233, 0.96), rgba(238, 230, 211, 0.94));
-      border: 1px solid #D4AF37;
+    /* CARD SANGJIT YANG MENIRU PERSIS GAMBAR REFERENSI */
+    .sangjit-card-ref {
+      background-color: #FBF7EE;
+      color: #332211;
       border-radius: 20px;
-      padding: 45px 20px;
-      margin-bottom: 30px;
-      box-shadow: 0 15px 35px rgba(0,0,0,0.4);
+      padding: 45px 25px 40px 25px;
+      max-width: 480px;
+      margin: 0 auto 30px auto;
+      box-shadow: 0 15px 40px rgba(0,0,0,0.5);
       position: relative;
-      color: #4A0000;
+      border: 1px solid #D4AF37;
       text-align: center;
     }
 
-    /* KIPAS EMAS DI ATAS CARD */
-    .event-card-fan {
-      width: 70px;
+    .ref-fan-icon {
+      width: 65px;
       height: auto;
-      margin: 0 auto 15px auto;
+      margin: 0 auto 12px auto;
       display: block;
-      filter: drop-shadow(0 2px 4px rgba(0,0,0,0.15));
-    }
- 
-    .section-alt {
-      background: rgba(255, 255, 255, 0.015);
-      padding: 50px 20px;
-      margin: 0;
-    }
-    
-    /* SANGJIT DATE BADGE SEPERTI GAMBAR REFERENSI */
-    .sangjit-date-badge-container {
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      gap: 15px;
-      margin: 25px 0 25px 0;
+      filter: drop-shadow(0 2px 4px rgba(0,0,0,0.1));
     }
 
-    .sangjit-date-line {
-      flex: 1;
-      height: 1px;
-      background: #8C7B58;
-      opacity: 0.6;
-      max-width: 65px;
-    }
-
-    .sangjit-date-wrapper {
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      gap: 16px;
-    }
-
-    .date-side-text {
-      font-family: 'Cormorant Garamond', serif;
-      font-size: 1.5rem;
+    .ref-title {
+      font-family: 'Cinzel', serif;
+      font-size: 1.9rem;
       font-weight: 500;
-      letter-spacing: 3px;
-      color: #5C4A33;
+      letter-spacing: 4px;
+      color: #7A1C1C;
+      margin-bottom: 30px;
       text-transform: uppercase;
     }
 
-    .date-center-badge {
-      width: 90px;
-      height: 90px;
-      border: 1.5px solid #8C7B58;
+    .ref-title .styled-s {
+      font-family: 'Cormorant Garamond', serif;
+      font-style: italic;
+      font-size: 2.1rem;
+      font-weight: 400;
+      letter-spacing: 0px;
+    }
+
+    .ref-date-row {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 12px;
+      margin-bottom: 25px;
+    }
+
+    .ref-line {
+      flex: 1;
+      height: 1px;
+      background-color: #A39379;
+      max-width: 90px;
+    }
+
+    .ref-side-month {
+      font-family: 'Cinzel', serif;
+      font-size: 1.35rem;
+      letter-spacing: 3px;
+      color: #61523D;
+      font-weight: 500;
+    }
+
+    .ref-side-year {
+      font-family: 'Cinzel', serif;
+      font-size: 1.35rem;
+      letter-spacing: 2px;
+      color: #61523D;
+      font-weight: 500;
+    }
+
+    .ref-badge-center {
+      width: 95px;
+      height: 95px;
+      border: 1.5px solid #A39379;
       border-radius: 42%;
+      background-color: rgba(255, 255, 255, 0.7);
       display: flex;
       flex-direction: column;
       align-items: center;
       justify-content: center;
-      background: rgba(255, 255, 255, 0.6);
-      box-shadow: 0 4px 10px rgba(0,0,0,0.05);
-      position: relative;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.06);
     }
 
-    .badge-top-text {
-      font-family: 'Cormorant Garamond', serif;
-      font-size: 0.85rem;
-      font-weight: 600;
+    .ref-badge-day {
+      font-family: 'Cinzel', serif;
+      font-size: 0.8rem;
       letter-spacing: 2px;
-      color: #5C4A33;
+      color: #61523D;
+      font-weight: 600;
       line-height: 1;
-      margin-bottom: 2px;
-      text-transform: uppercase;
+      margin-bottom: 3px;
     }
 
-    .badge-date {
+    .ref-badge-date-num {
       font-family: 'Cormorant Garamond', serif;
-      font-size: 2.2rem;
+      font-size: 2.3rem;
       font-weight: 700;
       color: #8B0000;
       line-height: 1;
     }
 
-    .event-type {
-      font-family: 'Cormorant Garamond', serif;
-      font-size: 2.2rem;
-      font-weight: 500;
-      color: #8B0000;
-      margin-bottom: 8px;
-      letter-spacing: 3px;
-      text-transform: uppercase;
+    .ref-location-details {
+      margin-top: 25px;
+      border-top: 1px dashed rgba(163, 147, 121, 0.4);
+      padding-top: 20px;
     }
 
-    .event-time {
+    .ref-location-title {
       font-family: 'Cormorant Garamond', serif;
-      font-size: 1.2rem;
-      font-weight: 600;
-      color: #5C4A33;
-      margin-bottom: 15px;
+      font-size: 1.25rem;
+      font-weight: 700;
+      color: #7A1C1C;
+      margin-bottom: 6px;
       letter-spacing: 1px;
     }
- 
-    .event-detail {
-      font-size: 1.1rem;
-      color: #5C3A21;
-      margin-bottom: 8px;
+
+    .ref-location-address {
       font-family: 'Cormorant Garamond', serif;
+      font-size: 1.05rem;
+      color: #5C4A33;
       line-height: 1.5;
-      text-transform: none;
     }
 
-    .event-detail b {
-      text-transform: none;
-    }
- 
     .btn-map {
       display: inline-block;
       margin-top: 20px;
@@ -1017,7 +1008,7 @@
   <div class="bg-overlay"></div>
   <div class="bg-dark-layer"></div>
 
-  <!-- ROYAL GLITTER & SPARKLES PARTICLES -->
+  <!-- ROYAL GLITTER & SPARKLES PARTICLES (Aktif di Cover dan Halaman Utama) -->
   <div id="glitter-container"></div>
  
   <!-- Audio Element -->
@@ -1039,8 +1030,11 @@
   <!-- COVER / LOCK SCREEN -->
   <div id="cover">
     <div class="chinese-symbol cover-animate">囍</div>
-    <div class="cover-sub cover-animate">THE SANGJIT CEREMONY OF</div>
-    <div class="cover-title cover-animate">Sen-Sen & Christie</div>
+    
+    <!-- PERMINTAAN: Teks Opening Cover Diubah -->
+    <div class="cover-sub cover-animate" style="letter-spacing: 3px; font-style: normal; font-family: 'Cinzel', serif; font-size: 0.9rem;">THE SANGJIT CEREMONY OF</div>
+    <div class="cover-title cover-animate" style="font-family: 'Cormorant Garamond', serif; font-size: 2.8rem; letter-spacing: 2px;">SEN-SEN & CHRISTIE</div>
+    
     <div class="cover-date cover-animate">18 . 09 . 2026</div>
  
     <!-- KOTAK DEAR (NAMA TAMU) -->
@@ -1148,12 +1142,11 @@
         <div class="section-subtitle">Regards the pleasure of your presence at their wonderful union</div>
       </div>
  
-      <!-- Sangjit Ceremony Card dengan Desain Referensi -->
-      <div class="event-card reveal">
-        <!-- Kipas Emas di Atas -->
-        <svg class="event-card-fan" viewBox="0 0 100 60" fill="none" xmlns="http://www.w3.org/2000/svg">
-          <path d="M50 55L10 15C15 8 30 2 50 2C70 2 85 8 90 15L50 55Z" fill="url(#gold_grad)" stroke="#C5A059" stroke-width="1"/>
-          <path d="M50 55L2 25C8 17 25 10 50 10C75 10 92 17 98 25L50 55Z" fill="url(#gold_grad)" opacity="0.6"/>
+      <!-- Kartu Sangjit Model Referensi -->
+      <div class="sangjit-card-ref reveal">
+        <svg class="ref-fan-icon" viewBox="0 0 100 60" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <path d="M50 55L10 15C15 8 30 2 50 2C70 2 85 8 90 15L50 55Z" fill="url(#gold_grad_ref)" stroke="#C5A059" stroke-width="1"/>
+          <path d="M50 55L2 25C8 17 25 10 50 10C75 10 92 17 98 25L50 55Z" fill="url(#gold_grad_ref)" opacity="0.6"/>
           <line x1="50" y1="55" x2="10" y2="15" stroke="#8C7B58" stroke-width="0.7"/>
           <line x1="50" y1="55" x2="30" y2="5" stroke="#8C7B58" stroke-width="0.7"/>
           <line x1="50" y1="55" x2="50" y2="2" stroke="#8C7B58" stroke-width="0.7"/>
@@ -1161,7 +1154,7 @@
           <line x1="50" y1="55" x2="90" y2="15" stroke="#8C7B58" stroke-width="0.7"/>
           <circle cx="50" cy="55" r="3" fill="#8C7B58"/>
           <defs>
-            <linearGradient id="gold_grad" x1="0" y1="0" x2="100" y2="60" gradientUnits="userSpaceOnUse">
+            <linearGradient id="gold_grad_ref" x1="0" y1="0" x2="100" y2="60" gradientUnits="userSpaceOnUse">
               <stop stop-color="#BF953F"/>
               <stop offset="0.25" stop-color="#FCF6BA"/>
               <stop offset="0.5" stop-color="#B38728"/>
@@ -1171,27 +1164,26 @@
           </defs>
         </svg>
 
-        <div class="event-type">Sangjit Ceremony</div>
-        
-        <!-- SANGJIT DATE BADGE (Gaya Referensi) -->
-        <div class="sangjit-date-badge-container">
-          <div class="sangjit-date-line"></div>
-          <div class="sangjit-date-wrapper">
-            <span class="date-side-text">SEP</span>
-            <div class="date-center-badge">
-              <span class="badge-top-text">FRI</span>
-              <span class="badge-date">18</span>
-            </div>
-            <span class="date-side-text">2026</span>
+        <h3 class="ref-title">
+          <span class="styled-s">S</span>ANGJIT <span class="styled-s" style="margin-left: 2px;">C</span>EREMONY
+        </h3>
+
+        <div class="ref-date-row">
+          <div class="ref-line"></div>
+          <span class="ref-side-month">SEP</span>
+          
+          <div class="ref-badge-center">
+            <span class="ref-badge-day">FRI</span>
+            <span class="ref-badge-date-num">18</span>
           </div>
-          <div class="sangjit-date-line"></div>
+
+          <span class="ref-side-year">2026</span>
+          <div class="ref-line"></div>
         </div>
 
-        <div class="event-time">10.00 AM</div>
-        
-        <div class="event-detail" style="border-top: 1px dashed rgba(140, 123, 88, 0.4); padding-top: 15px; margin-top: 15px;">
-          <b style="color: #8B0000; font-size: 1.2rem; letter-spacing: 1px;">Grand Ballroom</b><br>
-          <span style="font-size: 1rem; color: #5C4A33;">Jl. Jendral Basuki Rahmat No. 189, Palembang</span>
+        <div class="ref-location-details">
+          <div class="ref-location-title">Grand Ballroom</div>
+          <div class="ref-location-address">Jl. Jendral Basuki Rahmat No. 189, Palembang<br><strong style="color: #8B0000; font-size: 0.95rem; font-weight: 600;">10.00 AM</strong></div>
         </div>
       </div>
  
@@ -1220,7 +1212,6 @@
         <button class="next-btn" onclick="moveSlide(1)">&#10095;</button>
       </div>
       
-      <!-- Dots Indicator -->
       <div class="dots-container reveal" id="dots-container">
         <span class="dot active" onclick="currentSlide(0)"></span>
         <span class="dot" onclick="currentSlide(1)"></span>
@@ -1255,7 +1246,6 @@
         <div class="section-subtitle">Confirm Attendance & Send Wishes</div>
       </div>
  
-      <!-- FORM RSVP -->
       <div class="form-box reveal">
         <div class="form-box-title"><i class="far fa-calendar-check"></i> RSVP Confirmation</div>
         <form id="rsvp-form" onsubmit="submitRSVP(event)">
@@ -1281,7 +1271,6 @@
         </form>
       </div>
 
-      <!-- FORM UCAPAN -->
       <div class="form-box reveal">
         <div class="form-box-title"><i class="far fa-comment-dots"></i> Send Warm Wishes</div>
         <form id="wishes-form" onsubmit="submitWish(event)">
@@ -1297,12 +1286,9 @@
         </form>
       </div>
       
-      <!-- DAFTAR UCAPAN -->
       <div class="wishes-container reveal" id="wishes-container" style="margin-top: 30px; text-align: left;">
         <h3 style="font-family: 'Cormorant Garamond', serif; font-size: 1.1rem; font-weight: 700; color: var(--gold-light); margin-bottom: 15px; text-align: center; letter-spacing: 2px;">WARM WISHES FROM GUESTS</h3>
-        <div id="wishes-list" style="max-height: 350px; overflow-y: auto; padding-right: 5px;">
-          <!-- Ucapan tamu akan muncul di sini secara otomatis -->
-        </div>
+        <div id="wishes-list" style="max-height: 350px; overflow-y: auto; padding-right: 5px;"></div>
       </div>
     </section>
 
@@ -1326,7 +1312,7 @@
   <script>
     function createGlitter() {
       const container = document.getElementById('glitter-container');
-      const glitterCount = 40;
+      const glitterCount = 45;
       
       for (let i = 0; i < glitterCount; i++) {
         const particle = document.createElement('div');
@@ -1457,11 +1443,7 @@
 
       const scriptURL = 'MASUKKAN_URL_WEB_APP_GOOGLE_SCRIPT_ANDA_DI_SINI';
 
-      const formData = {
-        name: name,
-        status: status,
-        guests: guests
-      };
+      const formData = { name, status, guests };
 
       fetch(scriptURL, {
         method: 'POST',
@@ -1500,7 +1482,7 @@
     function submitWish(event) {
       event.preventDefault();
       const name = document.getElementById('wish-name').value;
-      const message = document.getElementById('wish-message').svg ? '' : document.getElementById('wish-message').value;
+      const message = document.getElementById('wish-message').value;
 
       const wishData = { name, message };
       let currentWishes = JSON.parse(localStorage.getItem('wishesList')) || [];
