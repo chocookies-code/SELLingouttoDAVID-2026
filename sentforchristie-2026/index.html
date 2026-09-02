@@ -530,7 +530,7 @@
       background: rgba(255, 255, 255, 0.01);
     }
  
-    /* GAYA CARD EVENT SEPERTI FOTO REFERENSI KEDUA */
+    /* GAYA CARD EVENT DENGAN LAPISAN DALAM */
     .event-card {
       background: linear-gradient(135deg, rgba(255, 248, 231, 0.95), rgba(243, 229, 171, 0.92));
       border: 3.5px solid #C5A059;
@@ -540,8 +540,6 @@
       box-shadow: 0 15px 35px rgba(0,0,0,0.5), inset 0 0 20px rgba(197, 160, 89, 0.2);
       position: relative;
       color: #4A0000;
-      background-image: radial-gradient(rgba(197, 160, 89, 0.08) 1px, transparent 1px);
-      background-size: 16px 16px;
     }
 
     .event-card::before {
@@ -552,6 +550,14 @@
       border-radius: 30px;
       pointer-events: none;
     }
+
+    /* Lapisan dalam untuk memperjelas kontras teks */
+    .event-content-box {
+      background: rgba(255, 255, 255, 0.88);
+      border-radius: 24px;
+      padding: 35px 20px;
+      box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+    }
  
     .section-alt {
       background: rgba(255, 255, 255, 0.015);
@@ -559,7 +565,7 @@
       margin: 0;
     }
     
-    /* SANGJIT DATE BADGE SEPERTI REFERENSI KEDUA */
+    /* SANGJIT DATE BADGE */
     .sangjit-date-badge-container {
       display: flex;
       align-items: center;
@@ -638,6 +644,11 @@
       margin-bottom: 8px;
       font-family: 'Cormorant Garamond', serif;
       line-height: 1.5;
+      text-transform: none; /* Tidak besar semua */
+    }
+
+    .event-detail b {
+      text-transform: none; /* Tidak besar semua */
     }
  
     .btn-map {
@@ -941,7 +952,7 @@
       white-space: pre-line;
     }
 
-    /* FOOTER DENGAN LAYER LEBIH TEBAL DAN ELEGAN SESUAI PERMINTAAN */
+    /* FOOTER */
     footer {
       background: linear-gradient(to bottom, rgba(65, 0, 0, 0.98), rgba(25, 0, 0, 1));
       border-top: 2.5px solid rgba(212, 175, 55, 0.8);
@@ -1125,36 +1136,38 @@
       </div>
     </section>
  
-    <!-- WEDDING EVENTS SECTION (DIUBAH MENYERUPAI REFERENSI KEDUA) -->
+    <!-- WEDDING EVENTS SECTION -->
     <section class="event-bg">
       <div class="reveal">
         <h2 class="section-title">Event</h2>
         <div class="section-subtitle">Regards the pleasure of your presence at their wonderful union</div>
       </div>
  
-      <!-- Sangjit Ceremony Card -->
+      <!-- Sangjit Ceremony Card dengan Layer Dalam & Tulisan Standar -->
       <div class="event-card reveal">
-        <div class="chinese-symbol" style="font-size: 2.2rem; margin-bottom: 5px; filter: none; background: #C5A059; -webkit-background-clip: text; -webkit-text-fill-color: transparent;">囍</div>
-        <div class="event-type">Sangjit Ceremony</div>
-        
-        <!-- BAGIAN TANGGAL GAYA REFERENSI KEDUA -->
-        <div class="sangjit-date-badge-container">
-          <div class="sangjit-date-line"></div>
-          <div class="sangjit-date-wrapper">
-            <span class="date-side-text">FRIDAY</span>
-            <div class="date-center-badge">
-              <span class="badge-date">18</span>
+        <div class="event-content-box">
+          <div class="chinese-symbol" style="font-size: 2.2rem; margin-bottom: 5px; filter: none; background: #C5A059; -webkit-background-clip: text; -webkit-text-fill-color: transparent;">囍</div>
+          <div class="event-type">Sangjit Ceremony</div>
+          
+          <!-- SANGJIT DATE BADGE -->
+          <div class="sangjit-date-badge-container">
+            <div class="sangjit-date-line"></div>
+            <div class="sangjit-date-wrapper">
+              <span class="date-side-text">FRIDAY</span>
+              <div class="date-center-badge">
+                <span class="badge-date">18</span>
+              </div>
+              <span class="date-side-text">SEP 2026</span>
             </div>
-            <span class="date-side-text">SEP 2026</span>
+            <div class="sangjit-date-line"></div>
           </div>
-          <div class="sangjit-date-line"></div>
-        </div>
 
-        <div class="event-time">10.00 AM</div>
-        
-        <div class="event-detail" style="border-top: 1px dashed rgba(197, 160, 89, 0.4); padding-top: 15px; margin-top: 10px;">
-          <b style="color: #8B0000; font-size: 1.2rem; letter-spacing: 1px;">GRAND BALLROOM</b><br>
-          <span style="font-size: 1rem; color: #5C3A21;">Jl. Jendral Basuki Rahmat No. 189, Palembang</span>
+          <div class="event-time">10.00 AM</div>
+          
+          <div class="event-detail" style="border-top: 1px dashed rgba(197, 160, 89, 0.4); padding-top: 15px; margin-top: 10px;">
+            <b style="color: #8B0000; font-size: 1.2rem; letter-spacing: 1px;">Grand Ballroom</b><br>
+            <span style="font-size: 1rem; color: #5C3A21;">Jl. Jendral Basuki Rahmat No. 189, Palembang</span>
+          </div>
         </div>
       </div>
  
@@ -1269,7 +1282,7 @@
       </div>
     </section>
 
-    <!-- FOOTER DENGAN LAYER LEBIH TEBAL -->
+    <!-- FOOTER -->
     <footer>
       <div class="chinese-symbol" style="font-size: 2rem; margin-bottom: 5px;">囍</div>
       <div class="footer-title">Sen-Sen & Christie</div>
