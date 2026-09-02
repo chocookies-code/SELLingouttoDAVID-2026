@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="id">
+<html lang="en">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -20,8 +20,7 @@
       --gold-solid: #D4AF37;
       --gold-light: #F3E5AB;
       --gold-border: rgba(212, 175, 55, 0.7);
-      /* Layer kotak konten ditipiskan (alpha 0.65) agar background lebih tembus pandang */
-      --glass-bg: rgba(60, 0, 0, 0.65);
+      --glass-bg: rgba(40, 0, 0, 0.35);
       --text-light: #FFF8E7;
       --text-muted: #E2C075;
     }
@@ -104,7 +103,7 @@
       100% { filter: drop-shadow(0 0 12px #FCF6BA) brightness(1.5); }
     }
 
-    /* COVER / LOCK SCREEN FIXED DENGAN COVER.PNG TANPA KOTAK GARIS */
+    /* COVER / LOCK SCREEN */
     #cover {
       position: fixed;
       top: 0;
@@ -206,13 +205,12 @@
       border-radius: 4px;
     }
  
-    /* GUEST BOX FIX */
     .guest-box {
       display: flex !important;
       flex-direction: column !important;
       align-items: center !important;
       justify-content: center !important;
-      background: rgba(60, 0, 0, 0.9) !important;
+      background: rgba(40, 0, 0, 0.7) !important;
       border: 1px solid var(--gold-solid) !important;
       box-shadow: 0 10px 25px rgba(0,0,0,0.8), inset 0 0 10px rgba(212, 175, 55, 0.2) !important;
       border-radius: 8px;
@@ -266,7 +264,6 @@
       text-shadow: 0 2px 4px rgba(0,0,0,0.9);
     }
  
-    /* TOMBOL OPEN INVITATION FIX */
     .btn-open {
       background: var(--royal-gold);
       color: #4A0000;
@@ -308,7 +305,6 @@
       box-shadow: 0 0 30px rgba(212, 175, 55, 0.9);
     }
 
-    /* SCROLL REVEAL ANIMATIONS */
     .reveal {
       opacity: 0;
       transform: translateY(40px);
@@ -331,11 +327,10 @@
       transform: scale(1);
     }
     
-    /* CONTAINER UTAMA DENGAN MAIN-BG.PNG (Layer ditipiskan jadi 0.70 & 0.75 agar background makin jelas) */
     .container {
       max-width: 600px;
       margin: 0 auto;
-      background: linear-gradient(rgba(70, 0, 0, 0.70), rgba(40, 0, 0, 0.75)), url('images/main-bg.png') center/cover fixed no-repeat;
+      background: linear-gradient(rgba(40, 0, 0, 0.25), rgba(20, 0, 0, 0.30)), url('images/main-bg.png') center/cover fixed no-repeat;
       min-height: 100vh;
       box-shadow: 0 0 50px rgba(0,0,0,0.9);
       position: relative;
@@ -379,7 +374,7 @@
       border-radius: 12px;
       border: 2px solid var(--gold-solid);
       padding: 8px;
-      background: rgba(40, 0, 0, 0.6);
+      background: rgba(30, 0, 0, 0.4);
       box-shadow: 0 10px 30px rgba(0,0,0,0.6);
       animation: floating 4s ease-in-out infinite;
     }
@@ -407,7 +402,7 @@
     }
  
     .countdown-box {
-      background: rgba(40, 0, 0, 0.85);
+      background: rgba(40, 0, 0, 0.5);
       border: 1px solid var(--gold-border);
       border-radius: 8px;
       padding: 12px 8px;
@@ -445,7 +440,7 @@
       align-items: center;
       justify-content: center;
       gap: 10px;
-      background: rgba(40, 0, 0, 0.85);
+      background: rgba(40, 0, 0, 0.5);
       color: var(--gold-light) !important;
       font-family: 'Cormorant Garamond', serif;
       font-size: 0.95rem;
@@ -480,7 +475,7 @@
       padding: 6px;
       margin-bottom: 20px;
       box-shadow: 0 0 25px rgba(212, 175, 55, 0.3);
-      background: rgba(40, 0, 0, 0.5);
+      background: rgba(30, 0, 0, 0.4);
       transition: transform 0.5s ease;
     }
 
@@ -530,9 +525,7 @@
     }
  
     .event-bg {
-      background: linear-gradient(180deg, rgba(40,0,0,0.5) 0%, rgba(80,0,0,0.3) 50%, rgba(40,0,0,0.5) 100%);
-      border-top: none;
-      border-bottom: none;
+      background: rgba(30, 0, 0, 0.2);
     }
  
     .event-card {
@@ -555,7 +548,7 @@
     }
  
     .section-alt {
-      background: rgba(30, 0, 0, 0.25);
+      background: rgba(20, 0, 0, 0.15);
       padding: 50px 20px;
       margin: 0;
     }
@@ -793,7 +786,7 @@
       border-radius: 4px;
       font-family: 'Cormorant Garamond', serif;
       font-size: 1rem;
-      background: rgba(30, 0, 0, 0.75);
+      background: rgba(30, 0, 0, 0.5);
       color: #FFF;
       outline: none;
       transition: border 0.3s, box-shadow 0.3s;
@@ -846,7 +839,7 @@
     #music-btn:hover { transform: scale(1.1); }
 
     .wish-card {
-      background: rgba(40, 0, 0, 0.75);
+      background: rgba(40, 0, 0, 0.45);
       border: 1px solid var(--gold-border);
       border-left: 4px solid var(--gold-solid);
       border-radius: 6px;
@@ -878,7 +871,7 @@
     }
 
     footer {
-      background: rgba(30, 0, 0, 0.85);
+      background: rgba(30, 0, 0, 0.5);
       border-top: 1px solid var(--gold-solid);
       padding: 40px 20px 30px 20px;
       text-align: center;
@@ -959,7 +952,7 @@
     <div class="chinese-symbol cover-animate">囍</div>
     <div class="cover-sub cover-animate">THE SANGJIT CEREMONY OF</div>
     <div class="cover-title cover-animate">Sen-Sen & Christie</div>
-    <div class="cover-date cover-animate">10 . 10 . 2026</div>
+    <div class="cover-date cover-animate">18 . 09 . 2026</div>
  
     <!-- KOTAK DEAR (NAMA TAMU) -->
     <div class="guest-box cover-animate">
@@ -988,7 +981,7 @@
       <!-- Kutipan -->
       <div class="quote-box reveal">
         <p>
-          "Kebahagiaan duniawi terbesar yang dapat dialami manusia adalah perpaduan dari pernikahan yang mengikat dua hati yang saling mencintai menjadi satu."
+          "The greatest earthly happiness that can be experienced by humans is the union of a marriage that binds two loving hearts into one."
         </p>
         <p style="margin-top: 10px; font-size: 0.9rem; color: var(--gold-solid); font-style: normal; font-family: 'Cormorant Garamond', serif; font-weight: 600;">(Sutta Pitaka - Digha Nikaya)</p>
       </div>
@@ -1018,7 +1011,7 @@
  
       <!-- Save The Date Button -->
       <div class="reveal">
-        <a href="https://calendar.google.com/calendar/render?action=TEMPLATE&text=The+Sangjit+Ceremony+of+Sen-Sen+%26+Christie&dates=20261010T100000Z/20261010T140000Z&details=The+Sangjit+Ceremony+of+Sen-Sen+and+Christie&location=Ballroom" target="_blank" class="btn-save-date">
+        <a href="https://calendar.google.com/calendar/render?action=TEMPLATE&text=The+Sangjit+Ceremony+of+Sen-Sen+%26+Christie&dates=20260918T030000Z/20260918T070000Z&details=The+Sangjit+Ceremony+of+Sen-Sen+and+Christie&location=Ballroom" target="_blank" class="btn-save-date">
           <i class="far fa-calendar-alt"></i> SAVE THE DATE
         </a>
       </div>
@@ -1070,7 +1063,7 @@
       <!-- Sangjit Ceremony -->
       <div class="event-card reveal">
         <div class="event-type">Sangjit Ceremony</div>
-        <div class="event-detail"><b>Date:</b> Saturday, October 10th, 2026</div>
+        <div class="event-detail"><b>Date:</b> Friday, September 18th, 2026</div>
         <div class="event-detail"><b>Time:</b> 10:00 WIB</div>
         <div class="event-detail" style="margin-top: 15px; border-top: 1px dashed var(--gold-border); padding-top: 12px;">
           <b style="color: var(--gold-light);">Location:</b><br>
@@ -1274,7 +1267,7 @@
       checkReveal();
     }
 
-    const sangjitDate = new Date("October 10, 2026 10:00:00").getTime();
+    const sangjitDate = new Date("September 18, 2026 10:00:00").getTime();
     setInterval(function() {
       const now = new Date().getTime();
       const distance = sangjitDate - now;
