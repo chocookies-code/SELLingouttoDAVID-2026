@@ -19,8 +19,8 @@
       --royal-gold: linear-gradient(135deg, #BF953F 0%, #FCF6BA 25%, #B38728 50%, #FBF5B7 75%, #AA771C 100%);
       --gold-solid: #D4AF37;
       --gold-light: #F3E5AB;
-      --gold-border: rgba(212, 175, 55, 0.7);
-      --glass-bg: rgba(40, 0, 0, 0.35);
+      --gold-border: rgba(255, 255, 255, 0.25);
+      --glass-bg: rgba(255, 255, 255, 0.04);
       --text-light: #FFF8E7;
       --text-muted: #E2C075;
     }
@@ -198,10 +198,10 @@
       font-size: 1.1rem;
       color: #FCF6BA;
       margin-bottom: 8px;
-      border-top: 1px solid var(--gold-border);
-      border-bottom: 1px solid var(--gold-border);
+      border-top: 0.5px solid rgba(255, 255, 255, 0.3);
+      border-bottom: 0.5px solid rgba(255, 255, 255, 0.3);
       padding: 6px 24px;
-      background: rgba(40, 0, 0, 0.7);
+      background: rgba(255, 255, 255, 0.03);
       border-radius: 4px;
     }
  
@@ -210,11 +210,11 @@
       flex-direction: column !important;
       align-items: center !important;
       justify-content: center !important;
-      background: rgba(40, 0, 0, 0.7) !important;
-      border: 1px solid var(--gold-solid) !important;
-      box-shadow: 0 10px 25px rgba(0,0,0,0.8), inset 0 0 10px rgba(212, 175, 55, 0.2) !important;
-      border-radius: 8px;
-      padding: 18px 28px !important;
+      background: rgba(255, 255, 255, 0.03) !important;
+      border: 0.5px solid rgba(255, 255, 255, 0.25) !important;
+      box-shadow: 0 10px 25px rgba(0,0,0,0.4), inset 0 0 10px rgba(255, 255, 255, 0.02) !important;
+      border-radius: 6px;
+      padding: 16px 26px !important;
       margin-top: 15px !important;
       margin-bottom: 28px !important;
       max-width: 320px;
@@ -226,8 +226,8 @@
     .guest-box::before, .guest-box::after {
       content: '囍';
       position: absolute;
-      color: #D4AF37;
-      font-size: 0.9rem;
+      color: rgba(255, 255, 255, 0.6);
+      font-size: 0.8rem;
       font-family: 'Cinzel Decorative', serif;
     }
     .guest-box::before { top: 6px; left: 10px; }
@@ -267,7 +267,7 @@
     .btn-open {
       background: var(--royal-gold);
       color: #4A0000;
-      border: 1px solid var(--gold-solid);
+      border: 0.5px solid var(--gold-solid);
       padding: 14px 38px;
       font-size: 0.9rem;
       font-family: 'Cormorant Garamond', serif;
@@ -334,8 +334,8 @@
       min-height: 100vh;
       box-shadow: 0 0 50px rgba(0,0,0,0.9);
       position: relative;
-      border-left: 2px solid var(--gold-solid);
-      border-right: 2px solid var(--gold-solid);
+      border-left: 0.5px solid rgba(255, 255, 255, 0.2);
+      border-right: 0.5px solid rgba(255, 255, 255, 0.2);
     }
  
     section {
@@ -371,50 +371,50 @@
       height: auto;
       display: block;
       margin: 0 auto 25px auto;
-      border-radius: 12px;
-      border: 2px solid var(--gold-solid);
-      padding: 8px;
-      background: rgba(30, 0, 0, 0.4);
-      box-shadow: 0 10px 30px rgba(0,0,0,0.6);
+      border-radius: 10px;
+      border: 0.5px solid rgba(255, 255, 255, 0.3);
+      padding: 6px;
+      background: rgba(255, 255, 255, 0.02);
+      box-shadow: 0 10px 30px rgba(0,0,0,0.4);
       animation: floating 4s ease-in-out infinite;
     }
 
     .quote-box {
       background: var(--glass-bg);
-      border: 1px solid var(--gold-border);
-      border-left: 4px solid var(--gold-solid);
-      border-right: 4px solid var(--gold-solid);
-      border-radius: 8px;
+      border: 0.5px solid var(--gold-border);
+      border-left: 2px solid rgba(255, 255, 255, 0.6);
+      border-right: 2px solid rgba(255, 255, 255, 0.6);
+      border-radius: 6px;
       padding: 20px 25px;
       margin: 20px 0;
       font-family: 'Cormorant Garamond', serif;
       font-style: italic;
       font-size: 1.15rem;
       color: var(--gold-light);
-      box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+      box-shadow: 0 5px 15px rgba(0,0,0,0.2);
     }
  
     .countdown-grid {
       display: flex;
       justify-content: center;
-      gap: 12px;
+      gap: 10px;
       margin-top: 20px;
     }
  
     .countdown-box {
-      background: rgba(40, 0, 0, 0.5);
-      border: 1px solid var(--gold-border);
-      border-radius: 8px;
+      background: rgba(255, 255, 255, 0.03);
+      border: 0.5px solid rgba(255, 255, 255, 0.25);
+      border-radius: 6px;
       padding: 12px 8px;
       min-width: 65px;
       text-align: center;
-      box-shadow: 0 4px 15px rgba(0,0,0,0.5);
+      box-shadow: 0 4px 15px rgba(0,0,0,0.3);
       transition: all 0.3s ease;
     }
 
     .countdown-box:hover {
       transform: translateY(-4px);
-      border-color: var(--gold-solid);
+      border-color: rgba(255, 255, 255, 0.5);
     }
  
     .countdown-number {
@@ -440,7 +440,7 @@
       align-items: center;
       justify-content: center;
       gap: 10px;
-      background: rgba(40, 0, 0, 0.5);
+      background: rgba(255, 255, 255, 0.03);
       color: var(--gold-light) !important;
       font-family: 'Cormorant Garamond', serif;
       font-size: 0.95rem;
@@ -448,11 +448,11 @@
       letter-spacing: 2px;
       padding: 14px 28px;
       border-radius: 6px;
-      border: 1px solid var(--gold-solid);
+      border: 0.5px solid rgba(255, 255, 255, 0.3);
       text-decoration: none !important;
       margin-top: 25px;
       transition: all 0.3s ease;
-      box-shadow: 0 4px 15px rgba(0,0,0,0.4);
+      box-shadow: 0 4px 15px rgba(0,0,0,0.3);
     }
  
     .btn-save-date:hover {
@@ -471,11 +471,11 @@
       height: 170px;
       border-radius: 50%;
       object-fit: cover;
-      border: 2px solid var(--gold-solid);
-      padding: 6px;
+      border: 0.5px solid rgba(255, 255, 255, 0.4);
+      padding: 4px;
       margin-bottom: 20px;
-      box-shadow: 0 0 25px rgba(212, 175, 55, 0.3);
-      background: rgba(30, 0, 0, 0.4);
+      box-shadow: 0 0 25px rgba(255, 255, 255, 0.1);
+      background: rgba(255, 255, 255, 0.02);
       transition: transform 0.5s ease;
     }
 
@@ -525,30 +525,30 @@
     }
  
     .event-bg {
-      background: rgba(30, 0, 0, 0.2);
+      background: rgba(255, 255, 255, 0.01);
     }
  
     .event-card {
       background: var(--glass-bg);
-      border: 1px solid var(--gold-solid);
-      border-radius: 8px;
+      border: 0.5px solid rgba(255, 255, 255, 0.25);
+      border-radius: 6px;
       padding: 35px 20px;
       margin-bottom: 30px;
-      box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+      box-shadow: 0 10px 30px rgba(0,0,0,0.3);
       position: relative;
     }
 
     .event-card::before {
       content: '';
       position: absolute;
-      top: 6px; left: 6px; right: 6px; bottom: 6px;
-      border: 1px solid rgba(212, 175, 55, 0.3);
+      top: 4px; left: 4px; right: 4px; bottom: 4px;
+      border: 0.5px solid rgba(255, 255, 255, 0.1);
       border-radius: 4px;
       pointer-events: none;
     }
  
     .section-alt {
-      background: rgba(20, 0, 0, 0.15);
+      background: rgba(255, 255, 255, 0.015);
       padding: 50px 20px;
       margin: 0;
     }
@@ -583,7 +583,7 @@
       letter-spacing: 2px;
       box-shadow: 0 0 15px rgba(212, 175, 55, 0.4);
       transition: all 0.3s ease;
-      border: 1px solid var(--gold-solid);
+      border: 0.5px solid var(--gold-solid);
     }
 
     .btn-map:hover {
@@ -594,10 +594,10 @@
       position: relative;
       max-width: 100%;
       margin: 0 auto;
-      border-radius: 8px;
+      border-radius: 6px;
       overflow: hidden;
-      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.7);
-      border: 1px solid var(--gold-solid);
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+      border: 0.5px solid rgba(255, 255, 255, 0.25);
       background-color: #000;
     }
 
@@ -630,7 +630,7 @@
       transform: translateY(-50%);
       background: rgba(40, 0, 0, 0.8);
       color: var(--gold-solid);
-      border: 1px solid var(--gold-solid);
+      border: 0.5px solid rgba(255, 255, 255, 0.3);
       border-radius: 4px;
       font-size: 1.2rem;
       padding: 12px 16px;
@@ -653,10 +653,10 @@
     }
 
     .dot {
-      height: 8px;
-      width: 8px;
+      height: 6px;
+      width: 6px;
       margin: 0 5px;
-      background-color: rgba(212, 175, 55, 0.3);
+      background-color: rgba(255, 255, 255, 0.2);
       border-radius: 50%;
       display: inline-block;
       transition: all 0.3s ease;
@@ -665,7 +665,7 @@
 
     .dot.active {
       background-color: var(--gold-solid);
-      width: 20px;
+      width: 18px;
       border-radius: 10px;
     }
 
@@ -685,9 +685,9 @@
     .lightbox-img {
       max-width: 90%;
       max-height: 85vh;
-      border: 1px solid var(--gold-solid);
+      border: 0.5px solid rgba(255, 255, 255, 0.3);
       border-radius: 6px;
-      box-shadow: 0 0 30px rgba(212,175,55,0.4);
+      box-shadow: 0 0 30px rgba(255,255,255,0.15);
     }
 
     .lightbox-close {
@@ -701,11 +701,11 @@
  
     .gift-card {
       background: var(--glass-bg);
-      border: 1px solid var(--gold-solid);
-      border-radius: 8px;
+      border: 0.5px solid rgba(255, 255, 255, 0.25);
+      border-radius: 6px;
       padding: 30px 20px;
       margin-top: 25px;
-      box-shadow: 0 8px 25px rgba(0,0,0,0.4);
+      box-shadow: 0 8px 25px rgba(0,0,0,0.3);
     }
  
     .bank-name {
@@ -727,8 +727,8 @@
  
     .btn-copy {
       background: transparent;
-      color: var(--gold-solid);
-      border: 1px solid var(--gold-solid);
+      color: var(--gold-light);
+      border: 0.5px solid rgba(255, 255, 255, 0.3);
       padding: 8px 20px;
       border-radius: 4px;
       cursor: pointer;
@@ -739,18 +739,18 @@
     }
 
     .btn-copy:hover {
-      background: var(--gold-solid);
-      color: #4A0000;
+      background: rgba(255, 255, 255, 0.1);
+      border-color: rgba(255, 255, 255, 0.6);
     }
  
     .form-box {
       text-align: left;
       background: var(--glass-bg);
       padding: 25px 20px;
-      border: 1px solid var(--gold-solid);
-      border-radius: 8px;
+      border: 0.5px solid rgba(255, 255, 255, 0.25);
+      border-radius: 6px;
       margin-bottom: 25px;
-      box-shadow: 0 8px 20px rgba(0,0,0,0.4);
+      box-shadow: 0 8px 20px rgba(0,0,0,0.3);
     }
 
     .form-box-title {
@@ -761,7 +761,7 @@
       margin-bottom: 15px;
       letter-spacing: 1.5px;
       text-align: center;
-      border-bottom: 1px dashed var(--gold-border);
+      border-bottom: 0.5px dashed rgba(255, 255, 255, 0.2);
       padding-bottom: 10px;
     }
 
@@ -782,26 +782,26 @@
     .form-group input, .form-group select, .form-group textarea {
       width: 100%;
       padding: 12px;
-      border: 1px solid var(--gold-border);
+      border: 0.5px solid rgba(255, 255, 255, 0.25);
       border-radius: 4px;
       font-family: 'Cormorant Garamond', serif;
       font-size: 1rem;
-      background: rgba(30, 0, 0, 0.5);
+      background: rgba(255, 255, 255, 0.02);
       color: #FFF;
       outline: none;
       transition: border 0.3s, box-shadow 0.3s;
     }
 
     .form-group input:focus, .form-group select:focus, .form-group textarea:focus {
-      border-color: var(--gold-solid);
-      box-shadow: 0 0 8px rgba(212, 175, 55, 0.4);
+      border-color: rgba(255, 255, 255, 0.6);
+      box-shadow: 0 0 8px rgba(255, 255, 255, 0.15);
     }
  
     .btn-submit {
       width: 100%;
       background: var(--royal-gold);
       color: #4A0000;
-      border: 1px solid var(--gold-solid);
+      border: 0.5px solid var(--gold-solid);
       padding: 12px;
       border-radius: 4px;
       font-family: 'Cormorant Garamond', serif;
@@ -825,7 +825,7 @@
       height: 48px;
       background: var(--royal-gold);
       color: #4A0000;
-      border: 1px solid var(--gold-solid);
+      border: 0.5px solid var(--gold-solid);
       border-radius: 50%;
       display: flex;
       align-items: center;
@@ -839,13 +839,13 @@
     #music-btn:hover { transform: scale(1.1); }
 
     .wish-card {
-      background: rgba(40, 0, 0, 0.45);
-      border: 1px solid var(--gold-border);
-      border-left: 4px solid var(--gold-solid);
+      background: rgba(255, 255, 255, 0.025);
+      border: 0.5px solid rgba(255, 255, 255, 0.2);
+      border-left: 2px solid rgba(255, 255, 255, 0.6);
       border-radius: 6px;
       padding: 15px;
       margin-bottom: 15px;
-      box-shadow: 0 4px 10px rgba(0,0,0,0.3);
+      box-shadow: 0 4px 10px rgba(0,0,0,0.2);
     }
 
     .wish-header {
@@ -871,8 +871,8 @@
     }
 
     footer {
-      background: rgba(30, 0, 0, 0.5);
-      border-top: 1px solid var(--gold-solid);
+      background: rgba(255, 255, 255, 0.01);
+      border-top: 0.5px solid rgba(255, 255, 255, 0.2);
       padding: 40px 20px 30px 20px;
       text-align: center;
       position: relative;
@@ -902,7 +902,7 @@
       font-size: 0.8rem;
       color: #888;
       margin-top: 20px;
-      border-top: 1px solid rgba(212, 175, 55, 0.2);
+      border-top: 0.5px solid rgba(255, 255, 255, 0.1);
       padding-top: 18px;
       font-family: 'Cormorant Garamond', serif;
     }
@@ -1065,7 +1065,7 @@
         <div class="event-type">Sangjit Ceremony</div>
         <div class="event-detail"><b>Date:</b> Friday, September 18th, 2026</div>
         <div class="event-detail"><b>Time:</b> 10:00 WIB</div>
-        <div class="event-detail" style="margin-top: 15px; border-top: 1px dashed var(--gold-border); padding-top: 12px;">
+        <div class="event-detail" style="margin-top: 15px; border-top: 0.5px dashed rgba(255, 255, 255, 0.2); padding-top: 12px;">
           <b style="color: var(--gold-light);">Location:</b><br>
           Grand Ballroom<br>
           <small style="color: #AAA; font-family: 'Cormorant Garamond', serif; font-size: 0.95rem;">Jl. Jendral Basuki Rahmat No. 189, Palembang</small>
@@ -1387,11 +1387,13 @@
       createGlitter();
       loadWishes();
       
-      const urlParams = new URLSearchParams(window.location.search);
-      const guest = urlParams.get('to');
-      if (guest) {
-        document.getElementById('guest-name-display').innerText = decodeURIComponent(guest);
-      }
+      (function() {
+        const urlParams = new URLSearchParams(window.location.search);
+        const guest = urlParams.get('to');
+        if (guest) {
+          document.getElementById('guest-name-display').innerText = decodeURIComponent(guest);
+        }
+      })();
     });
   </script>
 </body>
