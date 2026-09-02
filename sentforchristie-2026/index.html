@@ -529,22 +529,26 @@
       background: rgba(255, 255, 255, 0.01);
     }
  
+    /* GAYA CARD EVENT SEPERTI FOTO REFERENSI KEDUA */
     .event-card {
-      background: var(--glass-bg);
-      border: 0.5px solid rgba(255, 255, 255, 0.25);
-      border-radius: 6px;
-      padding: 35px 20px;
+      background: linear-gradient(135deg, rgba(255, 248, 231, 0.95), rgba(243, 229, 171, 0.92));
+      border: 3.5px solid #C5A059;
+      border-radius: 35px;
+      padding: 40px 25px;
       margin-bottom: 30px;
-      box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+      box-shadow: 0 15px 35px rgba(0,0,0,0.5), inset 0 0 20px rgba(197, 160, 89, 0.2);
       position: relative;
+      color: #4A0000;
+      background-image: radial-gradient(rgba(197, 160, 89, 0.08) 1px, transparent 1px);
+      background-size: 16px 16px;
     }
 
     .event-card::before {
       content: '';
       position: absolute;
-      top: 4px; left: 4px; right: 4px; bottom: 4px;
-      border: 0.5px solid rgba(255, 255, 255, 0.1);
-      border-radius: 4px;
+      top: 6px; left: 6px; right: 6px; bottom: 6px;
+      border: 1.5px solid #D98880;
+      border-radius: 30px;
       pointer-events: none;
     }
  
@@ -554,93 +558,90 @@
       margin: 0;
     }
     
-    /* GAYA BARU: SANGJIT DATE BADGE SEPERTI CONTOH FOTO */
+    /* SANGJIT DATE BADGE SEPERTI REFERENSI KEDUA */
     .sangjit-date-badge-container {
       display: flex;
       align-items: center;
       justify-content: center;
-      gap: 15px;
-      margin: 25px 0 20px 0;
+      gap: 12px;
+      margin: 20px 0 25px 0;
     }
 
     .sangjit-date-line {
       flex: 1;
-      height: 1px;
-      background: var(--gold-solid);
-      opacity: 0.5;
-      max-width: 70px;
+      height: 1.5px;
+      background: #78909C;
+      opacity: 0.7;
+      max-width: 55px;
     }
 
     .sangjit-date-wrapper {
       display: flex;
       align-items: center;
       justify-content: center;
-      gap: 18px;
+      gap: 14px;
     }
 
     .date-side-text {
       font-family: 'Cormorant Garamond', serif;
-      font-size: 1.4rem;
-      font-weight: 600;
-      letter-spacing: 3px;
-      color: var(--gold-light);
+      font-size: 1.35rem;
+      font-weight: 700;
+      letter-spacing: 2px;
+      color: #4A0000;
       text-transform: uppercase;
     }
 
     .date-center-badge {
-      width: 90px;
-      height: 90px;
-      border: 1.5px solid var(--gold-solid);
-      border-radius: 35% 35% 35% 35% / 35% 35% 35% 35%;
+      width: 82px;
+      height: 82px;
+      border: 2px solid #C5A059;
+      border-radius: 50%;
       display: flex;
-      flex-direction: column;
       align-items: center;
       justify-content: center;
-      background: rgba(255, 255, 255, 0.04);
-      box-shadow: 0 4px 15px rgba(0,0,0,0.3);
+      background: linear-gradient(135deg, #00BCD4, #00838F);
+      box-shadow: 0 4px 12px rgba(0,0,0,0.25), inset 0 2px 5px rgba(255,255,255,0.4);
       position: relative;
-      padding: 5px;
-    }
-
-    .badge-day {
-      font-family: 'Cormorant Garamond', serif;
-      font-size: 0.75rem;
-      letter-spacing: 2px;
-      color: var(--text-muted);
-      text-transform: uppercase;
-      margin-bottom: -2px;
     }
 
     .badge-date {
       font-family: 'Cormorant Garamond', serif;
-      font-size: 1.8rem;
+      font-size: 2.2rem;
       font-weight: 700;
-      color: #FFD700;
-      background: var(--royal-gold);
-      -webkit-background-clip: text;
-      -webkit-text-fill-color: transparent;
-      line-height: 1.1;
+      color: #FFF8E7;
+      line-height: 1;
+      text-shadow: 0 2px 4px rgba(0,0,0,0.3);
     }
 
     .event-type {
       font-family: 'Cormorant Garamond', serif;
-      font-size: 1.6rem;
+      font-size: 2.4rem;
       font-weight: 700;
-      color: var(--gold-light);
-      margin-bottom: 15px;
-      letter-spacing: 2px;
+      color: #8B0000;
+      margin-bottom: 12px;
+      letter-spacing: 1px;
+    }
+
+    .event-time {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.35rem;
+      font-weight: 600;
+      color: #4A0000;
+      margin-bottom: 18px;
+      letter-spacing: 1px;
     }
  
     .event-detail {
-      font-size: 1.05rem;
-      color: #DDD;
-      margin-bottom: 10px;
+      font-size: 1.1rem;
+      color: #5C3A21;
+      margin-bottom: 8px;
       font-family: 'Cormorant Garamond', serif;
+      line-height: 1.5;
     }
  
     .btn-map {
       display: inline-block;
-      margin-top: 15px;
+      margin-top: 20px;
       padding: 12px 28px;
       background: var(--royal-gold);
       color: #4A0000;
@@ -939,15 +940,15 @@
       white-space: pre-line;
     }
 
-    /* FOOTER DENGAN LAYER LEBIH TEBAL DAN ELEGAN */
+    /* FOOTER DENGAN LAYER LEBIH TEBAL DAN ELEGAN SESUAI PERMINTAAN */
     footer {
-      background: linear-gradient(to bottom, rgba(50, 0, 0, 0.95), rgba(25, 0, 0, 0.98));
-      border-top: 1.5px solid rgba(212, 175, 55, 0.5);
-      padding: 60px 20px 45px 20px;
+      background: linear-gradient(to bottom, rgba(65, 0, 0, 0.98), rgba(25, 0, 0, 1));
+      border-top: 2.5px solid rgba(212, 175, 55, 0.8);
+      padding: 70px 20px 50px 20px;
       text-align: center;
       position: relative;
-      margin-top: 30px;
-      box-shadow: inset 0 15px 35px rgba(0, 0, 0, 0.8), 0 -10px 30px rgba(0, 0, 0, 0.6);
+      margin-top: 40px;
+      box-shadow: inset 0 20px 45px rgba(0, 0, 0, 0.9), 0 -15px 40px rgba(0, 0, 0, 0.8);
     }
 
     .footer-title {
@@ -1123,36 +1124,36 @@
       </div>
     </section>
  
-    <!-- WEDDING EVENTS SECTION -->
+    <!-- WEDDING EVENTS SECTION (DIUBAH MENYERUPAI REFERENSI KEDUA) -->
     <section class="event-bg">
       <div class="reveal">
         <h2 class="section-title">Event</h2>
         <div class="section-subtitle">Regards the pleasure of your presence at their wonderful union</div>
       </div>
  
-      <!-- Sangjit Ceremony -->
+      <!-- Sangjit Ceremony Card -->
       <div class="event-card reveal">
+        <div class="chinese-symbol" style="font-size: 2.2rem; margin-bottom: 5px; filter: none; background: #C5A059; -webkit-background-clip: text; -webkit-text-fill-color: transparent;">囍</div>
         <div class="event-type">Sangjit Ceremony</div>
         
-        <!-- BAGIAN TANGGAL GAYA BARU (SEPERTI CONTOH FOTO) -->
+        <!-- BAGIAN TANGGAL GAYA REFERENSI KEDUA -->
         <div class="sangjit-date-badge-container">
           <div class="sangjit-date-line"></div>
           <div class="sangjit-date-wrapper">
-            <span class="date-side-text">SEP</span>
+            <span class="date-side-text">FRIDAY</span>
             <div class="date-center-badge">
-              <span class="badge-day">FRI</span>
               <span class="badge-date">18</span>
             </div>
-            <span class="date-side-text">2026</span>
+            <span class="date-side-text">SEP 2026</span>
           </div>
           <div class="sangjit-date-line"></div>
         </div>
 
-        <div class="event-detail" style="margin-top: 15px;"><b>Time:</b> 10:00 WIB</div>
-        <div class="event-detail" style="margin-top: 15px; border-top: 0.5px dashed rgba(255, 255, 255, 0.2); padding-top: 12px;">
-          <b style="color: var(--gold-light);">Location:</b><br>
-          Grand Ballroom<br>
-          <small style="color: #AAA; font-family: 'Cormorant Garamond', serif; font-size: 0.95rem;">Jl. Jendral Basuki Rahmat No. 189, Palembang</small>
+        <div class="event-time">10.00 AM</div>
+        
+        <div class="event-detail" style="border-top: 1px dashed rgba(197, 160, 89, 0.4); padding-top: 15px; margin-top: 10px;">
+          <b style="color: #8B0000; font-size: 1.2rem; letter-spacing: 1px;">GRAND BALLROOM</b><br>
+          <span style="font-size: 1rem; color: #5C3A21;">Jl. Jendral Basuki Rahmat No. 189, Palembang</span>
         </div>
       </div>
  
@@ -1167,7 +1168,7 @@
     <section>
       <div class="reveal">
         <h2 class="section-title">Our Gallery</h2>
-           </div>
+      </div>
  
       <div class="slider-container reveal-zoom">
         <div class="slider-wrapper" id="slider-wrapper">
@@ -1267,6 +1268,7 @@
       </div>
     </section>
 
+    <!-- FOOTER DENGAN LAYER LEBIH TEBAL -->
     <footer>
       <div class="chinese-symbol" style="font-size: 2rem; margin-bottom: 5px;">囍</div>
       <div class="footer-title">Sen-Sen & Christie</div>
@@ -1405,7 +1407,7 @@
       navigator.clipboard.writeText(accNum).then(() => {
         alert("Account number copied to clipboard!");
       }).catch(err => {
-        console.error('Failed to copy: ', err);
+        console.log('Failed to copy: ', err);
       });
     }
 
@@ -1415,7 +1417,6 @@
       const status = document.getElementById('rsvp-status').value;
       const guests = document.getElementById('rsvp-guests').value;
 
-      // Ganti URL di bawah ini dengan URL Web App dari Google Apps Script Anda
       const scriptURL = 'MASUKKAN_URL_WEB_APP_GOOGLE_SCRIPT_ANDA_DI_SINI';
 
       const formData = {
@@ -1435,7 +1436,7 @@
         document.getElementById('rsvp-form').reset();
       })
       .catch(error => {
-        console.error('Error!', error.message);
+        console.log('Error!', error.message);
         alert('Failed to send RSVP. Please try again.');
       });
     }
@@ -1459,12 +1460,11 @@
     }
 
     function submitWish(event) {
-      icon = document.getElementById('wish-name');
       event.preventDefault();
       const name = document.getElementById('wish-name').value;
       const message = document.getElementById('wish-message').value;
 
-      const wishData = { name, message };
+      const wish`data = { name, message };
       let currentWishes = JSON.parse(localStorage.getItem('wishesList')) || [];
       currentWishes.unshift(wishData);
       localStorage.setItem('wishesList', JSON.stringify(currentWishes));
