@@ -217,12 +217,12 @@
       box-shadow: 0 10px 25px rgba(0,0,0,0.4), inset 0 0 10px rgba(255, 255, 255, 0.02) !important;
       border-radius: 6px;
       padding: 16px 26px !important;
-      margin-top: 15px !important;
-      margin-bottom: 28px !important;
+      margin-top: 10px !important;
+      margin-bottom: 15px !important;
       max-width: 320px;
       width: 88%;
       position: relative;
-      z-index: 10005 !important;
+      z-index: 1 !important;
     }
 
     .guest-box::before, .guest-box::after {
@@ -281,8 +281,9 @@
       transition: all 0.3s ease;
       position: relative;
       overflow: hidden;
-      z-index: 10006;
+      z-index: 99999 !important;
       margin-top: 10px !important;
+      pointer-events: auto !important;
     }
 
     .btn-open::after {
@@ -1464,7 +1465,7 @@
       const name = document.getElementById('wish-name').value;
       const message = document.getElementById('wish-message').value;
 
-      const wish`data = { name, message };
+      const wishData = { name, message };
       let currentWishes = JSON.parse(localStorage.getItem('wishesList')) || [];
       currentWishes.unshift(wishData);
       localStorage.setItem('wishesList', JSON.stringify(currentWishes));
